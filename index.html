@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSBOX&#8482; &#8211; Rent Box. Save Trees. Save Bucks.</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d1a10; color: #f4f0e6; overflow-x: hidden; }
+
+nav { position:fixed; top:0; left:0; right:0; z-index:999; display:flex; align-items:center; justify-content:space-between; padding:1rem 2.5rem; background:rgba(13,26,16,0.97); border-bottom:1px solid rgba(45,184,75,0.2); }
+.logo { font-size:1.8rem; font-weight:900; color:#2db84b; letter-spacing:.05em; }
+.logo span { color:#f4f0e6; }
+.nav-links { display:flex; gap:1.8rem; list-style:none; }
+.nav-links a { color:rgba(244,240,230,0.75); text-decoration:none; font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; transition:color .2s; }
+.nav-links a:hover { color:#2db84b; }
+.nav-btn { background:#2db84b; color:#0d1a10; padding:.5rem 1.3rem; border-radius:3px; font-weight:700; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; }
+
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:7rem 2rem 4rem; background:linear-gradient(160deg,#071008 0%,#0d1a10 40%,#0a2010 100%); position:relative; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; opacity:.05; background-image:linear-gradient(#2db84b 1px,transparent 1px),linear-gradient(90deg,#2db84b 1px,transparent 1px); background-size:50px 50px; }
+.hero-glow { position:absolute; inset:0; background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(45,184,75,0.1) 0%,transparent 70%); }
+.hero-inner { position:relative; z-index:2; max-width:860px; }
+.hero-badge { display:inline-block; background:rgba(45,184,75,0.12); border:1px solid rgba(45,184,75,0.35); color:#2db84b; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; padding:.35rem 1rem; border-radius:100px; margin-bottom:1.5rem; font-weight:600; }
+.hero h1 { font-size:clamp(3.5rem,10vw,8rem); font-weight:900; line-height:.92; color:#fff; margin-bottom:1.2rem; }
+.hero h1 .g { color:#2db84b; }
+.hero-sub { font-size:1.05rem; color:rgba(244,240,230,0.7); max-width:540px; margin:0 auto 2.5rem; line-height:1.65; font-weight:300; }
+.hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3.5rem; }
+.btn-p { background:#2db84b; color:#0d1a10; padding:.85rem 2.2rem; font-weight:700; font-size:.88rem; letter-spacing:.07em; text-transform:uppercase; border-radius:3px; text-decoration:none; display:inline-block; }
+.btn-o { border:2px solid rgba(45,184,75,0.45); color:#f4f0e6; padding:.85rem 2.2rem; font-weight:500; font-size:.88rem; letter-spacing:.07em; text-transform:uppercase; border-radius:3px; text-decoration:none; display:inline-block; }
+.hero-stats { display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; }
+.hstat .num { font-size:2.5rem; font-weight:900; color:#2db84b; }
+.hstat .lbl { font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,230,0.45); margin-top:.2rem; }
+
+section { padding:5.5rem 2rem; }
+.cont { max-width:1080px; margin:0 auto; }
+.sec-tag { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:#2db84b; font-weight:700; margin-bottom:.8rem; }
+.sec-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1; color:#fff; margin-bottom:1.2rem; }
+.sec-body { font-size:1rem; color:rgba(244,240,230,0.65); line-height:1.75; max-width:600px; font-weight:300; }
+.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(45,184,75,0.2),transparent); }
+
+.bg-a { background:#090f0b; }
+.bg-b { background:#101d12; }
+.bg-c { background:#0d1a10; }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:center; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.stat-card { background:#1a2e1d; border:1px solid rgba(192,57,43,0.25); border-radius:6px; padding:1.4rem; }
+.stat-card .big { font-size:2.2rem; font-weight:900; color:#c0392b; }
+.stat-card p { font-size:.8rem; color:rgba(244,240,230,0.55); margin-top:.35rem; line-height:1.4; }
+
+.adv-box { background:#132018; border:1px solid rgba(45,184,75,0.2); border-radius:8px; padding:1.8rem; }
+.adv-box h3 { font-size:1.1rem; font-weight:700; color:#2db84b; margin-bottom:1rem; }
+.adv-list { list-style:none; display:flex; flex-direction:column; gap:.8rem; }
+.adv-list li { display:flex; gap:.7rem; font-size:.85rem; color:rgba(244,240,230,0.75); }
+.adv-list li b { color:#2db84b; flex-shrink:0; }
+.rev-box { background:rgba(45,184,75,0.08); border:1px solid rgba(45,184,75,0.25); border-radius:8px; padding:1.3rem; margin-top:1rem; }
+.rev-box .lbl { font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,230,0.35); margin-bottom:.4rem; font-weight:600; }
+.rev-box .amount { font-size:2.6rem; font-weight:900; color:#2db84b; }
+.rev-box .sub { font-size:.76rem; color:rgba(244,240,230,0.4); margin-top:.3rem; }
+.box-types { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:1.5rem; }
+.box-type { background:rgba(45,184,75,0.07); border:1px solid rgba(45,184,75,0.18); border-radius:5px; padding:1rem; text-align:center; }
+.box-type .ico { font-size:1.5rem; margin-bottom:.4rem; }
+.box-type p { font-size:.73rem; color:rgba(244,240,230,0.6); font-weight:500; }
+
+.impact-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-top:2.5rem; }
+.impact-card { background:linear-gradient(135deg,#132018,#1a2e1d); border:1px solid rgba(45,184,75,0.2); border-radius:6px; padding:1.8rem 1.2rem; text-align:center; border-bottom:3px solid #2db84b; }
+.impact-card .big { font-size:2.3rem; font-weight:900; color:#2db84b; }
+.impact-card .unit { font-size:.7rem; color:rgba(45,184,75,0.7); }
+.impact-card p { font-size:.76rem; color:rgba(244,240,230,0.5); margin-top:.5rem; line-height:1.4; }
+
+.cmp-table { margin-top:2.5rem; border:1px solid rgba(45,184,75,0.15); border-radius:6px; overflow:hidden; }
+.cmp-row { display:grid; grid-template-columns:2fr 1fr 1fr; border-top:1px solid rgba(45,184,75,0.08); }
+.cmp-row:first-child { border-top:none; background:rgba(45,184,75,0.12); }
+.cmp-cell { padding:.9rem 1.2rem; font-size:.85rem; display:flex; align-items:center; }
+.cmp-cell.ctr { justify-content:center; }
+.hd { font-weight:700; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase; color:#2db84b; }
+.hd.gray { color:rgba(244,240,230,0.4); }
+.ck { color:#2db84b; font-weight:900; font-size:1.1rem; }
+.cx { color:#c0392b; font-weight:900; font-size:1.1rem; }
+.wn { color:#e67e22; font-size:1rem; }
+
+.vs-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2.5rem; }
+.vs-box { border-radius:8px; padding:1.8rem; }
+.vs-box.good { background:rgba(45,184,75,0.08); border:2px solid rgba(45,184,75,0.3); }
+.vs-box.bad { background:rgba(192,57,43,0.05); border:2px solid rgba(192,57,43,0.2); }
+.vs-box h3 { font-size:1.05rem; font-weight:700; margin-bottom:1rem; }
+.vs-box.good h3 { color:#2db84b; }
+.vs-box.bad h3 { color:rgba(192,57,43,0.8); }
+.vs-list { list-style:none; display:flex; flex-direction:column; gap:.75rem; }
+.vs-list li { display:flex; gap:.6rem; font-size:.83rem; line-height:1.4; }
+.vs-list li .vi { flex-shrink:0; font-weight:700; }
+.g-ic { color:#2db84b; }
+.r-ic { color:#c0392b; }
+.g-tx { color:rgba(244,240,230,0.75); }
+.r-tx { color:rgba(244,240,230,0.5); }
+
+.stbl { width:100%; border-collapse:collapse; margin-top:2.5rem; }
+.stbl th { padding:.9rem 1rem; font-size:.67rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; border-bottom:2px solid rgba(45,184,75,0.2); text-align:center; }
+.stbl th:first-child { text-align:left; color:#2db84b; }
+.stbl th:not(:first-child) { color:rgba(244,240,230,0.4); }
+.stbl th:last-child { color:#2db84b; }
+.stbl td { padding:.85rem 1rem; font-size:.85rem; text-align:center; border-bottom:1px solid rgba(45,184,75,0.07); color:rgba(244,240,230,0.7); }
+.stbl td:first-child { text-align:left; font-weight:700; color:#2db84b; }
+.stbl td:last-child { color:#2db84b; font-weight:700; }
+.stbl tr:nth-child(even) { background:rgba(45,184,75,0.03); }
+
+.rev-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:2.5rem; }
+.rev-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.15); border-radius:6px; padding:1.6rem; }
+.rev-card.hl { background:rgba(45,184,75,0.1); border-color:rgba(45,184,75,0.35); }
+.rev-card .rico { font-size:1.8rem; margin-bottom:.8rem; }
+.rev-card h3 { font-size:.92rem; font-weight:700; color:#2db84b; margin-bottom:.5rem; text-transform:uppercase; letter-spacing:.04em; }
+.rev-card p { font-size:.78rem; color:rgba(244,240,230,0.55); line-height:1.5; }
+.mkt-bubble { background:rgba(45,184,75,0.05); border:1px solid rgba(45,184,75,0.15); border-radius:6px; padding:1.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:.6rem; }
+.mkt-bubble .mbig { font-size:2.8rem; font-weight:900; color:#2db84b; }
+.mkt-bubble .msub { font-size:.71rem; color:rgba(244,240,230,0.4); }
+.mkt-bubble .mmed { font-size:2rem; font-weight:900; color:#1a7a2e; }
+
+.proj-tbl { width:100%; border-collapse:collapse; margin-top:2.5rem; }
+.proj-tbl th { padding:.9rem 1.2rem; font-size:.67rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#2db84b; border-bottom:2px solid rgba(45,184,75,0.2); text-align:left; }
+.proj-tbl td { padding:.9rem 1.2rem; font-size:.87rem; border-bottom:1px solid rgba(45,184,75,0.07); color:rgba(244,240,230,0.75); }
+.proj-tbl .hi td { color:#fff; font-weight:600; }
+.proj-tbl .hi td:nth-child(3) { color:#2db84b; }
+.proj-tbl .tot td { border-top:2px solid rgba(45,184,75,0.25); color:#2db84b; font-weight:700; font-size:.8rem; font-family:monospace; }
+
+.bars { display:flex; flex-direction:column; gap:.7rem; margin-top:2.5rem; }
+.bar-row { display:grid; grid-template-columns:52px 1fr 90px; align-items:center; gap:1rem; }
+.bar-yr { font-size:.72rem; color:#2db84b; font-weight:700; font-family:monospace; }
+.bar-track { background:rgba(45,184,75,0.1); border-radius:2px; height:26px; overflow:hidden; }
+.bar-fill { height:100%; background:linear-gradient(90deg,#1a7a2e,#2db84b); border-radius:2px; display:flex; align-items:center; padding-left:.5rem; font-size:.7rem; color:#0d1a10; font-weight:700; }
+.bar-val { font-size:.72rem; color:rgba(244,240,230,0.5); text-align:right; font-family:monospace; }
+.assum-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2rem; }
+.assum-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.12); border-radius:5px; padding:1.2rem; }
+.assum-card .big { font-size:1.8rem; font-weight:900; color:#2db84b; }
+.assum-card p { font-size:.76rem; color:rgba(244,240,230,0.5); margin-top:.3rem; }
+
+.timeline { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-top:3rem; position:relative; }
+.timeline::before { content:''; position:absolute; top:2.1rem; left:10%; right:10%; height:2px; background:linear-gradient(90deg,#1a7a2e,#2db84b); z-index:0; }
+.ms-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.22); border-radius:6px; padding:1.4rem 1rem; text-align:center; position:relative; z-index:1; }
+.ms-dot { width:2.2rem; height:2.2rem; border-radius:50%; background:#2db84b; display:flex; align-items:center; justify-content:center; margin:0 auto .9rem; font-size:.9rem; }
+.ms-yr { font-size:1.5rem; font-weight:900; color:#2db84b; }
+.ms-txt { font-size:.73rem; color:rgba(244,240,230,0.6); margin-top:.4rem; line-height:1.4; }
+
+.fund-grid { display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; margin-top:2.5rem; }
+.ask-box { background:rgba(45,184,75,0.07); border:2px solid #2db84b; border-radius:8px; padding:2.2rem; text-align:center; }
+.ask-box .ask-lbl { font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(244,240,230,0.4); font-weight:600; margin-bottom:.5rem; }
+.ask-box .ask-num { font-size:5rem; font-weight:900; color:#2db84b; line-height:1; }
+.ask-box .ask-sub { font-size:.82rem; color:rgba(244,240,230,0.5); }
+.ask-box hr { border:none; border-top:1px solid rgba(45,184,75,0.2); margin:1.4rem 0; }
+.ask-box .equity { font-size:.87rem; color:#f4f0e6; line-height:1.65; }
+.ask-box .equity b { color:#2db84b; }
+.ret-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.2rem; }
+.ret-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.15); border-radius:5px; padding:1.1rem; }
+.ret-card .rl { font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(244,240,230,0.35); margin-bottom:.3rem; font-weight:600; }
+.ret-card .rv { font-size:1.7rem; font-weight:900; color:#2db84b; }
+.ret-wide { grid-column:1/-1; }
+.ret-wide .rv { font-size:.82rem; color:rgba(244,240,230,0.6); line-height:1.6; font-weight:normal; margin-top:.3rem; }
+.alloc-list { display:flex; flex-direction:column; gap:1rem; margin-top:1.8rem; }
+.alloc-row { display:flex; flex-direction:column; gap:.35rem; }
+.alloc-top { display:flex; justify-content:space-between; font-size:.82rem; }
+.alloc-name { color:rgba(244,240,230,0.7); }
+.alloc-amt { color:#2db84b; font-weight:700; font-family:monospace; font-size:.75rem; }
+.alloc-track { height:6px; background:rgba(45,184,75,0.12); border-radius:3px; overflow:hidden; }
+.alloc-fill { height:100%; background:#2db84b; border-radius:3px; }
+.impact-summary { margin-top:1.5rem; background:rgba(45,184,75,0.05); border:1px solid rgba(45,184,75,0.15); border-radius:5px; padding:1.2rem; }
+.impact-summary .il { font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,230,0.35); font-weight:600; margin-bottom:.6rem; }
+.impact-summary ul { list-style:none; display:flex; flex-direction:column; gap:.45rem; }
+.impact-summary ul li { font-size:.8rem; color:rgba(244,240,230,0.65); display:flex; gap:.5rem; }
+.impact-summary ul li b { color:#2db84b; }
+
+.celeb-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:2.5rem; }
+.celeb-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.12); border-radius:5px; padding:1.1rem; }
+.celeb-card .ico { font-size:1.3rem; margin-bottom:.4rem; }
+.celeb-card .name { font-size:.86rem; font-weight:700; color:#f4f0e6; }
+.celeb-card .role { font-size:.71rem; color:rgba(244,240,230,0.38); margin-top:.2rem; }
+.celeb-more { background:rgba(45,184,75,0.04); border:1px solid rgba(45,184,75,0.15); display:flex; align-items:center; justify-content:center; padding:1.1rem; }
+.celeb-more p { font-size:.76rem; color:rgba(244,240,230,0.4); font-style:italic; text-align:center; line-height:1.5; }
+
+.ally-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2.5rem; }
+.ally-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.15); border-radius:5px; padding:1.2rem 1.4rem; display:flex; justify-content:space-between; align-items:center; }
+.ally-card .an { font-size:.9rem; font-weight:700; color:#f4f0e6; }
+.ally-card .al { font-size:.71rem; color:#2db84b; font-weight:700; font-family:monospace; }
+.mfg-box { margin-top:1.5rem; background:rgba(45,184,75,0.04); border:1px solid rgba(45,184,75,0.12); border-radius:5px; padding:1.2rem; }
+.mfg-box .ml { font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,230,0.35); font-weight:600; margin-bottom:.5rem; }
+.mfg-box p { font-size:.84rem; color:rgba(244,240,230,0.65); line-height:1.55; }
+
+.mkt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:2.5rem; }
+.mkt-card { background:#090f0b; border:1px solid rgba(45,184,75,0.12); border-radius:6px; padding:1.4rem; }
+.mkt-card .mi { font-size:1.4rem; }
+.mkt-card h3 { font-size:.88rem; font-weight:700; color:#f4f0e6; margin:.5rem 0; text-transform:uppercase; letter-spacing:.04em; }
+.mkt-card p { font-size:.77rem; color:rgba(244,240,230,0.5); line-height:1.5; }
+
+.vision-sec { background:#090f0b; text-align:center; padding:5.5rem 2rem; }
+.vision-sec blockquote { font-size:clamp(1.3rem,2.8vw,2rem); font-weight:700; color:#2db84b; line-height:1.4; max-width:780px; margin:1.5rem auto; }
+.vision-sec cite { font-size:.82rem; color:rgba(244,240,230,0.38); margin-top:1.5rem; display:block; }
+.vision-line { width:50px; height:3px; background:#2db84b; margin:0 auto; }
+
+.team-card { background:#1a2e1d; border:1px solid rgba(45,184,75,0.2); border-radius:8px; padding:2.5rem; max-width:640px; margin:2.5rem auto 0; text-align:center; }
+.team-init { width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg,#1a7a2e,#2db84b); display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:900; color:#0d1a10; margin:0 auto 1.2rem; }
+.team-name { font-size:1.8rem; font-weight:900; color:#fff; }
+.team-title { font-size:.71rem; letter-spacing:.14em; text-transform:uppercase; color:#2db84b; font-weight:700; margin:.4rem 0 1rem; }
+.team-bio { font-size:.85rem; color:rgba(244,240,230,0.6); line-height:1.65; font-weight:300; }
+.team-quote { font-size:.9rem; color:rgba(244,240,230,0.5); font-style:italic; margin-top:1rem; }
+.team-support { margin-top:1.2rem; font-size:.75rem; color:rgba(244,240,230,0.3); }
+
+.cta { background:#2db84b; padding:5rem 2rem; text-align:center; }
+.cta h2 { font-size:clamp(2.2rem,6vw,4.5rem); font-weight:900; color:#0d1a10; margin-bottom:1rem; }
+.cta p { font-size:1rem; color:rgba(13,26,16,0.7); max-width:460px; margin:0 auto 2rem; line-height:1.6; }
+.cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+.btn-dark { background:#0d1a10; color:#2db84b; padding:.9rem 2.2rem; font-weight:700; font-size:.86rem; letter-spacing:.07em; text-transform:uppercase; border-radius:3px; text-decoration:none; }
+.btn-wh { background:#fff; color:#1a7a2e; padding:.9rem 2.2rem; font-weight:700; font-size:.86rem; letter-spacing:.07em; text-transform:uppercase; border-radius:3px; text-decoration:none; }
+
+footer { background:#090f0b; padding:2.5rem 2rem; text-align:center; border-top:1px solid rgba(45,184,75,0.1); }
+.f-logo { font-size:2rem; font-weight:900; color:#2db84b; letter-spacing:.06em; }
+.f-tag { font-size:.71rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(244,240,230,0.3); margin:.3rem 0 1.5rem; }
+.f-links { display:flex; gap:1.8rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem; }
+.f-links a { color:rgba(244,240,230,0.4); text-decoration:none; font-size:.77rem; }
+.f-links a:hover { color:#2db84b; }
+.f-contact { font-size:.75rem; color:rgba(244,240,230,0.27); line-height:1.9; }
+.f-contact a { color:#2db84b; text-decoration:none; }
+
+@media(max-width:768px){
+  nav { padding:1rem 1.2rem; }
+  .nav-links { display:none; }
+  .two-col, .fund-grid, .vs-grid { grid-template-columns:1fr; gap:2rem; }
+  .impact-grid, .rev-grid, .mkt-grid { grid-template-columns:1fr 1fr; }
+  .celeb-grid, .ally-grid { grid-template-columns:1fr 1fr; }
+  .timeline { grid-template-columns:1fr 1fr; }
+  .timeline::before { display:none; }
+  .assum-grid { grid-template-columns:1fr 1fr; }
+  section { padding:4rem 1.2rem; }
+}
+@media(max-width:480px){
+  .impact-grid, .rev-grid, .mkt-grid, .celeb-grid, .ally-grid { grid-template-columns:1fr; }
+  .assum-grid, .ret-grid { grid-template-columns:1fr; }
+  .box-types { grid-template-columns:1fr 1fr; }
+  .hero h1 { font-size:3rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">TS<span>BOX</span>&#8482;</div>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#revenue">Revenue</a></li>
+    <li><a href="#projections">Financials</a></li>
+    <li><a href="#funding">Invest</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <a href="#funding" class="nav-btn">Invest Now</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">&#127807; The Future of Moving Is Here</div>
+    <h1>RENT BOX.<br><span class="g">SAVE TREES.</span><br>SAVE BUCKS.</h1>
+    <p class="hero-sub">TSBOX&#8482; is a revolutionary rental system replacing disposable cardboard boxes with durable, specialty, eco-friendly moving containers that save money and the planet.</p>
+    <div class="hero-btns">
+      <a href="#solution" class="btn-p">Discover TSBOX&#8482;</a>
+      <a href="#funding" class="btn-o">Investor Info</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="num">570K</div><div class="lbl">Trees Saved / Year</div></div>
+      <div class="hstat"><div class="num">2.8M</div><div class="lbl">Gallons Oil Saved</div></div>
+      <div class="hstat"><div class="num">$5M</div><div class="lbl">Funding Target</div></div>
+      <div class="hstat"><div class="num">6&#8211;8&#215;</div><div class="lbl">Investor ROI</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-a" id="problem">
+  <div class="cont">
+    <div class="two-col">
+      <div>
+        <div class="sec-tag">The Problem</div>
+        <h2 class="sec-title">Cardboard Is Destroying Our Planet</h2>
+        <p class="sec-body">Every move means buying boxes once and throwing them away. With over <strong style="color:#f4f0e6">13 million U.S. households</strong> moving annually, that&#8217;s <strong style="color:#f4f0e6">780 million cardboard boxes</strong> discarded every year. Cardboard is used to ship <strong style="color:#f4f0e6">90% of all products</strong> in the U.S. &#8212; a $34.7 billion industry built on single-use waste. Deforestation caused by cardboard production is a leading reason for greenhouse emissions &#8212; more than all factories and aircraft combined.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="big">3B</div><p>Trees cut down every year &#8212; many for cardboard packaging</p></div>
+        <div class="stat-card"><div class="big">50%</div><p>Of world&#8217;s flora and fauna at risk in the next 25 years</p></div>
+        <div class="stat-card"><div class="big">49M lbs</div><p>CO&#8322; released by cardboard box production annually</p></div>
+        <div class="stat-card"><div class="big">780M</div><p>Cardboard boxes used and discarded by U.S. movers yearly</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="solution">
+  <div class="cont">
+    <div class="two-col">
+      <div>
+        <div class="sec-tag">The Solution</div>
+        <h2 class="sec-title">Introducing TSBOX&#8482;</h2>
+        <p class="sec-body">A truly eco-friendly, rental-based replacement for cardboard boxes. Durable, stackable, lockable &#8212; designed with specialty configurations for every item you own.</p>
+        <div class="box-types">
+          <div class="box-type"><div class="ico">&#127870;</div><p>Glassware</p></div>
+          <div class="box-type"><div class="ico">&#128163;</div><p>Shoes</p></div>
+          <div class="box-type"><div class="ico">&#128248;</div><p>Wardrobe</p></div>
+          <div class="box-type"><div class="ico">&#128250;</div><p>TV / Electronics</p></div>
+          <div class="box-type"><div class="ico">&#127859;</div><p>Dishes</p></div>
+          <div class="box-type"><div class="ico">&#128196;</div><p>File Box</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="adv-box">
+          <h3>Why TSBOX&#8482; Wins</h3>
+          <ul class="adv-list">
+            <li><b>&#10003;</b> Costs <strong style="color:#f4f0e6">50% less</strong> to rent than buying cardboard boxes</li>
+            <li><b>&#10003;</b> Made of <strong style="color:#f4f0e6">high-density polyethylene (HDPE)</strong> &#8212; 80-year life cycle</li>
+            <li><b>&#10003;</b> No bubble wrap, tape, or protective foam needed</li>
+            <li><b>&#10003;</b> Integrated rollers, secure locking mechanism &amp; GPS tracking</li>
+            <li><b>&#10003;</b> Foldable and stackable &#8212; saves storage and warehouse space</li>
+            <li><b>&#10003;</b> 95% reuse rate &#8212; near-zero waste per rental cycle</li>
+            <li><b>&#10003;</b> Available with delivery &amp; pickup to your door</li>
+          </ul>
+        </div>
+        <div class="rev-box">
+          <div class="lbl">Average Revenue Per Customer</div>
+          <div class="amount">$160</div>
+          <div class="sub">40 boxes &#215; $2.00/week &#215; 2 weeks average rental</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-c" id="impact">
+  <div class="cont">
+    <div class="sec-tag">Environmental Impact</div>
+    <h2 class="sec-title">What TSBOX&#8482; Saves Every Year</h2>
+    <div class="impact-grid">
+      <div class="impact-card"><div class="big">570K</div><div class="unit">trees</div><p>Trees saved from being cut for cardboard production annually</p></div>
+      <div class="impact-card"><div class="big">2.8M</div><div class="unit">gallons</div><p>Gallons of oil conserved from cardboard manufacturing</p></div>
+      <div class="impact-card"><div class="big">49M</div><div class="unit">lbs CO&#8322;</div><p>Pounds of CO&#8322; prevented from entering the atmosphere</p></div>
+      <div class="impact-card"><div class="big">180M</div><div class="unit">gallons</div><p>Gallons of water saved from cardboard production</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-a" id="compare">
+  <div class="cont">
+    <div class="sec-tag">Competitive Advantage</div>
+    <h2 class="sec-title">TSBOX&#8482; vs. Cardboard Boxes</h2>
+    <div class="cmp-table">
+      <div class="cmp-row"><div class="cmp-cell hd">Feature</div><div class="cmp-cell hd ctr">TSBOX&#8482;</div><div class="cmp-cell hd gray ctr">Cardboard</div></div>
+      <div class="cmp-row"><div class="cmp-cell">Specialty boxes (TV, glassware, shoes, wardrobe)</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="cx">&#10007;</span></div></div>
+      <div class="cmp-row"><div class="cmp-cell">Reusable + recyclable material</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="wn">&#9888;</span></div></div>
+      <div class="cmp-row"><div class="cmp-cell">GPS tracking &amp; locking mechanism</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="cx">&#10007;</span></div></div>
+      <div class="cmp-row"><div class="cmp-cell">No bubble wrap or tape needed</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="cx">&#10007;</span></div></div>
+      <div class="cmp-row"><div class="cmp-cell">Franchise &amp; carbon credit model</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="cx">&#10007;</span></div></div>
+      <div class="cmp-row"><div class="cmp-cell">Environmental impact verified</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="cx">&#10007;</span></div></div>
+      <div class="cmp-row"><div class="cmp-cell">Costs 50% less than buying boxes</div><div class="cmp-cell ctr"><span class="ck">&#10003;</span></div><div class="cmp-cell ctr"><span class="cx">&#10007;</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="plastic">
+  <div class="cont">
+    <div class="sec-tag">Product Advantage</div>
+    <h2 class="sec-title">TSBOX&#8482; vs. Plastic Totes</h2>
+    <p class="sec-body">Competitors offering standard plastic bins can&#8217;t match TSBOX&#8482;&#8217;s modular design, security features, or specialty configurations.</p>
+    <div class="vs-grid">
+      <div class="vs-box good">
+        <h3>&#10003; TSBOX&#8482;</h3>
+        <ul class="vs-list">
+          <li><span class="vi g-ic">&#10003;</span><span class="g-tx">Variety of specialty boxes for glass, dishes, shoes &amp; wardrobe</span></li>
+          <li><span class="vi g-ic">&#10003;</span><span class="g-tx">Extremely strong &#8212; made of high-density polyethylene (HDPE)</span></li>
+          <li><span class="vi g-ic">&#10003;</span><span class="g-tx">Integrated rollers for easy, ergonomic handling</span></li>
+          <li><span class="vi g-ic">&#10003;</span><span class="g-tx">Secure locking mechanism &#8212; contents stay safe</span></li>
+          <li><span class="vi g-ic">&#10003;</span><span class="g-tx">GPS tracking device built-in for full accountability</span></li>
+          <li><span class="vi g-ic">&#10003;</span><span class="g-tx">No bubble wrap, tape, or protective foam needed</span></li>
+        </ul>
+      </div>
+      <div class="vs-box bad">
+        <h3>&#10007; Common Plastic Totes</h3>
+        <ul class="vs-list">
+          <li><span class="vi r-ic">&#10007;</span><span class="r-tx">Comes in one size &#8212; not effective for packing varied items</span></li>
+          <li><span class="vi r-ic">&#10007;</span><span class="r-tx">Not secure and cannot be locked</span></li>
+          <li><span class="vi r-ic">&#10007;</span><span class="r-tx">Difficult to handle and impossible to move safely</span></li>
+          <li><span class="vi r-ic">&#10007;</span><span class="r-tx">Requires bubble wrap, tape and foam &#8212; messy and costly</span></li>
+          <li><span class="vi r-ic">&#10007;</span><span class="r-tx">No tracking &#8212; boxes go missing with no accountability</span></li>
+          <li><span class="vi r-ic">&#10007;</span><span class="r-tx">Generic design fails fragile and specialty items</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-a" id="savings">
+  <div class="cont">
+    <div class="sec-tag">Environmental Savings</div>
+    <h2 class="sec-title">What You Save By Not Using Cardboard</h2>
+    <p class="sec-body">Every box rented instead of bought makes a measurable difference. The more you rent, the greater your environmental impact.</p>
+    <div style="overflow-x:auto;">
+      <table class="stbl">
+        <thead>
+          <tr><th>Resource Saved</th><th>10 Boxes</th><th>50 Boxes</th><th>100 Boxes</th><th>500 Boxes</th><th>1,000 Boxes</th><th>5,000 Boxes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>&#127794; Trees</td><td>.11</td><td>.57</td><td>1.13</td><td>5.7</td><td>11.3</td><td>56.7</td></tr>
+          <tr><td>&#9889; Energy (kilowatts)</td><td>278</td><td>1,389</td><td>2,778</td><td>14K</td><td>28K</td><td>139K</td></tr>
+          <tr><td>&#128167; Water (gallons)</td><td>46.7</td><td>233</td><td>467</td><td>2.3K</td><td>4.7K</td><td>23K</td></tr>
+          <tr><td>&#128700; Oil (gallons)</td><td>.53</td><td>2.65</td><td>5.30</td><td>26.7</td><td>53.3</td><td>266.7</td></tr>
+          <tr><td>&#9729; CO&#8322; Prevented (lbs)</td><td>9.3</td><td>45</td><td>90</td><td>466.7</td><td>933.3</td><td>4.7K</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="revenue">
+  <div class="cont">
+    <div class="sec-tag">Revenue Model</div>
+    <h2 class="sec-title">Multiple Streams. One Green Mission.</h2>
+    <p class="sec-body">TSBOX&#8482; generates revenue across five diversified streams, ensuring stability and scale as the network expands nationwide.</p>
+    <div class="rev-grid">
+      <div class="rev-card hl"><div class="rico">&#128230;</div><h3>Box Rentals (Core)</h3><p>Income from weekly rentals of standard and specialty containers at <strong style="color:#f4f0e6">$2.00/box/week</strong>. Over 98% of revenue in Year 1.</p></div>
+      <div class="rev-card"><div class="rico">&#128666;</div><h3>Delivery &amp; Pickup</h3><p>Optional door-to-door service at <strong style="color:#f4f0e6">$30&#8211;$50 per order</strong>, providing customer convenience and an additional revenue layer.</p></div>
+      <div class="rev-card"><div class="rico">&#128203;</div><h3>Subscription Plans</h3><p>Monthly corporate plans for moving companies and storage providers &#8212; predictable recurring revenue that scales with enterprise clients.</p></div>
+      <div class="rev-card"><div class="rico">&#127978;</div><h3>Franchise Licensing</h3><p>Regional franchise opportunities launch in Year 3, adding <strong style="color:#f4f0e6">20% growth annually</strong> through licensing fees, training, and co-op marketing.</p></div>
+      <div class="rev-card"><div class="rico">&#127807;</div><h3>Eco Partnerships</h3><p>Carbon credit programs and sustainability sponsorships with brands seeking verified environmental impact and green branding.</p></div>
+      <div class="mkt-bubble">
+        <div style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,240,230,0.35);font-weight:600;">Market Opportunity</div>
+        <div class="mbig">$22B</div>
+        <div class="msub">U.S. Moving Industry</div>
+        <div class="mmed">$450M</div>
+        <div class="msub">Eco-Moving Box Rental Market<br><strong style="color:#2db84b">Growing 11% CAGR</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-a" id="projections">
+  <div class="cont">
+    <div class="sec-tag">5-Year Financial Projections</div>
+    <h2 class="sec-title">Built To Scale Fast</h2>
+    <p class="sec-body">Starting with 50,000 boxes in 2 California cities, TSBOX&#8482; scales to 2 million boxes across 216 U.S. locations &#8212; projecting $67M+ revenue by Year 5.</p>
+    <div style="overflow-x:auto;">
+      <table class="proj-tbl">
+        <thead><tr><th>Year</th><th>Boxes in Circulation</th><th>Total Revenue</th><th>Net Profit Margin</th><th>Net Income</th></tr></thead>
+        <tbody>
+          <tr><td>2025</td><td>50,000</td><td>$1.0M</td><td>25%</td><td>$250,000</td></tr>
+          <tr><td>2026</td><td>200,000</td><td>$4.8M</td><td>30%</td><td>$1.44M</td></tr>
+          <tr><td>2027</td><td>500,000</td><td>$14.0M</td><td>35%</td><td>$4.9M</td></tr>
+          <tr class="hi"><td>2028</td><td>1,000,000</td><td>$31.5M</td><td>40%</td><td>$12.6M</td></tr>
+          <tr class="hi"><td>2029</td><td>2,000,000</td><td>$67.2M</td><td>45%</td><td>$30.2M</td></tr>
+          <tr class="tot"><td colspan="2">5-Year Totals</td><td>$118.5M Revenue</td><td>&#8212;</td><td>&#8776; $49M Net Income</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:.74rem;color:rgba(244,240,230,0.3);margin-top:.5rem;">Original 5-year projections from business plan: $131M gross profit &amp; $64M EBITDA at full scale.</div>
+    <div class="bars">
+      <div style="font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(244,240,230,0.3);font-weight:600;margin-bottom:.3rem;">Revenue Growth Trajectory</div>
+      <div class="bar-row"><div class="bar-yr">2025</div><div class="bar-track"><div class="bar-fill" style="width:1.5%">$1M</div></div><div class="bar-val">$1.0M</div></div>
+      <div class="bar-row"><div class="bar-yr">2026</div><div class="bar-track"><div class="bar-fill" style="width:7%">$4.8M</div></div><div class="bar-val">$4.8M</div></div>
+      <div class="bar-row"><div class="bar-yr">2027</div><div class="bar-track"><div class="bar-fill" style="width:21%">$14M</div></div><div class="bar-val">$14.0M</div></div>
+      <div class="bar-row"><div class="bar-yr">2028</div><div class="bar-track"><div class="bar-fill" style="width:47%">$31.5M</div></div><div class="bar-val">$31.5M</div></div>
+      <div class="bar-row"><div class="bar-yr">2029</div><div class="bar-track"><div class="bar-fill" style="width:100%">$67.2M</div></div><div class="bar-val">$67.2M</div></div>
+    </div>
+    <div class="assum-grid">
+      <div class="assum-card"><div class="big">10+ Yrs</div><p>Box lifespan with minimal maintenance required</p></div>
+      <div class="assum-card"><div class="big">95%</div><p>Recycling and reuse rate &#8212; near-zero waste per cycle</p></div>
+      <div class="assum-card"><div class="big">~600%</div><p>Estimated ROI on initial investment over 5 years</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="milestones">
+  <div class="cont">
+    <div class="sec-tag">Road to Scale</div>
+    <h2 class="sec-title">Key Milestones</h2>
+    <p class="sec-body">A clear, staged rollout from California pilot to global expansion &#8212; built on proven demand and scalable infrastructure.</p>
+    <div class="timeline">
+      <div class="ms-card"><div class="ms-dot">&#128640;</div><div class="ms-yr">2025</div><div class="ms-txt">Prototype launch &amp; pilot in Los Angeles and Orange County</div></div>
+      <div class="ms-card"><div class="ms-dot">&#128242;</div><div class="ms-yr">2026</div><div class="ms-txt">Full national launch + online booking &amp; logistics platform</div></div>
+      <div class="ms-card"><div class="ms-dot">&#127961;</div><div class="ms-yr">2027</div><div class="ms-txt">Expansion to 10 major U.S. cities &#8212; 216 locations</div></div>
+      <div class="ms-card"><div class="ms-dot">&#127978;</div><div class="ms-yr">2028</div><div class="ms-txt">Launch of TSBOX&#8482; Franchise Network &#8212; +20% annual growth</div></div>
+      <div class="ms-card"><div class="ms-dot">&#127758;</div><div class="ms-yr">2029</div><div class="ms-txt">International expansion &#8212; Canada, EU &amp; Australia</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-a" id="funding">
+  <div class="cont">
+    <div class="sec-tag">Funding Request</div>
+    <h2 class="sec-title">Join The Green Revolution</h2>
+    <div class="fund-grid">
+      <div>
+        <div class="ask-box">
+          <div class="ask-lbl">Seed / Series A Round</div>
+          <div class="ask-num">$5M</div>
+          <div class="ask-sub">Total Funding Requested</div>
+          <hr>
+          <div class="equity">Offering <b>20% equity stake</b><br>Post-money valuation: <b>$25 million</b><br><br>Year 1: $2.5M working capital<br>Year 2: $3.0M expansion capital</div>
+        </div>
+        <div class="ret-grid">
+          <div class="ret-card"><div class="rl">Investor ROI</div><div class="rv">6&#8211;8&#215;</div></div>
+          <div class="ret-card"><div class="rl">Payback Period</div><div class="rv">3&#8211;4 Yrs</div></div>
+          <div class="ret-card ret-wide"><div class="rl">Exit Options</div><div class="rv">Franchise buyout &middot; Acquisition by U-Haul, PODS, or Home Depot &middot; IPO by Year 6</div></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.5rem;">Purpose of Funding</h3>
+        <p style="font-size:.84rem;color:rgba(244,240,230,0.6);line-height:1.65;margin-bottom:1.5rem;">The $5M will finance initial production, operations, marketing, and expansion during the first 24 months &#8212; achieving market readiness, scaling to multiple cities, and reaching profitability by Year 2.</p>
+        <div class="alloc-list">
+          <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">&#127981; Manufacturing &amp; Inventory</div><div class="alloc-amt">$1.75M &middot; 35%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:35%"></div></div></div>
+          <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">&#128227; Marketing &amp; Brand Awareness</div><div class="alloc-amt">$1.0M &middot; 20%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:20%"></div></div></div>
+          <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">&#128187; Technology &amp; Platform</div><div class="alloc-amt">$750K &middot; 15%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:15%"></div></div></div>
+          <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">&#128101; Operations &amp; Staffing</div><div class="alloc-amt">$750K &middot; 15%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:15%"></div></div></div>
+          <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">&#128269; R&amp;D + Working Capital Reserve</div><div class="alloc-amt">$500K &middot; 10%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:10%"></div></div></div>
+          <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">&#9878; Franchise &amp; Legal Setup</div><div class="alloc-amt">$250K &middot; 5%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:5%"></div></div></div>
+        </div>
+        <div class="impact-summary">
+          <div class="il">This Investment Will Allow TSBOX&#8482; To:</div>
+          <ul>
+            <li><b>&#10003;</b> Replace 100 million cardboard boxes within 5 years</li>
+            <li><b>&#10003;</b> Save over 570,000 trees annually</li>
+            <li><b>&#10003;</b> Generate $49M+ in cumulative net income</li>
+            <li><b>&#10003;</b> Become the #1 eco-friendly moving solution in North America</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="supporters">
+  <div class="cont">
+    <div class="sec-tag">Global Movement</div>
+    <h2 class="sec-title">World Leaders Fighting Deforestation</h2>
+    <p class="sec-body">TSBOX&#8482; joins a movement already championed by global icons united against deforestation and environmental destruction.</p>
+    <div class="celeb-grid">
+      <div class="celeb-card"><div class="ico">&#127894;</div><div class="name">The Dalai Lama</div><div class="role">Spiritual Leader</div></div>
+      <div class="celeb-card"><div class="ico">&#128756;</div><div class="name">Richard Branson</div><div class="role">Founder, Virgin Group</div></div>
+      <div class="celeb-card"><div class="ico">&#128269;</div><div class="name">Eric Schmidt</div><div class="role">Former CEO, Google</div></div>
+      <div class="celeb-card"><div class="ico">&#128187;</div><div class="name">Michael Dell</div><div class="role">Founder, Dell Computers</div></div>
+      <div class="celeb-card"><div class="ico">&#127916;</div><div class="name">Harrison Ford</div><div class="role">Actor &amp; Conservationist</div></div>
+      <div class="celeb-card"><div class="ico">&#127925;</div><div class="name">Sting</div><div class="role">Musician &amp; Activist</div></div>
+      <div class="celeb-card"><div class="ico">&#127908;</div><div class="name">Rod Stewart</div><div class="role">Musician &amp; Activist</div></div>
+      <div class="celeb-card"><div class="ico">&#127758;</div><div class="name">Sir David Attenborough</div><div class="role">Naturalist &amp; Broadcaster</div></div>
+      <div class="celeb-card"><div class="ico">&#127968;</div><div class="name">Bill Marriott</div><div class="role">Chairman, Marriott Hotels</div></div>
+      <div class="celeb-card"><div class="ico">&#127381;</div><div class="name">Howard Stringer</div><div class="role">Chairman &amp; CEO, Sony</div></div>
+      <div class="celeb-card"><div class="ico">&#127822;</div><div class="name">Michael Tchao</div><div class="role">VP Product Marketing, Apple</div></div>
+      <div class="celeb-more celeb-card"><p>Charles, Prince of Wales &middot; Robin Williams &middot; Billy Connolly &middot; Daniel Craig &middot; Jonathan Rhys Myers &middot; Rich Riley (Yahoo! Europe) &middot; Dana Dunne (AOL Europe) &middot; Tom Boardman (Nedbank) &amp; many others</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-a" id="alliances">
+  <div class="cont">
+    <div class="sec-tag">Strategic Alliances</div>
+    <h2 class="sec-title">Built-In Distribution From Day One</h2>
+    <p class="sec-body">TSBOX&#8482; will partner with major national retailers as &#8220;green company&#8221; hubs. Stores take orders, TSBOX delivers. Up to <strong style="color:#f4f0e6">25% of revenue</strong> projected from partnerships, with a <strong style="color:#f4f0e6">15% referral commission</strong> offered to all partners.</p>
+    <div class="ally-grid">
+      <div class="ally-card"><div class="an">U-Haul</div><div class="al">13,000 locations</div></div>
+      <div class="ally-card"><div class="an">Walgreens</div><div class="al">8,270 locations</div></div>
+      <div class="ally-card"><div class="an">The Home Depot</div><div class="al">2,248 locations</div></div>
+      <div class="ally-card"><div class="an">Office Depot</div><div class="al">1,641 locations</div></div>
+      <div class="ally-card"><div class="an">Staples</div><div class="al">1,575 locations</div></div>
+      <div class="ally-card"><div class="an">OfficeMax</div><div class="al">991 locations</div></div>
+    </div>
+    <div class="mfg-box">
+      <div class="ml">Manufacturing Partners (In Exploration)</div>
+      <p>Strategic manufacturing alliances being explored with <strong>DuPont</strong>, <strong>Dow Chemicals</strong>, and <strong>Formosa Plastics</strong> &#8212; large-scale HDPE producers capable of meeting TSBOX&#8482;&#8217;s full production volume requirements at national scale.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="marketing">
+  <div class="cont">
+    <div class="sec-tag">Go-To-Market Strategy</div>
+    <h2 class="sec-title">How We Reach The Market</h2>
+    <div class="mkt-grid">
+      <div class="mkt-card"><div class="mi">&#128250;</div><h3>TV Advertising</h3><p>30-second spots in target metro areas drive traffic to tsbox.org with compelling, visually rich product showcases.</p></div>
+      <div class="mkt-card"><div class="mi">&#128241;</div><h3>Social Media</h3><p>Targeting millennials aged 20&#8211;34 &#8212; 82% of whom use social networks &#8212; via Facebook, Instagram, and viral green campaigns.</p></div>
+      <div class="mkt-card"><div class="mi">&#128140;</div><h3>Email Campaigns</h3><p>Direct marketing to movers, building loyalty and brand awareness through targeted, segmented email sequences.</p></div>
+      <div class="mkt-card"><div class="mi">&#129309;</div><h3>Strategic Alliances</h3><p>Referral partnerships with U-Haul, Walgreens, Home Depot &amp; more &#8212; with 15% commissions and co-branded marketing.</p></div>
+      <div class="mkt-card"><div class="mi">&#128666;</div><h3>Mobile Billboards</h3><p>TSBOX delivery trucks become rolling advertisements &#8212; co-branded with green partner retailers for maximum visibility.</p></div>
+      <div class="mkt-card"><div class="mi">&#127981;</div><h3>Trade Shows</h3><p>30&#8211;35 annual home improvement and moving shows in California alone, with direct B2B access to motivated buyers.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="vision-sec" id="vision">
+  <div class="cont" style="max-width:800px;">
+    <div class="sec-tag" style="text-align:center;">Our Vision</div>
+    <blockquote>&#8220;To eliminate cardboard waste globally through a sustainable, reusable, and intelligent packing system that moves the world without destroying it.&#8221;</blockquote>
+    <div class="vision-line"></div>
+    <cite>&#8212; Roman Alexander, CEO &amp; Founder, TSBOX&#8482; / Concord Pacific Corp</cite>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-b" id="team" style="text-align:center;">
+  <div class="cont">
+    <div class="sec-tag">The Team</div>
+    <h2 class="sec-title">Led By Vision</h2>
+    <div class="team-card">
+      <div class="team-init">RA</div>
+      <div class="team-name">Roman Alexander</div>
+      <div class="team-title">CEO / Founder / Inventor</div>
+      <p class="team-bio">A passionate inventor with 20+ years of experience in Sales, Marketing, and Management. Roman managed prominent Los Angeles real estate firms, built sales teams that became top performers across California and the Western States, and created his own homebuilding and real estate development company &#8212; overseeing architects, engineers, designers, and full marketing teams from the ground up.</p>
+      <p class="team-quote">&#8220;Leadership is not a position. It is an auction.&#8221;</p>
+      <p class="team-support">Supported by: CFO &middot; Social Media Marketing &middot; Product Designers &middot; IT Manager &middot; Web Developers &middot; PR Director &middot; Events Coordinator &middot; Sales Executives &middot; Legal Counsel</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta">
+  <h2>Think Outside The (Cardboard) Box</h2>
+  <p>Join us in building the world&#8217;s leading sustainable moving solution. Contact us to receive the full business plan.</p>
+  <div class="cta-btns">
+    <a href="mailto:1000pacific@gmail.com" class="btn-dark">Contact Investor Relations</a> 
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">TSBOX&#8482;</div>
+  <div class="f-tag">Rent Box &middot; Save Trees &middot; Save Bucks</div>
+  <div class="f-links">
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#revenue">Revenue</a>
+    <a href="#projections">Financials</a>
+    <a href="#funding">Invest</a>
+    <a href="#milestones">Milestones</a>
+    <a href="#alliances">Alliances</a>
+    <a href="#team">Team</a>
+  </div>
+  <div class="f-contact">
+    Concord Pacific Corp &middot; Roman Alexander, CEO<br>
+    8665 Wilshire Blvd, Suite 302, Beverly Hills, CA 90211<br>
+    Tel: 310-999-5015 &middot; 1000pacific@gmail.com<br> 
+  </div>
+</footer>
+
+</body>
+</html>
