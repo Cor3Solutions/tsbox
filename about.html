@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – TSBOX™</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── VISION ── */
+    .vision-sec{background:var(--bg3);text-align:center;padding:6rem 2rem;}
+    .vision-sec blockquote{font-size:clamp(1.3rem,2.8vw,2rem);font-weight:700;color:var(--dark);line-height:1.4;max-width:780px;margin:1.5rem auto;font-family:'Playfair Display',serif;}
+    .vision-sec cite{font-size:.82rem;color:var(--muted);margin-top:1.5rem;display:block;}
+    .vision-line{width:60px;height:3px;background:linear-gradient(90deg,var(--coral),var(--gold));margin:0 auto;border-radius:2px;}
+
+    /* ── TEAM ── */
+    .team-card{background:var(--card-bg);border:1px solid rgba(200,134,26,.18);border-radius:14px;padding:2.5rem;max-width:640px;margin:2.5rem auto 0;text-align:center;box-shadow:0 8px 40px rgba(28,28,42,.08);}
+    .team-init{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;color:#fff;margin:0 auto 1.2rem;font-family:'Playfair Display',serif;}
+    .team-name{font-size:1.8rem;font-weight:900;color:var(--dark);font-family:'Playfair Display',serif;}
+    .team-title{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:.4rem 0 1rem;}
+    .team-bio{font-size:.85rem;color:var(--muted);line-height:1.65;font-weight:300;}
+    .team-quote{font-size:.9rem;color:var(--muted);font-style:italic;margin-top:1rem;}
+    .team-support{margin-top:1.2rem;font-size:.75rem;color:rgba(28,28,42,.35);}
+
+    /* ── MARKETING ── */
+    .mkt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.5rem;}
+    .mkt-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1.4rem;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:0 2px 10px rgba(28,28,42,.04);}
+    .mkt-card:hover{border-color:rgba(45,125,210,.25);transform:translateY(-2px);box-shadow:0 8px 24px rgba(28,28,42,.09);}
+    .mkt-card .mi{font-size:1.4rem;}
+    .mkt-card h3{font-size:.88rem;font-weight:700;color:var(--sky);margin:.5rem 0;text-transform:uppercase;letter-spacing:.04em;font-family:'Playfair Display',serif;}
+    .mkt-card p{font-size:.77rem;color:var(--muted);line-height:1.5;}
+
+    /* ── VALUES ── */
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem;}
+    .val-card{background:var(--card-bg);border:1px solid rgba(200,134,26,.12);border-radius:10px;padding:1.6rem;box-shadow:0 2px 12px rgba(28,28,42,.05);text-align:center;}
+    .val-card .vi{font-size:2rem;margin-bottom:.8rem;}
+    .val-card h3{font-size:1rem;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif;margin-bottom:.5rem;}
+    .val-card p{font-size:.78rem;color:var(--muted);line-height:1.5;}
+
+    @media(max-width:768px){
+      .mkt-grid{grid-template-columns:1fr 1fr;}
+      .values-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:480px){
+      .mkt-grid{grid-template-columns:1fr;}
+      .values-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <script src="shared.js"></script>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-dots"></div>
+    <div class="page-hero-glow"></div>
+    <div class="page-hero-inner">
+      <div class="page-hero-badge">🌿 Our Story</div>
+      <h1>Built with<br><span class="accent-coral">Purpose.</span><br>Scaled with <span class="accent-gold">Vision.</span></h1>
+      <p class="page-hero-sub">TSBOX™ was founded on a simple belief: moving shouldn't mean wasting. Meet the team and the thinking behind the brand.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="invest.html" class="btn-p">Investment Opportunity</a>
+        <a href="solution.html" class="btn-o">See the Product</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VISION -->
+  <section class="vision-sec" id="vision">
+    <div class="cont" style="max-width:800px;">
+      <div class="sec-tag" style="text-align:center;">Our Vision</div>
+      <div class="vision-line"></div>
+      <blockquote>"Our goal is simple: eliminate single-use moving waste and replace it with a smarter, reusable system that scales globally."</blockquote>
+      <div class="vision-line"></div>
+      <cite>— Roman Alexander, CEO & Founder, TSBOX™ / Concord Pacific Corp</cite>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- VALUES -->
+  <section class="bg-a" id="values">
+    <div class="cont">
+      <div class="sec-tag">What We Stand For</div>
+      <h2 class="sec-title">Our Core Values</h2>
+      <div class="values-grid">
+        <div class="val-card"><div class="vi">🌱</div><h3>Sustainability First</h3><p>Every decision starts with its environmental impact. We're building a business that saves resources, not exploits them.</p></div>
+        <div class="val-card"><div class="vi">⚙️</div><h3>Built to Last</h3><p>TSBOX™ containers are engineered for 10+ years of use. We believe in making things that outlast trends.</p></div>
+        <div class="val-card"><div class="vi">💡</div><h3>Smarter Solutions</h3><p>We challenge the status quo. Cardboard was never the right answer — we just got comfortable with it.</p></div>
+        <div class="val-card"><div class="vi">🤝</div><h3>Community Impact</h3><p>Every rental generates verified environmental savings shared transparently with customers and partners.</p></div>
+        <div class="val-card"><div class="vi">📈</div><h3>Investor Aligned</h3><p>Doing good and doing well aren't opposites. TSBOX™ proves sustainability is a business advantage, not a cost.</p></div>
+        <div class="val-card"><div class="vi">🌍</div><h3>Global Ambition</h3><p>We start in LA. We end everywhere. The moving industry is global and so is our vision.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TEAM -->
+  <section class="bg-b" id="team" style="text-align:center;">
+    <div class="cont">
+      <div class="sec-tag">The Team</div>
+      <h2 class="sec-title">Leadership With Execution Experience</h2>
+      <div class="team-card">
+        <div class="team-init">RA</div>
+        <div class="team-name">Roman Alexander</div>
+        <div class="team-title">CEO / Founder / Inventor</div>
+        <p class="team-bio">Roman Alexander brings over two decades of experience across sales, marketing, and operations. He has led high-performing teams, managed large-scale real estate projects, and built businesses from the ground up—combining strategic vision with hands-on execution.</p>
+        <p class="team-quote">"Leadership is built through action, not titles."</p>
+        <p class="team-support">Supported by: CFO · Social Media Marketing · Product Designers · IT Manager · Web Developers · PR Director · Events Coordinator · Sales Executives · Legal Counsel</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MARKETING -->
+  <section class="bg-a" id="marketing">
+    <div class="cont">
+      <div class="sec-tag">Go-To-Market Strategy</div>
+      <h2 class="sec-title">How We Reach the Market</h2>
+      <div class="mkt-grid">
+        <div class="mkt-card"><div class="mi">📺</div><h3>TV Advertising</h3><p>30-second spots in target metro areas drive traffic to tsbox.org with compelling, visually rich product showcases.</p></div>
+        <div class="mkt-card"><div class="mi">📱</div><h3>Social Media</h3><p>Targeting millennials aged 20–34 — 82% of whom use social networks — via Facebook, Instagram, and viral green campaigns.</p></div>
+        <div class="mkt-card"><div class="mi">📌</div><h3>Email Campaigns</h3><p>Direct marketing to movers, building loyalty and brand awareness through targeted, segmented email sequences.</p></div>
+        <div class="mkt-card"><div class="mi">🤝</div><h3>Strategic Alliances</h3><p>Referral partnerships with U-Haul, Walgreens, Home Depot & more — with 15% commissions and co-branded marketing.</p></div>
+        <div class="mkt-card"><div class="mi">🚚</div><h3>Mobile Billboards</h3><p>TSBOX delivery trucks become rolling advertisements — co-branded with green partner retailers for maximum visibility.</p></div>
+        <div class="mkt-card"><div class="mi">🏭</div><h3>Trade Shows</h3><p>30–35 annual home improvement and moving shows in California alone, with direct B2B access to motivated buyers.</p></div>
+      </div>
+      <div class="gallery-row" style="margin-top:3rem;">
+        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="Marketing and social media" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Business strategy planning" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="Team collaboration" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Move Smarter. Invest Smarter.</h2>
+    <p>Be part of the shift toward a more efficient, sustainable moving system. Reach out to access the full business plan.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:1000pacific@gmail.com" class="btn-dark">Contact Investor Relations</a>
+    </div>
+  </section>
+
+</body>
+</html>

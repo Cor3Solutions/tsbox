@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financials – TSBOX™</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── REVENUE CARDS ── */
+    .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem;}
+    .rev-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1.6rem;transition:transform .2s,border-color .2s,box-shadow .2s;box-shadow:0 2px 12px rgba(28,28,42,.05);}
+    .rev-card:hover{transform:translateY(-3px);border-color:rgba(200,134,26,.25);box-shadow:0 8px 28px rgba(28,28,42,.1);}
+    .rev-card.hl{background:rgba(232,74,58,.05);border-color:rgba(232,74,58,.25);}
+    .rev-card .rico{font-size:1.8rem;margin-bottom:.8rem;}
+    .rev-card h3{font-size:.88rem;font-weight:700;color:var(--sky);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.04em;font-family:'Playfair Display',serif;}
+    .rev-card.hl h3{color:var(--coral);}
+    .rev-card p{font-size:.78rem;color:var(--muted);line-height:1.5;}
+    .mkt-bubble{background:rgba(200,134,26,.05);border:1px solid rgba(200,134,26,.15);border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6rem;box-shadow:0 2px 12px rgba(28,28,42,.05);}
+    .mkt-bubble .mbig{font-size:2.8rem;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;}
+    .mkt-bubble .msub{font-size:.71rem;color:var(--muted);}
+    .mkt-bubble .mmed{font-size:2rem;font-weight:900;color:var(--sky);font-family:'Playfair Display',serif;}
+
+    /* ── PROJECTIONS ── */
+    .proj-tbl{width:100%;border-collapse:collapse;margin-top:2.5rem;background:var(--card-bg);border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(28,28,42,.06);}
+    .proj-tbl th{padding:.9rem 1.2rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold);border-bottom:2px solid rgba(200,134,26,.15);text-align:left;background:rgba(200,134,26,.04);}
+    .proj-tbl td{padding:.9rem 1.2rem;font-size:.87rem;border-bottom:1px solid rgba(200,134,26,.07);color:var(--muted);}
+    .proj-tbl .hi td{color:var(--dark);font-weight:600;}
+    .proj-tbl .hi td:nth-child(3){color:var(--gold);}
+    .proj-tbl .tot td{border-top:2px solid rgba(200,134,26,.2);color:var(--gold);font-weight:700;font-size:.8rem;font-family:monospace;}
+
+    /* ── BARS ── */
+    .bars{display:flex;flex-direction:column;gap:.7rem;margin-top:2.5rem;}
+    .bar-row{display:grid;grid-template-columns:52px 1fr 90px;align-items:center;gap:1rem;}
+    .bar-yr{font-size:.72rem;color:var(--gold);font-weight:700;font-family:monospace;}
+    .bar-track{background:rgba(200,134,26,.1);border-radius:3px;height:26px;overflow:hidden;}
+    .bar-fill{height:100%;background:linear-gradient(90deg,var(--coral),var(--gold));border-radius:3px;display:flex;align-items:center;padding-left:.5rem;font-size:.7rem;color:#fff;font-weight:700;}
+    .bar-val{font-size:.72rem;color:var(--muted);text-align:right;font-family:monospace;}
+
+    /* ── ASSUMPTIONS ── */
+    .assum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;}
+    .assum-card{background:var(--card-bg);border:1px solid rgba(45,125,210,.12);border-radius:8px;padding:1.2rem;box-shadow:0 2px 10px rgba(28,28,42,.04);}
+    .assum-card .big{font-size:1.8rem;font-weight:900;color:var(--sky);font-family:'Playfair Display',serif;}
+    .assum-card p{font-size:.76rem;color:var(--muted);margin-top:.3rem;}
+
+    /* ── TIMELINE ── */
+    .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem;position:relative;}
+    .timeline::before{content:'';position:absolute;top:2.1rem;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--coral),var(--gold));z-index:0;}
+    .ms-card{background:var(--card-bg);border:1px solid rgba(200,134,26,.18);border-radius:10px;padding:1.4rem 1rem;text-align:center;position:relative;z-index:1;box-shadow:0 4px 16px rgba(28,28,42,.07);}
+    .ms-dot{width:2.2rem;height:2.2rem;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--gold));display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:.9rem;}
+    .ms-yr{font-size:1.5rem;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;}
+    .ms-txt{font-size:.73rem;color:var(--muted);margin-top:.4rem;line-height:1.4;}
+
+    @media(max-width:768px){
+      .rev-grid{grid-template-columns:1fr 1fr;}
+      .timeline{grid-template-columns:1fr 1fr;}
+      .timeline::before{display:none;}
+      .assum-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:480px){
+      .rev-grid{grid-template-columns:1fr;}
+      .assum-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <script src="shared.js"></script>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-dots"></div>
+    <div class="page-hero-glow"></div>
+    <div class="page-hero-inner">
+      <div class="page-hero-badge">📊 Business Case</div>
+      <h1>Engineered for<br><span class="accent-coral">Rapid</span> <span class="accent-gold">Scale</span></h1>
+      <p class="page-hero-sub">Starting with focused regional deployment, TSBOX™ scales into a nationwide network—driven by repeat usage, operational efficiency, and franchise expansion.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="invest.html" class="btn-p">Investment Opportunity</a>
+        <a href="solution.html" class="btn-o">How It Works</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- REVENUE MODEL -->
+  <section class="bg-a" id="revenue">
+    <div class="cont">
+      <div class="sec-tag">Revenue Model</div>
+      <h2 class="sec-title">Scalable Revenue. Diversified Streams.</h2>
+      <p class="sec-body">TSBOX™ operates on a multi-channel revenue model designed for consistency, expansion, and long-term profitability.</p>
+      <div class="rev-grid">
+        <div class="rev-card hl">
+          <div class="rico">📦</div>
+          <h3>Primary revenue driver with recurring usage</h3>
+          <p>Income from weekly rentals of standard and specialty containers at <strong style="color:var(--dark)">$2.00/box/week</strong>. Over 98% of revenue in Year 1.</p>
+        </div>
+        <div class="rev-card">
+          <div class="rico">🚚</div>
+          <h3>Convenience-based upsell</h3>
+          <p>Optional door-to-door service at <strong style="color:var(--dark)">$30–$50 per order</strong>, providing customer convenience and an additional revenue layer.</p>
+        </div>
+        <div class="rev-card">
+          <div class="rico">📋</div>
+          <h3>Predictable B2B recurring income</h3>
+          <p>Monthly corporate plans for moving companies and storage providers — predictable recurring revenue that scales with enterprise clients.</p>
+        </div>
+        <div class="rev-card">
+          <div class="rico">🏪</div>
+          <h3>Expansion through licensing</h3>
+          <p>Regional franchise opportunities launch in Year 3, adding <strong style="color:var(--dark)">20% growth annually</strong> through licensing fees, training, and co-op marketing.</p>
+        </div>
+        <div class="rev-card">
+          <div class="rico">🌿</div>
+          <h3>Monetizing sustainability initiatives</h3>
+          <p>Carbon credit programs and sustainability sponsorships with brands seeking verified environmental impact and green branding.</p>
+        </div>
+        <div class="mkt-bubble">
+          <div style="font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;">Market Opportunity</div>
+          <div class="mbig">$22B</div>
+          <div class="msub">U.S. Moving Industry</div>
+          <div class="mmed">$450M</div>
+          <div class="msub">Eco-Moving Box Rental Market<br><strong style="color:var(--coral)">Growing 11% CAGR</strong></div>
+        </div>
+      </div>
+      <div class="gallery-row" style="margin-top:3rem;">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80" alt="Business growth charts" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80" alt="Warehouse storage operations" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Business partnership" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 5-YEAR PROJECTIONS -->
+  <section class="bg-b" id="projections">
+    <div class="cont">
+      <div class="sec-tag">5-Year Financial Projections</div>
+      <h2 class="sec-title">The Numbers</h2>
+      <div style="overflow-x:auto;">
+        <table class="proj-tbl">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Boxes in Circulation</th>
+              <th>Total Revenue</th>
+              <th>Net Profit Margin</th>
+              <th>Net Income</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2025</td><td>50,000</td><td>$1.0M</td><td>25%</td><td>$250,000</td></tr>
+            <tr><td>2026</td><td>200,000</td><td>$4.8M</td><td>30%</td><td>$1.44M</td></tr>
+            <tr><td>2027</td><td>500,000</td><td>$14.0M</td><td>35%</td><td>$4.9M</td></tr>
+            <tr class="hi"><td>2028</td><td>1,000,000</td><td>$31.5M</td><td>40%</td><td>$12.6M</td></tr>
+            <tr class="hi"><td>2029</td><td>2,000,000</td><td>$67.2M</td><td>45%</td><td>$30.2M</td></tr>
+            <tr class="tot"><td colspan="2">5-Year Totals</td><td>$118.5M Revenue</td><td>—</td><td>≈ $49M Net Income</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:.74rem;color:var(--muted);margin-top:.5rem;">Original 5-year projections from business plan: $131M gross profit & $64M EBITDA at full scale.</div>
+      <div class="bars">
+        <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.3rem;">Revenue Growth Trajectory</div>
+        <div class="bar-row"><div class="bar-yr">2025</div><div class="bar-track"><div class="bar-fill" style="width:1.5%">$1M</div></div><div class="bar-val">$1.0M</div></div>
+        <div class="bar-row"><div class="bar-yr">2026</div><div class="bar-track"><div class="bar-fill" style="width:7%">$4.8M</div></div><div class="bar-val">$4.8M</div></div>
+        <div class="bar-row"><div class="bar-yr">2027</div><div class="bar-track"><div class="bar-fill" style="width:21%">$14M</div></div><div class="bar-val">$14.0M</div></div>
+        <div class="bar-row"><div class="bar-yr">2028</div><div class="bar-track"><div class="bar-fill" style="width:47%">$31.5M</div></div><div class="bar-val">$31.5M</div></div>
+        <div class="bar-row"><div class="bar-yr">2029</div><div class="bar-track"><div class="bar-fill" style="width:100%">$67.2M</div></div><div class="bar-val">$67.2M</div></div>
+      </div>
+      <div class="assum-grid">
+        <div class="assum-card"><div class="big">10+ Yrs</div><p>Box lifespan with minimal maintenance required</p></div>
+        <div class="assum-card"><div class="big">95%</div><p>Recycling and reuse rate — near-zero waste per cycle</p></div>
+        <div class="assum-card"><div class="big">~600%</div><p>Estimated ROI on initial investment over 5 years</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MILESTONES -->
+  <section class="bg-a" id="milestones">
+    <div class="cont">
+      <div class="sec-tag">Road to Scale</div>
+      <h2 class="sec-title">Key Milestones</h2>
+      <p class="sec-body">A phased rollout strategy designed to validate, scale, and expand globally.</p>
+      <div class="timeline">
+        <div class="ms-card"><div class="ms-dot">🚀</div><div class="ms-yr">2025</div><div class="ms-txt">Prototype launch & pilot in Los Angeles and Orange County</div></div>
+        <div class="ms-card"><div class="ms-dot">📱</div><div class="ms-yr">2026</div><div class="ms-txt">Full national launch + online booking & logistics platform</div></div>
+        <div class="ms-card"><div class="ms-dot">🏙</div><div class="ms-yr">2027</div><div class="ms-txt">Expansion to 10 major U.S. cities — 216 locations</div></div>
+        <div class="ms-card"><div class="ms-dot">🏪</div><div class="ms-yr">2028</div><div class="ms-txt">Launch of TSBOX™ Franchise Network — +20% annual growth</div></div>
+        <div class="ms-card"><div class="ms-dot">🌍</div><div class="ms-yr">2029</div><div class="ms-txt">International expansion — Canada, EU & Australia</div></div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1200&q=80" alt="Growth and scale" class="sec-img" loading="lazy">
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to Invest?</h2>
+    <p>See the full investment opportunity, funding allocation, and projected returns.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="invest.html" class="btn-dark">See Investment Details</a>
+    </div>
+  </section>
+
+</body>
+</html>

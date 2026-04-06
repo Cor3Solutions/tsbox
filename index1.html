@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSBOX™ – Rent Box. Save Trees. Save Bucks.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 5rem;background:linear-gradient(160deg,#fff8f0 0%,#f7f3ee 50%,#f0ebe3 100%);position:relative;overflow:hidden;}
+    .hero-dots{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,#c8861a 1px,transparent 1px);background-size:40px 40px;}
+    .hero-glow-coral{position:absolute;top:-10%;left:-10%;width:50%;height:70%;background:radial-gradient(ellipse,rgba(232,74,58,.07) 0%,transparent 65%);}
+    .hero-glow-gold{position:absolute;bottom:-5%;right:-5%;width:55%;height:60%;background:radial-gradient(ellipse,rgba(200,134,26,.07) 0%,transparent 65%);}
+    .hero-inner{position:relative;z-index:2;max-width:900px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(200,134,26,.1);border:1px solid rgba(200,134,26,.25);color:var(--gold);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:100px;margin-bottom:1.8rem;font-weight:600;}
+    .hero h1{font-size:clamp(3.5rem,10vw,7.5rem);font-weight:900;line-height:.9;color:var(--dark);margin-bottom:1.4rem;}
+    .hero h1 .accent-coral{color:var(--coral);}
+    .hero h1 .accent-gold{color:var(--gold);}
+    .hero-sub{font-size:1.05rem;color:var(--muted);max-width:540px;margin:0 auto 2.5rem;line-height:1.7;font-weight:300;}
+    .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem;}
+    .hero-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;}
+    .hstat .num{font-size:2.5rem;font-weight:900;color:var(--coral);font-family:'Playfair Display',serif;}
+    .hstat .lbl{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.2rem;}
+    .img-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:3rem 0 0;position:relative;z-index:2;}
+    .img-strip img{width:100%;height:220px;object-fit:cover;border-radius:12px;opacity:.9;transition:opacity .3s;box-shadow:0 8px 32px rgba(28,28,42,.1);}
+    .img-strip img:hover{opacity:1;}
+
+    /* ── PROBLEM ── */
+    .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .stat-card{background:var(--card-bg);border:1px solid rgba(232,74,58,.15);border-left:4px solid var(--coral);border-radius:8px;padding:1.4rem;box-shadow:0 2px 12px rgba(28,28,42,.05);}
+    .stat-card .big{font-size:2.2rem;font-weight:900;color:var(--coral);font-family:'Playfair Display',serif;}
+    .stat-card p{font-size:.8rem;color:var(--muted);margin-top:.35rem;line-height:1.4;}
+
+    /* ── PAGE CARDS NAV ── */
+    .pages-nav{padding:5rem 2rem;background:var(--dark);}
+    .pages-nav .cont{max-width:1080px;margin:0 auto;}
+    .pages-nav .sec-tag{color:var(--coral2);}
+    .pages-nav .sec-title{color:#fff;}
+    .page-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.5rem;}
+    .page-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:1.8rem 1.4rem;text-decoration:none;transition:background .25s,border-color .25s,transform .25s;display:flex;flex-direction:column;gap:.6rem;}
+    .page-card:hover{background:rgba(255,255,255,.09);border-color:rgba(232,74,58,.4);transform:translateY(-4px);}
+    .page-card .pc-ico{font-size:1.8rem;}
+    .page-card .pc-label{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.32);font-weight:600;}
+    .page-card .pc-title{font-size:1.15rem;font-weight:800;color:#fff;font-family:'Playfair Display',serif;line-height:1.2;}
+    .page-card .pc-desc{font-size:.76rem;color:rgba(255,255,255,.45);line-height:1.5;margin-top:.2rem;}
+    .page-card .pc-arrow{margin-top:auto;font-size:.75rem;color:var(--coral2);font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+
+    @media(max-width:768px){
+      .img-strip{grid-template-columns:1fr;}
+      .page-cards{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:480px){
+      .hero h1{font-size:3rem;}
+      .stat-grid{grid-template-columns:1fr;}
+      .page-cards{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <script src="shared.js"></script>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-dots"></div>
+    <div class="hero-glow-coral"></div>
+    <div class="hero-glow-gold"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">🌿 Smarter Moving Starts Now</div>
+      <h1>RENT BOX.<br><span class="accent-coral">SAVE TREES.</span><br><span class="accent-gold">SAVE BUCKS.</span></h1>
+      <p class="hero-sub">TSBOX™ replaces disposable cardboard with durable, reusable moving containers—built to lower costs and eliminate waste at scale.</p>
+      <div class="hero-btns">
+        <a href="solution.html" class="btn-p">See How It Works</a>
+        <a href="invest.html" class="btn-o">View Investment Opportunity</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="num">570K</div><div class="lbl">Annual Trees Preserved</div></div>
+        <div class="hstat"><div class="num">2.8M</div><div class="lbl">Oil Consumption Reduced</div></div>
+        <div class="hstat"><div class="num">$5M</div><div class="lbl">Capital Raise Goal</div></div>
+        <div class="hstat"><div class="num">6–8×</div><div class="lbl">Projected Investor Return</div></div>
+      </div>
+      <div class="img-strip">
+        <img src="img/2.png" alt="Reusable moving boxes stacked" loading="lazy">
+        <img src="img/5.png" alt="Modern moving and logistics" loading="lazy">
+        <img src="img/3.png" alt="Sustainable packaging storage" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <section class="bg-a" id="problem">
+    <div class="cont">
+      <div class="two-col">
+        <div>
+          <div class="sec-tag">The Problem</div>
+          <h2 class="sec-title">Single-Use Packaging Is a Massive Liability</h2>
+          <p class="sec-body">Moving today still relies on a broken system—buy, use once, throw away. With over 13 million U.S. households relocating each year, hundreds of millions of cardboard boxes end up as waste.<br><br>Cardboard dominates logistics, supporting 90% of shipped goods in a $34B industry—but it comes at a cost: deforestation, high emissions, and unnecessary resource consumption.<br><br>This isn't just inefficient—it's unsustainable.</p>
+          <img src="img/1.png" alt="Cardboard waste problem" class="sec-img sec-img-sm" style="margin-top:1.8rem;" loading="lazy">
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="big">3B</div><p>Annual global tree loss driven by packaging demand</p></div>
+          <div class="stat-card"><div class="big">50%</div><p>Of world's biodiversity under pressure within the next 25 years</p></div>
+          <div class="stat-card"><div class="big">49M lbs</div><p>Carbon output from cardboard production</p></div>
+          <div class="stat-card"><div class="big">780M</div><p>Single-use boxes entering landfills annually</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PAGE NAVIGATION HUB -->
+  <section class="pages-nav">
+    <div class="cont">
+      <div class="sec-tag">Explore TSBOX™</div>
+      <h2 class="sec-title">Everything You Need to Know</h2>
+      <div class="page-cards">
+        <a href="solution.html" class="page-card">
+          <div class="pc-ico">📦</div>
+          <div class="pc-label">Product</div>
+          <div class="pc-title">The Solution</div>
+          <div class="pc-desc">How TSBOX™ works, environmental impact, and how it compares to cardboard and plastic totes.</div>
+          <div class="pc-arrow">Explore →</div>
+        </a>
+        <a href="financials.html" class="page-card">
+          <div class="pc-ico">📊</div>
+          <div class="pc-label">Business</div>
+          <div class="pc-title">Financials</div>
+          <div class="pc-desc">Revenue model, 5-year projections, growth milestones, and market opportunity.</div>
+          <div class="pc-arrow">View Numbers →</div>
+        </a>
+        <a href="invest.html" class="page-card">
+          <div class="pc-ico">💼</div>
+          <div class="pc-label">Investors</div>
+          <div class="pc-title">Invest</div>
+          <div class="pc-desc">$5M raise, 20% equity, strategic alliances, and global sustainability supporters.</div>
+          <div class="pc-arrow">See Opportunity →</div>
+        </a>
+        <a href="about.html" class="page-card">
+          <div class="pc-ico">🌿</div>
+          <div class="pc-label">Company</div>
+          <div class="pc-title">About Us</div>
+          <div class="pc-desc">Vision, go-to-market strategy, and the team behind TSBOX™.</div>
+          <div class="pc-arrow">Meet the Team →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Move Smarter. Invest Smarter.</h2>
+    <p>Be part of the shift toward a more efficient, sustainable moving system.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:1000pacific@gmail.com" class="btn-dark">Contact Investor Relations</a>
+    </div>
+  </section>
+
+</body>
+</html>
