@@ -1,135 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invest – TSBOX™</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
     /* ── FUNDING ── */
-    .fund-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2.5rem;}
-    .ask-box{background:rgba(232,74,58,.05);border:2px solid var(--coral);border-radius:14px;padding:2.2rem;text-align:center;box-shadow:0 8px 32px rgba(232,74,58,.1);}
-    .ask-box .ask-lbl{font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.5rem;}
-    .ask-box .ask-num{font-size:5rem;font-weight:900;color:var(--coral);line-height:1;font-family:'Playfair Display',serif;}
-    .ask-box .ask-sub{font-size:.82rem;color:var(--muted);}
-    .ask-box hr{border:none;border-top:1px solid rgba(232,74,58,.2);margin:1.4rem 0;}
-    .ask-box .equity{font-size:.87rem;color:var(--text);line-height:1.65;}
-    .ask-box .equity b{color:var(--gold);}
-    .ret-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem;}
-    .ret-card{background:var(--card-bg);border:1px solid rgba(200,134,26,.12);border-radius:8px;padding:1.1rem;box-shadow:0 2px 10px rgba(28,28,42,.05);}
-    .ret-card .rl{font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;font-weight:600;}
-    .ret-card .rv{font-size:1.7rem;font-weight:900;color:var(--gold);font-family:'Playfair Display',serif;}
-    .ret-wide{grid-column:1/-1;}
-    .ret-wide .rv{font-size:.82rem;color:var(--muted);line-height:1.6;font-weight:normal;margin-top:.3rem;}
+    .fund-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 3.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .ask-box {
+      background: linear-gradient(160deg, rgba(217, 79, 61, .06), rgba(217, 79, 61, .02));
+      border: 2px solid rgba(217, 79, 61, .25);
+      border-radius: var(--radius-lg);
+      padding: 2.4rem;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(217, 79, 61, .1);
+    }
+
+    .ask-lbl {
+      font-size: .65rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+
+    .ask-num {
+      font-family: var(--serif);
+      font-size: 5.5rem;
+      color: var(--coral);
+      line-height: 1;
+    }
+
+    .ask-sub {
+      font-size: .84rem;
+      color: var(--muted);
+      margin-top: .3rem;
+    }
+
+    .ask-box hr {
+      border: none;
+      border-top: 1px solid rgba(217, 79, 61, .18);
+      margin: 1.5rem 0;
+    }
+
+    .ask-box .equity {
+      font-size: .88rem;
+      color: var(--ink2);
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    .ask-box .equity b {
+      color: var(--amber);
+    }
+
+    .ret-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+      margin-top: 1.2rem;
+    }
+
+    .ret-card {
+      background: var(--card);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 2px 10px rgba(21, 20, 18, .04);
+    }
+
+    .ret-card .rl {
+      font-size: .63rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .4rem;
+      font-weight: 600;
+    }
+
+    .ret-card .rv {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      color: var(--amber);
+      line-height: 1;
+    }
+
+    .ret-wide {
+      grid-column: 1 / -1;
+    }
+
+    .ret-wide .rv {
+      font-size: .85rem;
+      color: var(--muted);
+      font-family: var(--sans);
+      line-height: 1.65;
+      font-weight: normal;
+      margin-top: .3rem;
+    }
 
     /* ── ALLOC ── */
-    .alloc-list{display:flex;flex-direction:column;gap:1rem;margin-top:1.8rem;}
-    .alloc-row{display:flex;flex-direction:column;gap:.35rem;}
-    .alloc-top{display:flex;justify-content:space-between;font-size:.82rem;}
-    .alloc-name{color:var(--text);}
-    .alloc-amt{color:var(--gold);font-weight:700;font-family:monospace;font-size:.75rem;}
-    .alloc-track{height:6px;background:rgba(200,134,26,.1);border-radius:3px;overflow:hidden;}
-    .alloc-fill{height:100%;background:linear-gradient(90deg,var(--coral),var(--gold));border-radius:3px;}
-    .impact-summary{margin-top:1.5rem;background:rgba(26,158,110,.05);border:1px solid rgba(26,158,110,.18);border-radius:8px;padding:1.2rem;}
-    .impact-summary .il{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.6rem;}
-    .impact-summary ul{list-style:none;display:flex;flex-direction:column;gap:.45rem;}
-    .impact-summary ul li{font-size:.8rem;color:var(--muted);display:flex;gap:.5rem;}
-    .impact-summary ul li b{color:var(--mint);}
+    .alloc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+
+    .alloc-row {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .alloc-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: .84rem;
+    }
+
+    .alloc-name {
+      color: var(--ink2);
+      font-weight: 500;
+    }
+
+    .alloc-amt {
+      color: var(--amber);
+      font-weight: 700;
+      font-family: monospace;
+      font-size: .77rem;
+    }
+
+    .alloc-track {
+      height: 6px;
+      background: var(--cream3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .alloc-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--coral), var(--amber));
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .impact-summary {
+      margin-top: 1.5rem;
+      background: var(--green-bg);
+      border: 1px solid rgba(42, 124, 95, .2);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+    }
+
+    .impact-summary .il {
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: .8rem;
+    }
+
+    .impact-summary ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .impact-summary ul li {
+      display: flex;
+      gap: .6rem;
+      font-size: .82rem;
+      color: var(--ink2);
+      align-items: flex-start;
+    }
+
+    .impact-summary ul li b {
+      color: var(--green);
+      font-size: .9rem;
+    }
 
     /* ── ALLIANCES ── */
-    .ally-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem;}
-    .ally-card{background:var(--card-bg);border:1px solid rgba(200,134,26,.12);border-radius:8px;padding:1.2rem 1.4rem;display:flex;justify-content:space-between;align-items:center;transition:border-color .2s,box-shadow .2s;box-shadow:0 2px 10px rgba(28,28,42,.04);}
-    .ally-card:hover{border-color:rgba(200,134,26,.35);box-shadow:0 6px 20px rgba(28,28,42,.08);}
-    .ally-card .an{font-size:.9rem;font-weight:700;color:var(--dark);font-family:'Playfair Display',serif;}
-    .ally-card .al{font-size:.71rem;color:var(--gold);font-weight:700;font-family:monospace;}
-    .mfg-box{margin-top:1.5rem;background:rgba(200,134,26,.03);border:1px solid rgba(200,134,26,.1);border-radius:8px;padding:1.2rem;}
-    .mfg-box .ml{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.5rem;}
-    .mfg-box p{font-size:.84rem;color:var(--muted);line-height:1.55;}
+    .ally-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .9rem;
+      margin-top: 2.5rem;
+    }
+
+    .ally-card {
+      background: var(--card);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color .2s, box-shadow .25s, transform .25s;
+      box-shadow: 0 2px 10px rgba(21, 20, 18, .04);
+    }
+
+    .ally-card:hover {
+      border-color: rgba(196, 123, 26, .3);
+      box-shadow: 0 8px 28px rgba(21, 20, 18, .09);
+      transform: translateY(-2px);
+    }
+
+    .ally-card .an {
+      font-family: var(--serif);
+      font-size: .95rem;
+      color: var(--ink);
+    }
+
+    .ally-card .al {
+      font-size: .72rem;
+      color: var(--amber);
+      font-weight: 600;
+      font-family: monospace;
+    }
+
+    .mfg-box {
+      margin-top: 1.5rem;
+      background: var(--cream2);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+    }
+
+    .mfg-box .ml {
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: .6rem;
+    }
+
+    .mfg-box p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     /* ── SUPPORTERS ── */
-    .celeb-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
-    .celeb-card{background:var(--card-bg);border:1px solid rgba(45,125,210,.1);border-radius:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s;box-shadow:0 2px 10px rgba(28,28,42,.04);}
-    .celeb-card:hover{border-color:rgba(45,125,210,.3);box-shadow:0 8px 28px rgba(28,28,42,.12);transform:translateY(-3px);}
-    .celeb-img{width:100%;height:160px;object-fit:cover;object-position:center top;display:block;border-bottom:1px solid rgba(45,125,210,.07);}
-    .celeb-info{padding:.9rem 1rem;}
-    .celeb-card .name{font-size:.88rem;font-weight:700;color:var(--dark);font-family:'Playfair Display',serif;}
-    .celeb-card .role{font-size:.71rem;color:var(--muted);margin-top:.2rem;}
-    .celeb-more{background:rgba(45,125,210,.03);border:1px solid rgba(45,125,210,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:1.4rem;grid-column:span 2;}
-    .celeb-more p{font-size:.76rem;color:var(--muted);font-style:italic;text-align:center;line-height:1.7;}
-
-    @media(max-width:768px){
-      .fund-grid{grid-template-columns:1fr;}
-      .ally-grid{grid-template-columns:1fr 1fr;}
-      .celeb-grid{grid-template-columns:1fr 1fr;}
+    /* ── UPDATED SUPPORTERS (SQUARE) ── */
+    .celeb-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      /* Increased gap slightly for a cleaner look */
+      margin-top: 2.5rem;
     }
-    @media(max-width:480px){
-      .ally-grid{grid-template-columns:1fr;}
-      .ret-grid{grid-template-columns:1fr;}
+
+    .celeb-card {
+      background: var(--card);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      /* Reduced radius for a sharper square look */
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .3s, transform .3s cubic-bezier(.16, 1, .3, 1);
+      box-shadow: 0 2px 12px rgba(21, 20, 18, .05);
+
+      /* Forces the card to stay square */
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .celeb-img {
+      width: 100%;
+      /* Takes up the majority of the square, leaving room for text */
+      height: 75%;
+      object-fit: cover;
+      object-position: center top;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .celeb-info {
+      padding: 0.6rem;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .celeb-card .name {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .celeb-card .role {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Adjusting the 'more' box to match the height of the square cards */
+    .celeb-more {
+      background: var(--cream2);
+      border: 1px solid var(--card-bdr);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      grid-column: span 2;
+      aspect-ratio: auto;
+      /* Allow this one to stretch across two columns */
+    }
+
+    @media(max-width: 900px) {
+      .fund-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ally-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .celeb-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .celeb-more {
+        grid-column: span 2;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .ally-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ret-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <script src="shared.js"></script>
 
-  <!-- PAGE HERO -->
-  <div class="page-hero">
-    <div class="page-hero-dots"></div>
-    <div class="page-hero-glow"></div>
-    <div class="page-hero-inner">
+  <div class="page-hero" style="position:relative;overflow:hidden;">
+    <div
+      style="position:absolute;inset:0;background:url('img/27.png') center/cover no-repeat;opacity:.18;z-index:0;">
+    </div>
+    <div class="page-hero-glow" style="z-index:1;"></div>
+    <div class="page-hero-inner" style="position:relative;z-index:2;">
       <div class="page-hero-badge">💼 Investment Opportunity</div>
-      <h1>Join the<br><span class="accent-coral">Revolution</span></h1>
-      <p class="page-hero-sub">$5M Seed/Series A raise. 20% equity. 6–8× projected investor returns. Be part of the company eliminating single-use moving waste.</p>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <h1>Think Outside<br>the <span class="accent-coral">Cardboard</span> Box</h1>
+      <p class="page-hero-sub">$5M Seed/Series A raise · 20% equity · Projected $1.4B in revenue by Year 7. Be part of
+        the company eliminating single-use moving waste globally.</p>
+      <div class="hero-btns">
         <a href="mailto:1000pacific@gmail.com" class="btn-p">Contact Investor Relations</a>
         <a href="financials.html" class="btn-o">View Financials</a>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- FUNDING -->
-  <section class="bg-b" id="funding">
+  <section class="bg-white" id="funding">
     <div class="cont">
       <div class="sec-tag">Investment Opportunity</div>
-      <h2 class="sec-title">The Ask</h2>
+      <h2 class="sec-title reveal">The Ask</h2>
       <div class="fund-grid">
         <div>
-          <div class="ask-box">
+          <div class="ask-box reveal">
             <div class="ask-lbl">Seed / Series A Round</div>
             <div class="ask-num">$5M</div>
             <div class="ask-sub">Total Funding Requested</div>
             <hr>
-            <div class="equity">Offering <b>20% equity stake</b><br>Post-money valuation: <b>$25 million</b><br><br>Year 1: $2.5M working capital<br>Year 2: $3.0M expansion capital</div>
+            <div class="equity">
+              Offering <b>20% equity stake</b><br>
+              Post-money valuation: <b>$25 million</b><br><br>
+              Year 1: $2.5M working capital<br>
+              Year 2: $3.0M expansion capital
+            </div>
           </div>
           <div class="ret-grid">
-            <div class="ret-card"><div class="rl">Investor ROI</div><div class="rv">6–8×</div></div>
-            <div class="ret-card"><div class="rl">Payback Period</div><div class="rv">3–4 Yrs</div></div>
-            <div class="ret-card ret-wide">
+            <div class="ret-card reveal">
+              <div class="rl">Investor ROI</div>
+              <div class="rv">6–8×</div>
+            </div>
+            <div class="ret-card reveal">
+              <div class="rl">Payback Period</div>
+              <div class="rv">3–4 Yrs</div>
+            </div>
+            <div class="ret-card ret-wide reveal">
               <div class="rl">Exit Options</div>
               <div class="rv">Franchise buyout · Acquisition by U-Haul, PODS, or Home Depot · IPO by Year 6</div>
             </div>
           </div>
         </div>
         <div>
-          <h3 style="font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;font-family:'Playfair Display',serif;">Purpose of Funding</h3>
-          <p style="font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:1.5rem;">We're raising $5M to accelerate production, expand operations, and establish market leadership within the first 24 months.</p>
-          <div class="alloc-list">
-            <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">🏭 Manufacturing & Inventory</div><div class="alloc-amt">$1.75M · 35%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:35%"></div></div></div>
-            <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">📣 Marketing & Brand Awareness</div><div class="alloc-amt">$1.0M · 20%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:20%"></div></div></div>
-            <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">💻 Technology & Platform</div><div class="alloc-amt">$750K · 15%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:15%"></div></div></div>
-            <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">👥 Operations & Staffing</div><div class="alloc-amt">$750K · 15%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:15%"></div></div></div>
-            <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">🔍 R&D + Working Capital Reserve</div><div class="alloc-amt">$500K · 10%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:10%"></div></div></div>
-            <div class="alloc-row"><div class="alloc-top"><div class="alloc-name">⚖ Franchise & Legal Setup</div><div class="alloc-amt">$250K · 5%</div></div><div class="alloc-track"><div class="alloc-fill" style="width:5%"></div></div></div>
+          <h3 style="font-family:var(--serif);font-size:1.4rem;color:var(--ink);margin-bottom:.6rem;">Purpose of Funding
+          </h3>
+          <p style="font-size:.86rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem;">We're raising $5M to
+            accelerate production, expand operations, and establish market leadership within the first 24 months.</p>
+          <div class="alloc-list reveal">
+            <div class="alloc-row">
+              <div class="alloc-top">
+                <div class="alloc-name">🏭 Manufacturing & Inventory</div>
+                <div class="alloc-amt">$1.75M · 35%</div>
+              </div>
+              <div class="alloc-track">
+                <div class="alloc-fill" style="width:35%"></div>
+              </div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-top">
+                <div class="alloc-name">📣 Marketing & Brand Awareness</div>
+                <div class="alloc-amt">$1.0M · 20%</div>
+              </div>
+              <div class="alloc-track">
+                <div class="alloc-fill" style="width:20%"></div>
+              </div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-top">
+                <div class="alloc-name">💻 Technology & Platform</div>
+                <div class="alloc-amt">$750K · 15%</div>
+              </div>
+              <div class="alloc-track">
+                <div class="alloc-fill" style="width:15%"></div>
+              </div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-top">
+                <div class="alloc-name">👥 Operations & Staffing</div>
+                <div class="alloc-amt">$750K · 15%</div>
+              </div>
+              <div class="alloc-track">
+                <div class="alloc-fill" style="width:15%"></div>
+              </div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-top">
+                <div class="alloc-name">🔍 R&D + Working Capital</div>
+                <div class="alloc-amt">$500K · 10%</div>
+              </div>
+              <div class="alloc-track">
+                <div class="alloc-fill" style="width:10%"></div>
+              </div>
+            </div>
+            <div class="alloc-row">
+              <div class="alloc-top">
+                <div class="alloc-name">⚖ Franchise & Legal Setup</div>
+                <div class="alloc-amt">$250K · 5%</div>
+              </div>
+              <div class="alloc-track">
+                <div class="alloc-fill" style="width:5%"></div>
+              </div>
+            </div>
           </div>
-          <div class="impact-summary">
+          <div class="impact-summary reveal">
             <div class="il">This Investment Will Allow TSBOX™ To:</div>
             <ul>
-              <li><b>✓</b> Replace 100 million cardboard boxes within 5 years</li>
-              <li><b>✓</b> Save over 570,000 trees annually</li>
-              <li><b>✓</b> Generate $49M+ in cumulative net income</li>
-              <li><b>✓</b> Become the #1 eco-friendly moving solution in North America</li>
+              <li><b>✓</b>Replace 100 million cardboard boxes within 5 years</li>
+              <li><b>✓</b>Save over 570,000 trees annually</li>
+              <li><b>✓</b>Generate $49M+ in cumulative net income</li>
+              <li><b>✓</b>Become the #1 eco-friendly moving solution in North America</li>
             </ul>
           </div>
         </div>
@@ -139,81 +487,140 @@
 
   <div class="divider"></div>
 
-  <!-- ALLIANCES -->
   <section class="bg-a" id="alliances">
     <div class="cont">
       <div class="sec-tag">Strategic Alliances</div>
-      <h2 class="sec-title">Distribution Built In</h2>
-      <p class="sec-body">Strategic retail partnerships act as acquisition channels—driving visibility, trust, and scalable customer access from day one.</p>
+      <h2 class="sec-title reveal">Distribution Built In</h2>
+      <p class="sec-body reveal">Retail stores would feature TSBOX™ and serve as hubs for rental orders. Orders are
+        relayed to the nearest TSBOX™ warehouse and delivered to the customer's doorstep. We estimate 25% of business in
+        later years will come from these strategic partnerships — with a <strong style="color:var(--ink)">15% referral
+          commission</strong> on all rentals.</p>
       <div class="ally-grid">
-        <div class="ally-card"><div class="an">U-Haul</div><div class="al">13,000 locations</div></div>
-        <div class="ally-card"><div class="an">Walgreens</div><div class="al">8,270 locations</div></div>
-        <div class="ally-card"><div class="an">The Home Depot</div><div class="al">2,248 locations</div></div>
-        <div class="ally-card"><div class="an">Office Depot</div><div class="al">1,641 locations</div></div>
-        <div class="ally-card"><div class="an">Staples</div><div class="al">1,575 locations</div></div>
-        <div class="ally-card"><div class="an">OfficeMax</div><div class="al">991 locations</div></div>
+        <div class="ally-card reveal">
+          <div class="an">FedEx</div>
+          <div class="al">47,842 locations</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">UPS</div>
+          <div class="al">5,700 locations</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">Walgreens</div>
+          <div class="al">8,270 locations</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">The Home Depot</div>
+          <div class="al">2,248 locations</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">Staples</div>
+          <div class="al">1,575 locations</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">Office Depot</div>
+          <div class="al">1,641 locations</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">Amazon / Whole Foods</div>
+          <div class="al">527 stores</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">U-Haul</div>
+          <div class="al">Strategic partner</div>
+        </div>
+        <div class="ally-card reveal">
+          <div class="an">OfficeMax</div>
+          <div class="al">991 locations</div>
+        </div>
       </div>
-      <div class="mfg-box">
+      <div class="mfg-box reveal">
         <div class="ml">Manufacturing Partners (In Exploration)</div>
-        <p>Strategic manufacturing alliances being explored with <strong>DuPont</strong>, <strong>Dow Chemicals</strong>, and <strong>Formosa Plastics</strong> — large-scale HDPE producers capable of meeting TSBOX™'s full production volume requirements at national scale.</p>
+        <p>Strategic manufacturing alliances being explored with <strong style="color:var(--ink)">DuPont</strong>,
+          <strong style="color:var(--ink)">Dow Chemicals</strong>, and <strong style="color:var(--ink)">Formosa
+            Plastics</strong> — large-scale HDPE producers capable of meeting TSBOX™'s full production volume
+          requirements at national scale.</p>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- SUPPORTERS -->
-  <section class="bg-b" id="supporters">
+  <section class="bg-white" id="supporters">
     <div class="cont">
       <div class="sec-tag">Global Movement</div>
-      <h2 class="sec-title">Aligned With Global Sustainability Leaders</h2>
-      <p class="sec-body">TSBOX™ supports the same mission championed by global voices advocating for environmental responsibility and resource preservation.</p>
+      <h2 class="sec-title reveal">Aligned With Global Sustainability Leaders</h2>
+      <p class="sec-body reveal">TSBOX™ supports the same mission championed by global voices advocating for
+        environmental responsibility and resource preservation.</p>
       <div class="celeb-grid">
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/1.png" alt="Spiritual leader meditation" loading="lazy">
-          <div class="celeb-info"><div class="name">The Dalai Lama</div><div class="role">Spiritual Leader</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/1.png" alt="Spiritual leader" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">The Dalai Lama</div>
+            <div class="role">Spiritual Leader</div>
+          </div>
         </div>
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/2.png" alt="Entrepreneur business aviation" loading="lazy">
-          <div class="celeb-info"><div class="name">Richard Branson</div><div class="role">Founder, Virgin Group</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/2.png" alt="Richard Branson" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Richard Branson</div>
+            <div class="role">Founder, Virgin Group</div>
+          </div>
         </div>
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/3.png" alt="Technology innovation Google" loading="lazy">
-          <div class="celeb-info"><div class="name">Eric Schmidt</div><div class="role">Former CEO, Google</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/7.png" alt="Eric Schmidt" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Eric Schmidt</div>
+            <div class="role">Former CEO, Google</div>
+          </div>
         </div>
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/5.png" alt="Actor conservationist nature" loading="lazy">
-          <div class="celeb-info"><div class="name">Harrison Ford</div><div class="role">Actor & Conservationist</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/5.png" alt="Harrison Ford" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Harrison Ford</div>
+            <div class="role">Actor & Conservationist</div>
+          </div>
         </div>
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/6.png" alt="Musician activist concert" loading="lazy">
-          <div class="celeb-info"><div class="name">Sting</div><div class="role">Musician & Activist</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/4.png" alt="Sting" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Sting</div>
+            <div class="role">Musician & Activist</div>
+          </div>
         </div>
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/7.png" alt="Rock musician stage performance" loading="lazy">
-          <div class="celeb-info"><div class="name">Rod Stewart</div><div class="role">Musician & Activist</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/3.png" alt="Rod Stewart" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Rod Stewart</div>
+            <div class="role">Musician & Activist</div>
+          </div>
         </div>
-        <div class="celeb-card">
-          <img class="celeb-img" src="pips/7.png" alt="Prince of Wales" loading="lazy">
-          <div class="celeb-info"><div class="name">Charles Philip Arthur</div><div class="role">Prince of Wales</div></div>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/6.png" alt="Daniel Craig" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Daniel Craig</div>
+            <div class="role">Actor</div>
+          </div>
         </div>
-        <div class="celeb-more">
-          <p>Robin Williams · Billy Connolly · Daniel Craig · Jonathan Rhys Myers · Rich Riley (Yahoo! Europe) · Dana Dunne (AOL Europe) · Tom Boardman (Nedbank) & many others</p>
+        <div class="celeb-card reveal">
+          <img class="celeb-img" src="pips/8.png" alt="Prince Charles" loading="lazy">
+          <div class="celeb-info">
+            <div class="name">Charles Philip Arthur</div>
+            <div class="role">Prince of Wales</div>
+          </div>
+        </div>
+        <div class="celeb-more reveal">
+          <p>Robin Williams · Billy Connolly · Daniel Craig · Jonathan Rhys Myers · Rich Riley (Yahoo! Europe) · Dana
+            Dunne (AOL Europe) · Tom Boardman (Nedbank) & many others</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- CTA -->
   <section class="cta">
     <h2>Ready to Move Forward?</h2>
     <p>Reach out to access the full business plan and investment details.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="mailto:1000pacific@gmail.com" class="btn-dark">Contact Investor Relations</a>
-    </div>
+    <a href="mailto:1000pacific@gmail.com" class="btn-dark">Contact Investor Relations</a>
   </section>
-
 </body>
+
 </html>
