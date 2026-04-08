@@ -8,7 +8,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap"
     rel="stylesheet">
-     <style>
+  <style>
     :root {
       --forest: #c2f5ac;
       --forest-deep: #a8e893;
@@ -618,45 +618,62 @@
       margin-top: .2rem
     }
 
-    /* TRUST BAR */
     .trust-bar {
-      padding: 2.5rem 2rem;
-      background: var(--white);
-      border-top: 1px solid var(--divider);
-      border-bottom: 1px solid var(--divider)
+      padding: 2rem 5%;
+      background: #fff;
+      border-top: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
     }
 
     .trust-bar .cont {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
-      gap: 3rem;
       flex-wrap: wrap;
-      justify-content: center
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
     }
 
     .trust-label {
-      font-size: .68rem;
-      letter-spacing: .16em;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      color: var(--muted2);
-      font-weight: 500;
-      white-space: nowrap
+      letter-spacing: 2px;
+      color: #a0a0a0;
+      font-weight: 700;
     }
 
     .trust-names {
       display: flex;
-      gap: 2.5rem;
       flex-wrap: wrap;
-      align-items: center
+      justify-content: center;
+      gap: 2rem;
     }
 
     .trust-name {
-      font-size: .82rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      color: rgba(21, 20, 18, .25);
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      white-space: nowrap
+      color: #bbb;
+      /* Muted gray for a high-end feel */
+      transition: color 0.3s ease;
+      cursor: default;
+    }
+
+    .trust-name:hover {
+      color: var(--forest-dark, #2d6a4f);
+      /* Subtle brand color hint on hover */
+    }
+
+    @media (max-width: 768px) {
+      .trust-bar .cont {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .trust-names {
+        gap: 1rem 1.5rem;
+      }
     }
 
     /* CRISIS */
@@ -3025,6 +3042,7 @@
         grid-template-columns: 1fr
       }
     }
+
     /* ANIMATION MODAL */
     #video-modal-container {
       position: fixed;
@@ -3082,7 +3100,7 @@
       <li><a href="about.html">About</a></li>
     </ul>
     <div class="nav-right">
-      <a href="/cdn-cgi/l/email-protection#083938383878696b616e616b486f65696164266b6765" class="nav-btn">Invest Now</a>
+      <a href="mailto:1000pacific@gmail.com" class="nav-btn">Invest Now</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -3107,7 +3125,7 @@
       <li><a href="about.html">About</a></li>
     </ul>
     <div class="mobile-drawer-cta">
-      <a href="/cdn-cgi/l/email-protection#98a9a8a8a8e8f9fbf1fef1fbd8fff5f9f1f4b6fbf7f5">💼 Invest Now</a>
+      <a href="mailto:1000pacific@gmail.com">💼 Invest Now</a>
     </div>
   </div>
   <div class="nav-backdrop" id="nav-backdrop"></div>
@@ -3159,19 +3177,18 @@
 
   <!-- TRUST BAR -->
   <div class="trust-bar">
-    <div class="cont">
-      <div class="trust-label">Strategic Partnerships</div>
-      <div class="trust-names">
-        <span class="trust-name">FedEx</span>
-        <span class="trust-name">UPS</span>
-        <span class="trust-name">Walgreens</span>
-        <span class="trust-name">Home Depot</span>
-        <span class="trust-name">Staples</span>
-        <span class="trust-name">Office Depot</span>
-        <span class="trust-name">Amazon / Whole Foods</span>
-      </div>
+  <div class="cont">
+    <div class="trust-label">Strategic Partners</div>
+    <div class="trust-names">
+      <span class="trust-name">FedEx</span>
+      <span class="trust-name">UPS</span>
+      <span class="trust-name">Walgreens</span>
+      <span class="trust-name">Home Depot</span>
+      <span class="trust-name">Staples</span>
+      <span class="trust-name">Amazon</span>
     </div>
   </div>
+</div>
 
   <!-- CRISIS -->
   <div class="crisis-section" id="crisis">
