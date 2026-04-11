@@ -1,720 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Financials – TSBOX™</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap"
-    rel="stylesheet">
+  <title>Pricing — TSBOX™</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    /* ── REVENUE MODEL ── */
-    .rev-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+    .pkg-card{background:var(--white);border:2.5px solid var(--divider);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .25s,transform .3s,box-shadow .3s;position:relative;}
+    .pkg-card:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,122,74,.13);}
+    .pkg-card.featured{border-color:var(--orange);box-shadow:0 8px 32px rgba(232,93,43,.12);}
+    .pkg-card.featured:hover{border-color:var(--orange-lt);box-shadow:0 16px 56px rgba(232,93,43,.2);}
+    .pkg-card-ph{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+    .pkg-popular{position:absolute;top:12px;right:12px;background:var(--orange);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:100px;}
+    .pkg-body{padding:1.8rem;}
+    .pkg-name{font-family:var(--serif);font-size:1.4rem;font-weight:900;color:var(--ink);margin-bottom:.25rem;}
+    .pkg-rooms{font-size:.85rem;color:var(--muted);font-weight:700;margin-bottom:1rem;}
+    .pkg-price-row{display:flex;align-items:baseline;gap:.4rem;margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:2px solid var(--divider);}
+    .pkg-price-row .big{font-family:var(--serif);font-size:2.8rem;font-weight:900;color:var(--green);}
+    .pkg-card.featured .pkg-price-row .big{color:var(--orange);}
+    .pkg-price-row .small{font-size:.85rem;color:var(--muted);font-weight:700;}
+    .pkg-features{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.5rem;}
+    .pkg-feature{display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;font-weight:700;color:var(--body);line-height:1.35;}
+    .pkg-feature .chk{width:20px;height:20px;border-radius:50%;flex-shrink:0;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:900;margin-top:.1rem;}
+    .pkg-card.featured .pkg-feature .chk{background:var(--orange);}
+    .pkg-cta{display:block;text-align:center;padding:.85rem;border-radius:100px;font-size:.95rem;font-weight:800;border:2.5px solid var(--green);color:var(--green);transition:all .2s;}
+    .pkg-cta:hover{background:var(--green);color:#fff;}
+    .pkg-card.featured .pkg-cta{background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:0 6px 20px rgba(232,93,43,.3);}
+    .pkg-card.featured .pkg-cta:hover{background:var(--orange-lt);}
 
-    .rev-card {
-      background: var(--card);
-      border: 1px solid var(--card-bdr);
-      border-radius: var(--radius);
-      padding: 1.6rem;
-      transition: transform .3s cubic-bezier(.16, 1, .3, 1), border-color .2s, box-shadow .3s;
-      box-shadow: 0 2px 12px rgba(21, 20, 18, .04);
-    }
+    .incl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
+    .incl-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;padding:1.5rem;background:var(--white);border:2px solid var(--divider);border-radius:var(--radius-lg);transition:border-color .2s;}
+    .incl-item:hover{border-color:var(--green);}
+    .incl-icon{width:52px;height:52px;border-radius:50%;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+    .incl-item h4{font-size:.9rem;font-weight:900;color:var(--ink);}
+    .incl-item p{font-size:.8rem;color:var(--muted);font-weight:600;}
 
-    .rev-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(196, 123, 26, .2);
-      box-shadow: 0 12px 40px rgba(21, 20, 18, .1);
-    }
+    .addon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
+    .addon-card{background:var(--white);border:2px solid var(--divider);border-radius:var(--radius);padding:1.4rem;text-align:center;transition:border-color .2s;}
+    .addon-card:hover{border-color:var(--green);}
+    .addon-icon{font-size:1.6rem;margin-bottom:.6rem;}
+    .addon-card h4{font-size:.95rem;font-weight:900;color:var(--ink);margin-bottom:.3rem;}
+    .addon-card .addon-price{font-family:var(--serif);font-size:1.4rem;font-weight:900;color:var(--green);margin-bottom:.3rem;}
+    .addon-card p{font-size:.78rem;color:var(--muted);font-weight:600;line-height:1.4;}
 
-    .rev-card.hl {
-      background: linear-gradient(135deg, rgba(217, 79, 61, .06), rgba(217, 79, 61, .02));
-      border-color: rgba(217, 79, 61, .2);
-    }
+    .photo-wide{width:100%;height:280px;object-fit:cover;border-radius:var(--radius-lg);display:block;margin-top:2.5rem;box-shadow:0 16px 48px rgba(17,24,21,.1);}
 
-    .rev-card .rico {
-      font-size: 1.6rem;
-      margin-bottom: .75rem;
-    }
-
-    .rev-card h3 {
-      font-size: .8rem;
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: .5rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    .rev-card.hl h3 {
-      color: var(--coral);
-    }
-
-    .rev-card p {
-      font-size: .8rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .mkt-bubble {
-      background: linear-gradient(135deg, rgba(196, 123, 26, .08), rgba(196, 123, 26, .03));
-      border: 1px solid rgba(196, 123, 26, .18);
-      border-radius: var(--radius);
-      padding: 1.6rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: .5rem;
-    }
-
-    .mkt-bubble .mbig {
-      font-family: var(--serif);
-      font-size: 2.8rem;
-      color: var(--amber);
-      line-height: 1;
-    }
-
-    .mkt-bubble .msub {
-      font-size: .72rem;
-      color: var(--muted);
-    }
-
-    .mkt-bubble .mmed {
-      font-family: var(--serif);
-      font-size: 2rem;
-      color: var(--blue);
-    }
-
-    .mkt-bubble .mlabel {
-      font-size: .62rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    /* ── PROJECTIONS TABLE ── */
-    .proj-tbl {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(21, 20, 18, .06);
-      margin-top: 2.5rem;
-    }
-
-    .proj-tbl th {
-      padding: 1rem 1.3rem;
-      font-size: .68rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--amber);
-      border-bottom: 2px solid var(--divider);
-      text-align: left;
-      background: var(--cream2);
-    }
-
-    .proj-tbl td {
-      padding: 1rem 1.3rem;
-      font-size: .88rem;
-      border-bottom: 1px solid var(--divider);
-      color: var(--muted);
-    }
-
-    .proj-tbl .hi td {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .proj-tbl .hi td:nth-child(3) {
-      color: var(--amber);
-    }
-
-    .proj-tbl .tot td {
-      border-top: 2px solid rgba(196, 123, 26, .2);
-      color: var(--amber);
-      font-weight: 700;
-      font-family: monospace;
-      font-size: .82rem;
-      background: var(--amber-bg);
-    }
-
-    .proj-tbl tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* ── BAR CHART ── */
-    .bars {
-      display: flex;
-      flex-direction: column;
-      gap: .8rem;
-      margin-top: 2.5rem;
-    }
-
-    .bars-label {
-      font-size: .65rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-      margin-bottom: .5rem;
-    }
-
-    .bar-row {
-      display: grid;
-      grid-template-columns: 48px 1fr 100px;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .bar-yr {
-      font-size: .74rem;
-      color: var(--amber);
-      font-weight: 700;
-      font-family: monospace;
-    }
-
-    .bar-track {
-      background: var(--cream3);
-      border-radius: 4px;
-      height: 28px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--coral), var(--amber));
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      padding-left: .6rem;
-      font-size: .7rem;
-      color: #fff;
-      font-weight: 600;
-      transition: width 1.5s cubic-bezier(.16, 1, .3, 1);
-    }
-
-    .bar-val {
-      font-size: .73rem;
-      color: var(--muted);
-      text-align: right;
-      font-family: monospace;
-    }
-
-    /* ── ASSUMPTIONS ── */
-    .assum-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .assum-card {
-      background: var(--card);
-      border: 1px solid rgba(37, 99, 235, .1);
-      border-top: 3px solid var(--blue);
-      border-radius: var(--radius);
-      padding: 1.4rem;
-    }
-
-    .assum-card .big {
-      font-family: var(--serif);
-      font-size: 2rem;
-      color: var(--blue);
-      line-height: 1;
-    }
-
-    .assum-card p {
-      font-size: .78rem;
-      color: var(--muted);
-      margin-top: .4rem;
-      line-height: 1.4;
-    }
-
-    /* ── TIMELINE ── */
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-      margin-top: 3rem;
-      position: relative;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 2.2rem;
-      left: 8%;
-      right: 8%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--coral), var(--amber));
-      z-index: 0;
-    }
-
-    .ms-card {
-      background: var(--card);
-      border: 1px solid var(--card-bdr);
-      border-radius: var(--radius);
-      padding: 1.4rem 1rem;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 16px rgba(21, 20, 18, .06);
-      transition: transform .3s cubic-bezier(.16, 1, .3, 1), box-shadow .3s;
-    }
-
-    .ms-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(21, 20, 18, .1);
-    }
-
-    .ms-dot {
-      width: 2.2rem;
-      height: 2.2rem;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--coral), var(--amber));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto .8rem;
-      font-size: .9rem;
-    }
-
-    .ms-yr {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      color: var(--amber);
-    }
-
-    .ms-txt {
-      font-size: .74rem;
-      color: var(--muted);
-      margin-top: .4rem;
-      line-height: 1.45;
-    }
-
-    @media(max-width: 900px) {
-      .rev-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .timeline {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .timeline::before {
-        display: none;
-      }
-
-      .assum-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(max-width: 480px) {
-      .rev-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .assum-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr;}.incl-grid{grid-template-columns:1fr 1fr;}.addon-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:600px){.pricing-grid{grid-template-columns:1fr;}.incl-grid{grid-template-columns:1fr 1fr;}}
   </style>
 </head>
-
 <body>
   <script src="shared.js"></script>
 
-  <section class="page-hero">
-    <div class="hero-overlay"></div>
-
-    <div class="container">
-      <div class="page-hero-inner">
-        <div class="page-hero-badge">
-          <span class="emoji">📊</span> Business Case
-        </div>
-
-        <h1 class="hero-title">
-          Engineered for<br>
-          <span class="accent-coral">Rapid</span> <span class="accent-amber">Scale</span>
-        </h1>
-
-        <p class="hero-description">
-          Starting with focused regional deployment, <strong>TSBOX™</strong> scales into a nationwide network—driven by
-          repeat usage, operational efficiency, and franchise expansion.
-        </p>
-
-        <div class="hero-btns">
-          <a href="invest.html" class="btn btn-primary">Investment Opportunity</a>
-          <a href="solution.html" class="btn btn-outline">How It Works</a>
-        </div>
+  <div class="page-hero" style="position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:url('img/19.png') center/cover no-repeat;opacity:.15;z-index:0;"></div>
+    <div class="page-hero-inner" style="position:relative;z-index:2;">
+      <div class="sec-eyebrow">Transparent Pricing</div>
+      <h1>Simple, Honest <span style="color:var(--orange);">Pricing.</span><br>No Surprises.</h1>
+      <p class="page-hero-sub">Flat weekly rates. Free delivery and pickup always included. No hidden fees — just smarter moving.</p>
+      <div class="page-hero-btns">
+        <a href="index.html#order" class="btn-primary">Reserve Now</a>
+        <a href="tel:3109995015" class="btn-outline">Call for Custom Quote</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <style>
-    /* Modern Hero Styles */
-    .page-hero {
-      position: relative;
-      padding: 160px 0 120px;
-      /* Increased vertical breathing room */
-      background-image: url('img/29.png');
-      background-size: cover;
-      background-position: center;
-      color: #ffffff;
-      overflow: hidden;
-    }
+  <div class="divider"></div>
 
-    /* Dark gradient overlay for readability */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
-      z-index: 1;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .page-hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      /* Constrains text width for better readability */
-    }
-
-    /* Badge Styling */
-    .page-hero-badge {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      letter-spacing: 0.5px;
-    }
-
-    /* Typography */
-    .hero-title {
-      font-size: 4.5rem;
-      /* Large, bold impact */
-      line-height: 1.1;
-      margin-bottom: 24px;
-      font-weight: 800;
-      background: linear-gradient(180deg, #FFFFFF 0%, #44c913 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .accent-coral {
-      color: #FF7F50;
-    }
-
-    /* Adjust to your exact coral */
-    .accent-amber {
-      color: #0015fd;
-    }
-
-    .hero-description {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 40px;
-    }
-
-    /* Button Styling */
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-    }
-
-    .btn {
-      padding: 16px 32px;
-      border-radius: 8px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-
-    .btn-primary {
-      background: #2D6A4F;
-      /* Professional forest green */
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #40916C;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(5px);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 3rem;
-        background: linear-gradient(180deg, #FFFFFF 0%, #44c913 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      }
-
-      .hero-btns {
-        flex-direction: column;
-      }
-
-      .page-hero {
-        padding: 100px 0 60px;
-        text-align: center;
-      }
-
-      .page-hero-inner {
-        margin: 0 auto;
-      }
-    }
-  </style>
-
-  <section class="bg-white" id="revenue">
-    <div class="cont">
-      <div class="sec-tag">Revenue Model</div>
-      <h2 class="sec-title reveal">Scalable Revenue. Diversified Streams.</h2>
-      <p class="sec-body reveal">TSBOX™ operates on a multi-channel revenue model designed for consistency, expansion,
-        and long-term profitability.</p>
-      <div class="rev-grid">
-        <div class="rev-card hl reveal">
-          <div class="rico">📦</div>
-          <h3>Primary Revenue Driver</h3>
-          <p>Weekly rentals of standard and specialty containers at <strong
-              style="color:var(--ink)">$2.00/box/week</strong>. Over 98% of revenue in Year 1.</p>
-        </div>
-        <div class="rev-card reveal">
-          <div class="rico">🚚</div>
-          <h3>Convenience Upsell</h3>
-          <p>Optional door-to-door service at <strong style="color:var(--ink)">$30–$50 per order</strong>, providing
-            customer convenience and an additional revenue layer.</p>
-        </div>
-        <div class="rev-card reveal">
-          <div class="rico">📋</div>
-          <h3>B2B Recurring Income</h3>
-          <p>Monthly corporate plans for moving companies and storage providers — predictable recurring revenue that
-            scales with enterprise clients.</p>
-        </div>
-        <div class="rev-card reveal">
-          <div class="rico">🏪</div>
-          <h3>Franchise Expansion</h3>
-          <p>Regional franchise opportunities launch in Year 3, adding <strong style="color:var(--ink)">20% growth
-              annually</strong> through licensing fees and co-op marketing.</p>
-        </div>
-        <div class="rev-card reveal">
-          <div class="rico">🌿</div>
-          <h3>Carbon Credits</h3>
-          <p>Carbon credit programs and sustainability sponsorships with brands seeking verified environmental impact
-            and green branding.</p>
-        </div>
-        <div class="mkt-bubble reveal">
-          <div class="mlabel">Market Opportunity</div>
-          <div class="mbig">$135.8B</div>
-          <div class="msub">Global Moving Market (2024)</div>
-          <div class="mmed">$4.2B</div>
-          <div class="msub">Reusable Plastic Box Market by 2033</div>
-          <div style="font-size:.8rem;font-weight:700;color:var(--coral);margin-top:.2rem;">7.5% CAGR (2026–2033)</div>
-        </div>
+  <!-- ALWAYS INCLUDED -->
+  <section class="bg-white">
+    <div class="cont" style="text-align:center;">
+      <div class="sec-eyebrow">Always Included</div>
+      <h2 class="sec-title">Every Package Comes With</h2>
+      <div class="incl-grid">
+        <div class="incl-item reveal"><div class="incl-icon">🚚</div><h4>Free Delivery</h4><p>We bring boxes to your door on your schedule</p></div>
+        <div class="incl-item reveal"><div class="incl-icon">🔄</div><h4>Free Pickup</h4><p>Done moving? We collect from your new address</p></div>
+        <div class="incl-item reveal"><div class="incl-icon">🔒</div><h4>Locks Included</h4><p>Every box comes with a lock — no extra charge</p></div>
+        <div class="incl-item reveal"><div class="incl-icon">✨</div><h4>Sanitized Boxes</h4><p>Cleaned and inspected before every rental</p></div>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <section class="bg-a" id="projections">
+  <!-- PACKAGES -->
+  <section class="bg-cream" id="packages">
     <div class="cont">
-      <div class="sec-tag">5-Year Financial Projections</div>
-      <h2 class="sec-title reveal">The Numbers</h2>
-      <div style="overflow-x:auto;">
-        <table class="proj-tbl reveal">
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Sales Revenue</th>
-              <th>Gross Profit</th>
-              <th>Operating Expenses</th>
-              <th>EBITDA</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Year 1</td>
-              <td>$801,090</td>
-              <td>$781,405</td>
-              <td>$1,158,859</td>
-              <td>($377,455)</td>
-            </tr>
-            <tr>
-              <td>Year 2</td>
-              <td>$10,177,231</td>
-              <td>$9,932,796</td>
-              <td>$6,483,099</td>
-              <td>$3,449,697</td>
-            </tr>
-            <tr>
-              <td>Year 3</td>
-              <td>$38,088,083</td>
-              <td>$35,790,983</td>
-              <td>$19,425,721</td>
-              <td>$16,365,262</td>
-            </tr>
-            <tr class="hi">
-              <td>Year 4</td>
-              <td>$74,969,313</td>
-              <td>$70,440,213</td>
-              <td>$33,365,160</td>
-              <td>$37,075,053</td>
-            </tr>
-            <tr class="hi">
-              <td>Year 5</td>
-              <td>$131,523,798</td>
-              <td>$123,581,598</td>
-              <td>$58,782,739</td>
-              <td>$64,798,859</td>
-            </tr>
-            <tr class="tot">
-              <td>5-Year Total</td>
-              <td>$255.6M+ Revenue</td>
-              <td>$240.5M Gross Profit</td>
-              <td>—</td>
-              <td>$64.8M EBITDA (Yr 5)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="font-size:.74rem;color:var(--muted);margin-top:.6rem;">Year 7 projection: TSBOX™ arrives at global
-        market scale — projected to produce <strong>$1.4 Billion</strong> in gross revenue. Most revenue (≈98%) is
-        generated from TSBOX™ rentals.</p>
-      <div class="bars">
-        <div class="bars-label">Revenue Growth Trajectory</div>
-        <div class="bar-row">
-          <div class="bar-yr">Yr 1</div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width:0.6%">$801K</div>
+      <div class="sec-eyebrow">Choose Your Package</div>
+      <h2 class="sec-title">Pick Your Home Size</h2>
+      <div class="pricing-grid">
+        <div class="pkg-card reveal">
+          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🏠</div>
+          <div class="pkg-body">
+            <div class="pkg-name">Studio Move</div>
+            <div class="pkg-rooms">Studio or 1-room apartment</div>
+            <div class="pkg-price-row"><span class="big">$49</span><span class="small">/ week</span></div>
+            <div class="pkg-features">
+              <div class="pkg-feature"><div class="chk">✓</div>20 Standard Moving Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>2 Wardrobe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>2 Dish-Safe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>Free Delivery &amp; Pickup</div>
+              <div class="pkg-feature"><div class="chk">✓</div>Locks Included</div>
+            </div>
+            <a href="index.html#order" class="pkg-cta">Book Studio →</a>
           </div>
-          <div class="bar-val">$801K</div>
         </div>
-        <div class="bar-row">
-          <div class="bar-yr">Yr 2</div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width:7.7%">$10.2M</div>
+        <div class="pkg-card featured reveal">
+          <div class="pkg-popular">Most Popular</div>
+          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">🏡</div>
+          <div class="pkg-body">
+            <div class="pkg-name">2-Bedroom Move</div>
+            <div class="pkg-rooms">1–2 bedroom home or apartment</div>
+            <div class="pkg-price-row"><span class="big">$89</span><span class="small">/ week</span></div>
+            <div class="pkg-features">
+              <div class="pkg-feature"><div class="chk">✓</div>40 Standard Moving Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>5 Wardrobe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>4 Dish-Safe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>2 Shoe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>Free Delivery, Pickup &amp; Dolly</div>
+            </div>
+            <a href="index.html#order" class="pkg-cta">Book 2BR Package →</a>
           </div>
-          <div class="bar-val">$10.2M</div>
         </div>
-        <div class="bar-row">
-          <div class="bar-yr">Yr 3</div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width:29%">$38M</div>
+        <div class="pkg-card reveal">
+          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">🏘️</div>
+          <div class="pkg-body">
+            <div class="pkg-name">Family Move</div>
+            <div class="pkg-rooms">3–4 bedroom home</div>
+            <div class="pkg-price-row"><span class="big">$149</span><span class="small">/ week</span></div>
+            <div class="pkg-features">
+              <div class="pkg-feature"><div class="chk">✓</div>65 Standard Moving Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>8 Wardrobe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>6 Dish-Safe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>4 Shoe Boxes + 2 Book Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>2 Dollies Included</div>
+            </div>
+            <a href="index.html#order" class="pkg-cta">Book Family →</a>
           </div>
-          <div class="bar-val">$38.1M</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-yr">Yr 4</div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width:57%">$75M</div>
-          </div>
-          <div class="bar-val">$75.0M</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-yr">Yr 5</div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width:100%">$131.5M</div>
-          </div>
-          <div class="bar-val">$131.5M</div>
         </div>
       </div>
-      <div class="assum-grid" style="margin-top:2.5rem;">
-        <div class="assum-card reveal">
-          <div class="big">10+ Yrs</div>
-          <p>Box lifespan with minimal maintenance required</p>
-        </div>
-        <div class="assum-card reveal">
-          <div class="big">95%</div>
-          <p>Recycling and reuse rate — near-zero waste per cycle</p>
-        </div>
-        <div class="assum-card reveal">
-          <div class="big">~600%</div>
-          <p>Estimated ROI on initial investment over 5 years</p>
-        </div>
-      </div>
+      <p style="text-align:center;margin-top:1.5rem;font-size:.9rem;color:var(--muted);font-weight:700;">
+        Need a custom package? <a href="tel:3109995015" style="color:var(--green);">Call us at 310-999-5015</a> — we'll build exactly what you need.
+      </p>
+      <img src="img/29.png" alt="TSBOX boxes and pricing" class="photo-wide" onerror="this.style.display='none'">
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <section class="bg-white" id="milestones">
+  <!-- ADD-ONS -->
+  <section class="bg-white">
     <div class="cont">
-      <div class="sec-tag">Road to Scale</div>
-      <h2 class="sec-title reveal">Key Milestones</h2>
-      <p class="sec-body reveal">A phased rollout strategy designed to validate, scale, and expand globally.</p>
-      <div class="timeline">
-        <div class="ms-card reveal">
-          <div class="ms-dot">🚀</div>
-          <div class="ms-yr">2025</div>
-          <div class="ms-txt">Prototype launch & pilot in Los Angeles and Orange County</div>
-        </div>
-        <div class="ms-card reveal">
-          <div class="ms-dot">📱</div>
-          <div class="ms-yr">2026</div>
-          <div class="ms-txt">Full national launch + online booking & logistics platform</div>
-        </div>
-        <div class="ms-card reveal">
-          <div class="ms-dot">🏙</div>
-          <div class="ms-yr">2027</div>
-          <div class="ms-txt">Expansion to 10 major U.S. cities — 216 locations</div>
-        </div>
-        <div class="ms-card reveal">
-          <div class="ms-dot">🏪</div>
-          <div class="ms-yr">2028</div>
-          <div class="ms-txt">Launch of TSBOX™ Franchise Network — +20% annual growth</div>
-        </div>
-        <div class="ms-card reveal">
-          <div class="ms-dot">🌍</div>
-          <div class="ms-yr">2029</div>
-          <div class="ms-txt">International expansion — Canada, EU & Australia</div>
-        </div>
+      <div class="sec-eyebrow">Add-Ons</div>
+      <h2 class="sec-title">Need a Little Extra?</h2>
+      <p class="sec-body">Add individual items to any package — charged per week alongside your rental.</p>
+      <div class="addon-grid">
+        <div class="addon-card reveal"><div class="addon-icon">📦</div><h4>Extra Standard Box</h4><div class="addon-price">$2/wk</div><p>per additional box</p></div>
+        <div class="addon-card reveal"><div class="addon-icon">👗</div><h4>Extra Wardrobe Box</h4><div class="addon-price">$5/wk</div><p>per additional wardrobe box</p></div>
+        <div class="addon-card reveal"><div class="addon-icon">🛺</div><h4>Moving Dolly</h4><div class="addon-price">$8/wk</div><p>per dolly — heavy-duty rated</p></div>
+        <div class="addon-card reveal"><div class="addon-icon">⏱️</div><h4>Extended Rental</h4><div class="addon-price">Ask us</div><p>Need more than one week? Flat rate extensions available</p></div>
       </div>
     </div>
   </section>
 
-  <section class="cta">
-    <h2>Ready to Invest?</h2>
-    <p>See the full investment opportunity, funding allocation, and projected returns.</p>
-    <a href="invest.html" class="btn-dark">See Investment Details</a>
+  <section class="cta-strip">
+    <h2>Start Your Smarter Move</h2>
+    <p>Reserve your package online or call us — we'll handle the rest.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#order" class="btn-primary" style="background:#fff;color:var(--green);">Reserve Now →</a>
+      <a href="tel:3109995015" style="display:inline-flex;align-items:center;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">Call: 310-999-5015</a>
+    </div>
   </section>
 </body>
-
 </html>

@@ -3,361 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Solution – TSBOX™</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+  <title>Box Types — TSBOX™</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    /* ── BOX TYPES ── */
-    .box-types {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: .75rem; margin-top: 1.8rem;
-    }
-    .box-type {
-      background: var(--card);
-      border: 1px solid var(--card-bdr);
-      border-radius: var(--radius);
-      padding: 1.1rem .9rem;
-      text-align: center;
-      transition: border-color .2s, transform .2s;
-    }
-    .box-type:hover {
-      border-color: rgba(42,124,95,.3);
-      transform: translateY(-2px);
-    }
-    .box-type .ico { font-size: 1.4rem; margin-bottom: .4rem; }
-    .box-type p { font-size: .74rem; color: var(--muted); font-weight: 500; }
+    .boxes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;margin-top:2.5rem;}
+    .box-detail{background:var(--white);border:2.5px solid var(--divider);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .25s,transform .3s;}
+    .box-detail:hover{border-color:var(--green);transform:translateY(-3px);}
+    .box-detail-img{width:100%;height:200px;object-fit:cover;display:block;}
+    .box-detail-ph{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;}
+    .box-detail-body{padding:1.8rem;}
+    .box-badge{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);background:var(--orange-bg);padding:.2rem .6rem;border-radius:100px;display:inline-block;margin-bottom:.6rem;}
+    .box-detail-body h3{font-family:var(--serif);font-size:1.3rem;font-weight:900;color:var(--ink);margin-bottom:.6rem;}
+    .box-detail-body p{font-size:.9rem;color:var(--muted);font-weight:600;line-height:1.6;margin-bottom:1rem;}
+    .box-specs{display:flex;gap:.6rem;flex-wrap:wrap;}
+    .box-spec{font-size:.75rem;font-weight:800;color:var(--green);background:var(--green-bg);padding:.25rem .7rem;border-radius:100px;}
 
-    /* ── ADVANTAGES ── */
-    .adv-box {
-      background: var(--card);
-      border: 1px solid var(--card-bdr);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: 0 4px 24px rgba(21,20,18,.06);
-    }
-    .adv-box h3 {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      color: var(--ink); margin-bottom: 1.2rem;
-    }
-    .adv-list { list-style: none; display: flex; flex-direction: column; gap: .85rem; }
-    .adv-list li { display: flex; gap: .75rem; font-size: .88rem; color: var(--muted); align-items: flex-start; }
-    .adv-list li .ck {
-      color: var(--green); font-weight: 700;
-      flex-shrink: 0; margin-top: .05rem;
-      background: var(--green-bg);
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .7rem;
-    }
+    .env-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem;}
+    .env-item{display:flex;gap:1rem;align-items:flex-start;padding:1.4rem;background:var(--white);border:2px solid var(--divider);border-radius:var(--radius);}
+    .env-num{font-family:var(--serif);font-size:2rem;font-weight:900;color:var(--green);line-height:1;white-space:nowrap;}
+    .env-text{font-size:.85rem;color:var(--muted);font-weight:600;line-height:1.5;}
 
-    .rev-box {
-      background: linear-gradient(135deg, var(--amber-bg), rgba(196,123,26,.03));
-      border: 1px solid rgba(196,123,26,.2);
-      border-radius: var(--radius);
-      padding: 1.5rem; margin-top: 1rem;
-    }
-    .rev-box .lbl {
-      font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: .5rem; font-weight: 600;
-    }
-    .rev-box .amount {
-      font-family: var(--serif);
-      font-size: 3rem; color: var(--amber); line-height: 1;
-    }
-    .rev-box .sub { font-size: .77rem; color: var(--muted); margin-top: .4rem; }
+    .photo-wide{width:100%;height:320px;object-fit:cover;border-radius:var(--radius-lg);display:block;margin-top:2.5rem;box-shadow:0 16px 56px rgba(17,24,21,.12);}
+    .photo-wide-ph{width:100%;height:320px;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-size:5rem;margin-top:2.5rem;}
 
-    /* ── IMPACT ── */
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem; margin-top: 2.5rem;
-    }
-    .impact-card {
-      background: var(--card);
-      border: 1px solid var(--card-bdr);
-      border-top: 3px solid var(--amber);
-      border-radius: var(--radius);
-      padding: 1.8rem 1.2rem; text-align: center;
-      box-shadow: 0 4px 20px rgba(21,20,18,.05);
-      transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
-    }
-    .impact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(21,20,18,.1);
-    }
-    .impact-card .big {
-      font-family: var(--serif);
-      font-size: 2.4rem; color: var(--amber); line-height: 1;
-    }
-    .impact-card .unit { font-size: .72rem; color: var(--amber); margin-bottom: .5rem; }
-    .impact-card p { font-size: .77rem; color: var(--muted); line-height: 1.45; }
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .two-col img{width:100%;height:360px;object-fit:cover;border-radius:var(--radius-lg);box-shadow:0 16px 56px rgba(17,24,21,.12);display:block;}
+    .two-col .img-ph{width:100%;height:360px;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-size:5rem;}
 
-    /* ── COMPARE TABLE ── */
-    .cmp-table {
-      margin-top: 2.5rem;
-      background: var(--card);
-      border: 1px solid var(--card-bdr);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(21,20,18,.06);
-    }
-    .cmp-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      border-top: 1px solid var(--divider);
-    }
-    .cmp-row:first-child {
-      border-top: none;
-      background: var(--cream2);
-    }
-    .cmp-row:nth-child(even):not(:first-child) { background: rgba(21,20,18,.015); }
-    .cmp-cell {
-      padding: 1rem 1.3rem;
-      font-size: .87rem;
-      display: flex; align-items: center;
-      color: var(--ink2);
-    }
-    .cmp-cell.ctr { justify-content: center; }
-    .hd {
-      font-size: .7rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: var(--amber);
-    }
-    .hd.gray { color: var(--muted); }
-    .ck-ic {
-      color: var(--green); font-size: 1rem;
-      background: var(--green-bg);
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .75rem; font-weight: 700;
-    }
-    .cx-ic {
-      color: var(--coral);
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: var(--coral-bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .75rem;
-    }
-    .wn-ic {
-      color: var(--amber-lt);
-      font-size: 1rem;
-    }
-
-    /* ── VS PLASTIC ── */
-    .vs-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1.5rem; margin-top: 2.5rem;
-    }
-    .vs-box { border-radius: var(--radius-lg); padding: 2rem; }
-    .vs-box.good {
-      background: var(--green-bg);
-      border: 1.5px solid rgba(42,124,95,.22);
-    }
-    .vs-box.bad {
-      background: var(--coral-bg);
-      border: 1.5px solid rgba(217,79,61,.18);
-    }
-    .vs-box h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem; margin-bottom: 1.2rem;
-    }
-    .vs-box.good h3 { color: var(--green); }
-    .vs-box.bad h3 { color: var(--coral); }
-    .vs-list { list-style: none; display: flex; flex-direction: column; gap: .85rem; }
-    .vs-list li { display: flex; gap: .7rem; font-size: .85rem; line-height: 1.45; align-items: flex-start; }
-    .g-ic { color: var(--green); font-weight: 700; flex-shrink: 0; }
-    .r-ic { color: var(--coral); font-weight: 700; flex-shrink: 0; }
-    .g-tx { color: var(--ink2); }
-    .r-tx { color: var(--muted); }
-
-    /* ── SAVINGS TABLE ── */
-    .stbl {
-      width: 100%; border-collapse: collapse;
-      margin-top: 2.5rem;
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(21,20,18,.06);
-      font-size: .85rem;
-    }
-    .stbl th {
-      padding: 1rem 1.1rem;
-      font-size: .66rem;
-      letter-spacing: .1em; text-transform: uppercase;
-      font-weight: 700; border-bottom: 2px solid var(--divider);
-      text-align: center; background: var(--cream2);
-      color: var(--muted);
-    }
-    .stbl th:first-child { text-align: left; color: var(--amber); }
-    .stbl th:last-child { color: var(--coral); }
-    .stbl td {
-      padding: .9rem 1.1rem;
-      text-align: center;
-      border-bottom: 1px solid var(--divider);
-      color: var(--muted);
-    }
-    .stbl td:first-child {
-      text-align: left; font-weight: 600;
-      color: var(--ink2);
-    }
-    .stbl td:last-child { color: var(--coral); font-weight: 600; }
-    .stbl tr:nth-child(even) { background: rgba(21,20,18,.015); }
-    .stbl tr:last-child td { border-bottom: none; }
-
-    @media(max-width: 900px) {
-      .impact-grid { grid-template-columns: 1fr 1fr; }
-      .vs-grid { grid-template-columns: 1fr; }
-    }
-    @media(max-width: 480px) {
-      .impact-grid { grid-template-columns: 1fr 1fr; }
-      .box-types { grid-template-columns: 1fr 1fr; }
-    }
+    @media(max-width:900px){.boxes-grid{grid-template-columns:1fr;}.two-col{grid-template-columns:1fr;gap:2rem;}.env-list{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
   <script src="shared.js"></script>
 
   <div class="page-hero" style="position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:url('img/7.png') center/cover no-repeat;opacity:.22;z-index:0;"></div>
-    <div class="page-hero-glow" style="z-index:1;"></div>
+    <div style="position:absolute;inset:0;background:url('img/7.png') center/cover no-repeat;opacity:.15;z-index:0;"></div>
     <div class="page-hero-inner" style="position:relative;z-index:2;">
-      <div class="page-hero-badge">📦 The TSBOX™ Solution</div>
-      <h1>Don't Buy Another<br><span class="accent-coral">Cardboard Box.</span><br>Rent TSBOX™.</h1>
-      <p class="page-hero-sub">TSBOX™ — Trees Saving Box — is a truly eco-friendly, rental-based replacement for cardboard. Built from industrial-grade material with an 80+ year lifespan, it will revolutionize the moving and packing industry.</p>
-      <div class="hero-btns">
-        <a href="financials.html" class="btn-p">See Financials</a>
-        <a href="invest.html" class="btn-o">Investment Opportunity</a>
+      <div class="sec-eyebrow">Our Boxes</div>
+      <h1>Item-Specific Boxes<br>for Every <span style="color:var(--orange);">Room.</span></h1>
+      <p class="page-hero-sub">Unlike generic plastic bins, TSBOX™ containers are engineered for what's actually inside them — protecting your belongings safer, neater, easier.</p>
+      <div class="page-hero-btns">
+        <a href="index.html#order" class="btn-primary">Reserve Boxes</a>
+        <a href="index.html#packages" class="btn-outline">View Packages</a>
       </div>
     </div>
   </div>
 
-  <section class="bg-white" id="solution">
+  <div class="divider"></div>
+
+  <!-- BOX TYPES -->
+  <section class="bg-white">
+    <div class="cont">
+      <div class="sec-eyebrow">Box Types</div>
+      <h2 class="sec-title">Built for Your Belongings</h2>
+      <p class="sec-body">Every box type in the TSBOX™ fleet is purpose-designed. Stop squeezing dishes into generic bins and shoes into random crates.</p>
+      <div class="boxes-grid">
+        <div class="box-detail reveal">
+          <div class="box-detail-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">🍽️</div>
+          <div class="box-detail-body">
+            <span class="box-badge">Exclusive Design</span>
+            <h3>Dish Box</h3>
+            <p>Padded interior with individual compartments for plates, bowls, and glassware. Not a single item touches another — no breakage, no bubble wrap needed.</p>
+            <div class="box-specs"><span class="box-spec">Padded Dividers</span><span class="box-spec">Stackable</span><span class="box-spec">Lockable Lid</span></div>
+          </div>
+        </div>
+        <div class="box-detail reveal">
+          <div class="box-detail-ph" style="background:linear-gradient(135deg,#F3E8FF,#DEC8F8);">👗</div>
+          <div class="box-detail-body">
+            <span class="box-badge">Full Hanging Rod</span>
+            <h3>Wardrobe Box</h3>
+            <p>Transfer clothes directly from closet to box without removing hangers. Arrive with wrinkle-free, organized clothes — no folding, no chaos.</p>
+            <div class="box-specs"><span class="box-spec">Built-in Rod</span><span class="box-spec">Tall Format</span><span class="box-spec">Lockable</span></div>
+          </div>
+        </div>
+        <div class="box-detail reveal">
+          <div class="box-detail-ph" style="background:linear-gradient(135deg,#FFF5E8,#FFE4C2);">👟</div>
+          <div class="box-detail-body">
+            <span class="box-badge">Pair-by-Pair Design</span>
+            <h3>Shoe Box</h3>
+            <p>Individual stackable slots for every pair — no more digging through a pile of mixed shoes at your new home. Arrives perfectly organised.</p>
+            <div class="box-specs"><span class="box-spec">Individual Slots</span><span class="box-spec">Dust-Free</span><span class="box-spec">Stackable</span></div>
+          </div>
+        </div>
+        <div class="box-detail reveal">
+          <div class="box-detail-ph" style="background:linear-gradient(135deg,#E8FFF0,#C2F5D4);">📚</div>
+          <div class="box-detail-body">
+            <span class="box-badge">Back-Friendly</span>
+            <h3>Book Box</h3>
+            <p>Compact reinforced design sized to hold heavy books without overloading — protecting your back and your collection at the same time.</p>
+            <div class="box-specs"><span class="box-spec">Reinforced Base</span><span class="box-spec">Compact Size</span><span class="box-spec">Stackable</span></div>
+          </div>
+        </div>
+        <div class="box-detail reveal">
+          <div class="box-detail-ph" style="background:linear-gradient(135deg,#FFF0E8,#F5D0B2);">🖼️</div>
+          <div class="box-detail-body">
+            <span class="box-badge">Corner-Protected</span>
+            <h3>Picture &amp; Mirror Box</h3>
+            <p>Tall, slim, and rigid with foam corner protection — keeps artwork, mirrors, and framed photos safe throughout the entire move.</p>
+            <div class="box-specs"><span class="box-spec">Foam Corners</span><span class="box-spec">Tall Format</span><span class="box-spec">Rigid Walls</span></div>
+          </div>
+        </div>
+        <div class="box-detail reveal">
+          <div class="box-detail-ph" style="background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📦</div>
+          <div class="box-detail-body">
+            <span class="box-badge">Lockable &amp; Stackable</span>
+            <h3>Standard Moving Box</h3>
+            <p>Our tough all-purpose container — built from ABS/polycarbonate with an 80+ year lifespan. Perfect for linens, toys, pantry items, and everything else.</p>
+            <div class="box-specs"><span class="box-spec">ABS Polycarbonate</span><span class="box-spec">80+ Year Life</span><span class="box-spec">Lockable Lid</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product photos -->
+      <img src="img/7.png" alt="TSBOX product details" class="photo-wide"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" class="reveal">
+      <div class="photo-wide-ph" style="display:none;">📦</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHY REUSABLE -->
+  <section class="bg-cream">
     <div class="cont">
       <div class="two-col">
-        <div>
-          <div class="sec-tag">The Solution</div>
-          <h2 class="sec-title reveal">Specialty-Designed for Every Item You Own</h2>
-          <p class="sec-body reveal">TSBOX™ is made from almost unbreakable ABS or polycarbonate with 80+ years of lifespan — engineered for a variety of items including difficult-to-pack and fragile items. Foldable and stackable to save storage space.</p>
-          <div class="box-types">
-            <div class="box-type reveal"><div class="ico">🍷</div><p>Glassware</p></div>
-            <div class="box-type reveal"><div class="ico">👟</div><p>Shoes</p></div>
-            <div class="box-type reveal"><div class="ico">👕</div><p>Wardrobe</p></div>
-            <div class="box-type reveal"><div class="ico">📺</div><p>TV / Electronics</p></div>
-            <div class="box-type reveal"><div class="ico">🍽</div><p>Dishes</p></div>
-            <div class="box-type reveal"><div class="ico">📄</div><p>File Box</p></div>
-          </div>
+        <div class="reveal">
+          <div class="sec-eyebrow">Why Reusable?</div>
+          <h2 class="sec-title">Your Move Has<br>a Real Cost to the Planet</h2>
+          <p class="sec-body">The average 2-bedroom move consumes 60 cardboard boxes — each one a tree that was cut, processed, shipped, used once, and thrown away. TSBOX™ breaks that cycle permanently.</p>
+          <p class="sec-body" style="margin-top:1rem;">Our containers are built to last 80+ years and are sanitized, inspected, and reused between every move. Your box isn't wasted — it helps the next family too.</p>
+          <a href="index.html#order" class="btn-secondary" style="margin-top:1.5rem;display:inline-flex;">Reserve Boxes →</a>
         </div>
-        <div>
-          <div class="adv-box reveal">
-            <h3>Why TSBOX™ Wins</h3>
-            <ul class="adv-list">
-              <li><span class="ck">✓</span>Costs 50% less to rent TSBOX™ than to buy cardboard</li>
-              <li><span class="ck">✓</span>Made of almost unbreakable ABS or polycarbonate (80+ yr lifespan)</li>
-              <li><span class="ck">✓</span>No bubble wrap, protective foam, or scotch tape needed</li>
-              <li><span class="ck">✓</span>Rollers for easy handling, locking mechanism & GPS tracking</li>
-              <li><span class="ck">✓</span>Foldable and stackable — saves warehouse & storage space</li>
-              <li><span class="ck">✓</span>Specialty designs for glassware, wardrobe, shoes, TV & dishes</li>
-              <li><span class="ck">✓</span>Delivery and pickup direct to your doorstep</li>
-            </ul>
-          </div>
-          <div class="rev-box reveal">
-            <div class="lbl">Avg. Revenue per Customer (2-Bedroom Move)</div>
-            <div class="amount">$200–$400</div>
-            <div class="sub">20–40 boxes × $2.00–$2.50/week · most rent 1–2 weeks</div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-row" style="margin-top:3rem;">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Reusable moving containers" loading="lazy" class="reveal">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Organized eco-friendly move" loading="lazy" class="reveal">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Sustainable moving solution" loading="lazy" class="reveal">
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section class="bg-a" id="impact">
-    <div class="cont">
-      <div class="sec-tag">Real Impact. Measurable Results.</div>
-      <h2 class="sec-title reveal">What TSBOX™ Saves Every Year</h2>
-      <div class="impact-grid">
-        <div class="impact-card reveal">
-          <div class="big">570K</div>
-          <div class="unit">trees</div>
-          <p>Reduction in deforestation driven by box reuse</p>
-        </div>
-        <div class="impact-card reveal">
-          <div class="big">2.8M</div>
-          <div class="unit">gallons</div>
-          <p>Lower fossil fuel demand in production</p>
-        </div>
-        <div class="impact-card reveal">
-          <div class="big">49M</div>
-          <div class="unit">lbs CO₂</div>
-          <p>Emissions avoided per year</p>
-        </div>
-        <div class="impact-card reveal">
-          <div class="big">180M</div>
-          <div class="unit">gallons</div>
-          <p>Water savings from reduced manufacturing</p>
-        </div>
-      </div>
-      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=80" alt="Forests saved from deforestation" class="sec-img" loading="lazy" style="width:100%;height:340px;object-fit:cover;border-radius:var(--radius-lg);margin-top:2.5rem;">
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section class="bg-white" id="compare">
-    <div class="cont">
-      <div class="sec-tag">Built to Outperform Cardboard</div>
-      <h2 class="sec-title reveal">TSBOX™ vs. Cardboard Boxes</h2>
-      <div class="cmp-table reveal">
-        <div class="cmp-row">
-          <div class="cmp-cell hd">Feature</div>
-          <div class="cmp-cell hd ctr">TSBOX™</div>
-          <div class="cmp-cell hd gray ctr">Cardboard</div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">Specialty boxes (TV, glassware, shoes, wardrobe)</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="cx-ic">✗</span></div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">Reusable + recyclable material</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="wn-ic">⚠</span></div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">GPS tracking & locking mechanism</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="cx-ic">✗</span></div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">No bubble wrap or tape needed</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="cx-ic">✗</span></div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">Franchise & carbon credit model</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="cx-ic">✗</span></div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">Environmental impact verified</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="cx-ic">✗</span></div>
-        </div>
-        <div class="cmp-row">
-          <div class="cmp-cell">Costs 50% less than buying boxes</div>
-          <div class="cmp-cell ctr"><span class="ck-ic">✓</span></div>
-          <div class="cmp-cell ctr"><span class="cx-ic">✗</span></div>
+        <div class="reveal">
+          <img src="img/18.png" alt="TSBOX reusable moving containers"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="img-ph" style="display:none;">🌱</div>
         </div>
       </div>
     </div>
@@ -365,74 +146,30 @@
 
   <div class="divider"></div>
 
-  <section class="bg-a" id="plastic">
+  <!-- ENVIRONMENTAL IMPACT -->
+  <section class="bg-white">
     <div class="cont">
-      <div class="sec-tag">Beyond Basic Storage Bins</div>
-      <h2 class="sec-title reveal">TSBOX™ vs. Plastic Totes</h2>
-      <p class="sec-body reveal">Standard plastic totes solve durability—but not usability. TSBOX™ is engineered for real moving scenarios, not generic storage.</p>
-      <div class="vs-grid">
-        <div class="vs-box good reveal">
-          <h3>✓ TSBOX™</h3>
-          <ul class="vs-list">
-            <li><span class="g-ic">✓</span><span class="g-tx">Variety of specialty boxes for glass, dishes, shoes & wardrobe</span></li>
-            <li><span class="g-ic">✓</span><span class="g-tx">Extremely strong — made of high-density polyethylene (HDPE)</span></li>
-            <li><span class="g-ic">✓</span><span class="g-tx">Integrated rollers for easy, ergonomic handling</span></li>
-            <li><span class="g-ic">✓</span><span class="g-tx">Secure locking mechanism — contents stay safe</span></li>
-            <li><span class="g-ic">✓</span><span class="g-tx">GPS tracking device built-in for full accountability</span></li>
-            <li><span class="g-ic">✓</span><span class="g-tx">No bubble wrap, tape, or protective foam needed</span></li>
-          </ul>
-        </div>
-        <div class="vs-box bad reveal">
-          <h3>✗ Common Plastic Totes</h3>
-          <ul class="vs-list">
-            <li><span class="r-ic">✗</span><span class="r-tx">Comes in one size — not effective for varied items</span></li>
-            <li><span class="r-ic">✗</span><span class="r-tx">Not secure and cannot be locked</span></li>
-            <li><span class="r-ic">✗</span><span class="r-tx">Difficult to handle and impossible to move safely</span></li>
-            <li><span class="r-ic">✗</span><span class="r-tx">Requires bubble wrap, tape and foam — messy and costly</span></li>
-            <li><span class="r-ic">✗</span><span class="r-tx">No tracking — boxes go missing with no accountability</span></li>
-            <li><span class="r-ic">✗</span><span class="r-tx">Generic design fails fragile and specialty items</span></li>
-          </ul>
-        </div>
+      <div class="sec-eyebrow">Why It Matters</div>
+      <h2 class="sec-title">Your Move. Real Impact.</h2>
+      <p class="sec-body">Cardboard manufacturing is one of the leading causes of global deforestation. TSBOX™ is built to change that — one move at a time.</p>
+      <div class="env-list">
+        <div class="env-item reveal"><div class="env-num">570K</div><div class="env-text">Trees preserved over 5 years at full operational scale across our fleet</div></div>
+        <div class="env-item reveal"><div class="env-num">180M</div><div class="env-text">Gallons of water saved vs cardboard production over 5 years</div></div>
+        <div class="env-item reveal"><div class="env-num">49M</div><div class="env-text">Pounds of CO₂ kept out of the atmosphere over 5 years of operations</div></div>
+        <div class="env-item reveal"><div class="env-num">2.8M</div><div class="env-text">Gallons of oil saved over 5 years vs manufacturing single-use cardboard</div></div>
       </div>
+      <img src="img/28.png" alt="Forest preservation through TSBOX" class="photo-wide"
+        onerror="this.style.display='none'" style="margin-top:2.5rem;">
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section class="bg-white" id="savings">
-    <div class="cont">
-      <div class="sec-tag">Every Rental Reduces Waste</div>
-      <h2 class="sec-title reveal">What You Save By Not Using Cardboard</h2>
-      <p class="sec-body reveal">Each TSBOX™ in circulation replaces multiple single-use boxes. The more you rent, the greater the environmental and cost impact.</p>
-      <div style="overflow-x:auto;">
-        <table class="stbl reveal">
-          <thead>
-            <tr>
-              <th>Resource Saved</th>
-              <th>10 Boxes</th>
-              <th>50 Boxes</th>
-              <th>100 Boxes</th>
-              <th>500 Boxes</th>
-              <th>1,000 Boxes</th>
-              <th>5,000 Boxes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>🌲 Trees</td><td>.11</td><td>.57</td><td>1.13</td><td>5.7</td><td>11.3</td><td>56.7</td></tr>
-            <tr><td>⚡ Energy (kW)</td><td>278</td><td>1,389</td><td>2,778</td><td>14K</td><td>28K</td><td>139K</td></tr>
-            <tr><td>💧 Water (gallons)</td><td>46.7</td><td>233</td><td>467</td><td>2.3K</td><td>4.7K</td><td>23K</td></tr>
-            <tr><td>🛢 Oil (gallons)</td><td>.53</td><td>2.65</td><td>5.30</td><td>26.7</td><td>53.3</td><td>266.7</td></tr>
-            <tr><td>☁ CO₂ Prevented (lbs)</td><td>9.3</td><td>45</td><td>90</td><td>466.7</td><td>933.3</td><td>4.7K</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <section class="cta-strip">
+    <h2>Ready to Move Better?</h2>
+    <p>Reserve your TSBOX™ package today — free delivery, item-specific boxes, zero waste.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#order" class="btn-primary" style="background:#fff;color:var(--green);">Reserve My Boxes →</a>
+      <a href="index.html#packages" style="display:inline-flex;align-items:center;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">View Packages</a>
     </div>
-  </section>
-
-  <section class="cta">
-    <h2>See the Business Case</h2>
-    <p>Explore the revenue model and 5-year financial projections behind TSBOX™.</p>
-    <a href="financials.html" class="btn-dark">View Financials</a>
   </section>
 </body>
 </html>
