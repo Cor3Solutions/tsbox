@@ -1,62 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TSBOX™ — Rent Moving Boxes | Delivered to Your Door</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-
     /* ══ VIDEO INTRO MODAL ══ */
     #video-modal-container {
-      position: fixed; inset: 0;
-      background: rgba(13,26,14,.92);
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 26, 14, .92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       z-index: 10000;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: opacity .8s ease, visibility .8s;
     }
+
     #video-modal-container.hidden {
-      opacity: 0; visibility: hidden; pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
+
     .video-content {
       position: relative;
-      width: 92%; max-width: 860px;
+      width: 92%;
+      max-width: 860px;
       aspect-ratio: 16/9;
       background: #000;
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 40px 120px rgba(0,0,0,.6);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, .6);
       transform: scale(1);
-      transition: transform .8s cubic-bezier(.16,1,.3,1);
+      transition: transform .8s cubic-bezier(.16, 1, .3, 1);
     }
-    #video-modal-container.hidden .video-content { transform: scale(.92); }
-    #intro-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    #video-modal-container.hidden .video-content {
+      transform: scale(.92);
+    }
+
+    #intro-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
     /* Click-to-play prompt (shown if autoplay blocked) */
     #play-prompt {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      color: #fff; cursor: pointer;
-      background: rgba(0,0,0,.45);
-      opacity: 1; transition: opacity .4s;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      background: rgba(0, 0, 0, .45);
+      opacity: 1;
+      transition: opacity .4s;
       font-family: 'Nunito', sans-serif;
     }
-    #play-prompt.fade-out { opacity: 0; pointer-events: none; }
-    #play-prompt h3 { font-family: 'Fraunces', serif; font-size: clamp(1.4rem,4vw,2.2rem); font-weight: 900; margin-bottom: .5rem; }
-    #play-prompt p { font-size: .8rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.6); }
-    #play-prompt .play-btn {
-      width: 72px; height: 72px; border-radius: 50%;
-      background: rgba(232,93,43,.9);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 8px 32px rgba(232,93,43,.4);
+
+    #play-prompt.fade-out {
+      opacity: 0;
+      pointer-events: none;
     }
+
+    #play-prompt h3 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 900;
+      margin-bottom: .5rem;
+    }
+
+    #play-prompt p {
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    #play-prompt .play-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(232, 93, 43, .9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 8px 32px rgba(232, 93, 43, .4);
+    }
+
     #play-prompt .play-btn::after {
-      content: ''; display: block;
+      content: '';
+      display: block;
       border-style: solid;
       border-width: 14px 0 14px 24px;
       border-color: transparent transparent transparent #fff;
@@ -65,311 +114,1210 @@
 
     /* Skip button */
     #video-skip {
-      position: absolute; bottom: 2rem; right: 2rem;
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
       font-family: 'Nunito', sans-serif;
-      font-size: .78rem; font-weight: 800;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(255,255,255,.35);
-      cursor: pointer; border: 1.5px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.06);
-      padding: .5rem 1.1rem; border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .35);
+      cursor: pointer;
+      border: 1.5px solid rgba(255, 255, 255, .15);
+      background: rgba(255, 255, 255, .06);
+      padding: .5rem 1.1rem;
+      border-radius: 100px;
       transition: color .2s, background .2s, border-color .2s;
     }
-    #video-skip:hover { color: #fff; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); }
+
+    #video-skip:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, .12);
+      border-color: rgba(255, 255, 255, .35);
+    }
 
     /* ══ HERO ══ */
     .hero {
-      min-height: 100vh; display: flex; align-items: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
       padding: calc(var(--nav-h) + 4rem) 1.5rem 4rem;
       background: linear-gradient(145deg, #E4F5EC 0%, #CCEEDE 40%, #B9E7CD 100%);
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
+
     .hero-bg {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: url('img/18.png') center/cover no-repeat;
-      opacity: .12; z-index: 0;
+      opacity: .12;
+      z-index: 0;
     }
+
     .hero-inner {
-      max-width: var(--max-w); margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center;
-      position: relative; z-index: 2; width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
     }
+
     .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--orange); color: #fff;
-      font-size: .75rem; font-weight: 800;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: .4rem 1rem; border-radius: 100px;
-      margin-bottom: 1.5rem; animation: fadeUp .5s .1s both;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--orange);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .5s .1s both;
     }
+
     .hero h1 {
       font-family: var(--serif);
       font-size: clamp(3rem, 6.5vw, 5.5rem);
-      font-weight: 900; line-height: 1;
-      color: var(--ink); letter-spacing: -.02em;
-      margin-bottom: 1.2rem; animation: fadeUp .6s .2s both;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -.02em;
+      margin-bottom: 1.2rem;
+      animation: fadeUp .6s .2s both;
     }
-    .hero h1 .hl-orange { color: var(--orange); }
-    .hero h1 .hl-green  { color: var(--green); }
+
+    .hero h1 .hl-orange {
+      color: var(--orange);
+    }
+
+    .hero h1 .hl-green {
+      color: var(--green);
+    }
+
     .hero-sub {
-      font-size: 1.15rem; color: var(--body);
-      line-height: 1.7; font-weight: 600;
-      max-width: 480px; margin-bottom: 2.2rem;
+      font-size: 1.15rem;
+      color: var(--body);
+      line-height: 1.7;
+      font-weight: 600;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
       animation: fadeUp .6s .3s both;
     }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; animation: fadeUp .6s .4s both; }
-    .hero-trust { display: flex; align-items: center; gap: 1rem; animation: fadeUp .6s .5s both; }
-    .hero-trust-stars { color: #F59E0B; font-size: 1.1rem; }
-    .hero-trust-txt { font-size: .85rem; color: var(--muted); font-weight: 700; }
 
-    .hero-visual { position: relative; animation: fadeIn .8s .4s both; }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .6s .4s both;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      animation: fadeUp .6s .5s both;
+    }
+
+    .hero-trust-stars {
+      color: #F59E0B;
+      font-size: 1.1rem;
+    }
+
+    .hero-trust-txt {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: fadeIn .8s .4s both;
+    }
+
     .hero-main-img {
-      width: 100%; height: 440px; object-fit: cover;
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
       border-radius: var(--radius-lg);
-      box-shadow: 0 24px 72px rgba(17,24,21,.18);
+      box-shadow: 0 24px 72px rgba(17, 24, 21, .18);
       display: block;
     }
+
     .hero-main-placeholder {
-      width: 100%; height: 440px;
+      width: 100%;
+      height: 440px;
       background: linear-gradient(135deg, #B9E7CD, #7CC4A4);
       border-radius: var(--radius-lg);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 5rem;
     }
+
     .hero-float-img {
-      position: absolute; bottom: -2rem; left: -2rem;
-      width: 180px; height: 140px; object-fit: cover;
-      border-radius: var(--radius); border: 4px solid #fff;
-      box-shadow: 0 12px 40px rgba(17,24,21,.2); display: block;
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      width: 180px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 4px solid #fff;
+      box-shadow: 0 12px 40px rgba(17, 24, 21, .2);
+      display: block;
     }
+
     .hero-float-badge {
-      position: absolute; top: 1.2rem; right: -1rem;
-      background: var(--orange); color: #fff;
-      padding: .9rem 1.2rem; border-radius: var(--radius);
-      box-shadow: 0 8px 32px rgba(232,93,43,.35);
-      text-align: center; min-width: 120px;
+      position: absolute;
+      top: 1.2rem;
+      right: -1rem;
+      background: var(--orange);
+      color: #fff;
+      padding: .9rem 1.2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 32px rgba(232, 93, 43, .35);
+      text-align: center;
+      min-width: 120px;
     }
-    .hero-float-badge .fbnum { font-family: var(--serif); font-size: 2rem; font-weight: 900; line-height: 1; }
-    .hero-float-badge .fblbl { font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; opacity: .9; margin-top: .2rem; }
+
+    .hero-float-badge .fbnum {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .hero-float-badge .fblbl {
+      font-size: .62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .9;
+      margin-top: .2rem;
+    }
 
     /* ══ GALLERY STRIP ══ */
     .gallery-strip {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      height: 260px; overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 260px;
+      overflow: hidden;
     }
+
     .gallery-strip-item {
-      overflow: hidden; position: relative;
+      overflow: hidden;
+      position: relative;
     }
+
     .gallery-strip-item img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .5s cubic-bezier(.16,1,.3,1);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1);
       display: block;
     }
-    .gallery-strip-item:hover img { transform: scale(1.06); }
+
+    .gallery-strip-item:hover img {
+      transform: scale(1.06);
+    }
+
     .gallery-strip-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 3rem;
     }
 
     /* ══ HOW IT WORKS ══ */
-    .hiw-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .hiw-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
     .hiw-step {
-      background: var(--white); border: 2px solid var(--divider);
-      border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--white);
+      border: 2px solid var(--divider);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       transition: border-color .2s, transform .3s;
     }
-    .hiw-step:hover { border-color: var(--green); transform: translateY(-4px); }
+
+    .hiw-step:hover {
+      border-color: var(--green);
+      transform: translateY(-4px);
+    }
+
     .hiw-step-img {
-      width: 100%; height: 130px; object-fit: cover; display: block;
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      display: block;
     }
+
     .hiw-step-ph {
-      width: 100%; height: 130px;
-      display: flex; align-items: center; justify-content: center; font-size: 2.5rem;
+      width: 100%;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
     }
-    .hiw-body { padding: 1.4rem; text-align: center; }
+
+    .hiw-body {
+      padding: 1.4rem;
+      text-align: center;
+    }
+
     .hiw-num {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--green); color: #fff;
-      font-family: var(--serif); font-size: 1.3rem; font-weight: 900;
-      display: flex; align-items: center; justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 auto .9rem;
     }
-    .hiw-step h3 { font-family: var(--serif); font-size: 1.05rem; font-weight: 900; color: var(--ink); margin-bottom: .45rem; }
-    .hiw-step p { font-size: .84rem; color: var(--muted); font-weight: 600; line-height: 1.55; }
+
+    .hiw-step h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: .45rem;
+    }
+
+    .hiw-step p {
+      font-size: .84rem;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.55;
+    }
 
     /* ══ PACKAGES ══ */
-    .packages-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
     .pkg-card {
-      background: var(--white); border: 2.5px solid var(--divider);
-      border-radius: var(--radius-lg); overflow: hidden;
-      transition: border-color .25s, transform .3s, box-shadow .3s; position: relative;
+      background: var(--white);
+      border: 2.5px solid var(--divider);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color .25s, transform .3s, box-shadow .3s;
+      position: relative;
     }
-    .pkg-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,122,74,.13); }
-    .pkg-card.featured { border-color: var(--orange); box-shadow: 0 8px 32px rgba(232,93,43,.12); }
-    .pkg-card.featured:hover { border-color: var(--orange-lt); box-shadow: 0 16px 56px rgba(232,93,43,.2); }
-    .pkg-card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+
+    .pkg-card:hover {
+      border-color: var(--green);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(26, 122, 74, .13);
+    }
+
+    .pkg-card.featured {
+      border-color: var(--orange);
+      box-shadow: 0 8px 32px rgba(232, 93, 43, .12);
+    }
+
+    .pkg-card.featured:hover {
+      border-color: var(--orange-lt);
+      box-shadow: 0 16px 56px rgba(232, 93, 43, .2);
+    }
+
+    .pkg-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
     .pkg-card-ph {
-      width: 100%; height: 180px;
-      display: flex; align-items: center; justify-content: center; font-size: 3rem;
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
     }
-    .pkg-card-body { padding: 1.8rem; }
+
+    .pkg-card-body {
+      padding: 1.8rem;
+    }
+
     .pkg-popular {
-      position: absolute; top: 12px; right: 12px;
-      background: var(--orange); color: #fff;
-      font-size: .68rem; font-weight: 800;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: .3rem .8rem; border-radius: 100px;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--orange);
+      color: #fff;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 100px;
     }
-    .pkg-name { font-family: var(--serif); font-size: 1.4rem; font-weight: 900; color: var(--ink); margin-bottom: .25rem; }
-    .pkg-rooms { font-size: .85rem; color: var(--muted); font-weight: 700; margin-bottom: 1rem; }
-    .pkg-price-row { display: flex; align-items: baseline; gap: .4rem; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 2px solid var(--divider); }
-    .pkg-price-row .big { font-family: var(--serif); font-size: 2.8rem; font-weight: 900; color: var(--green); }
-    .pkg-card.featured .pkg-price-row .big { color: var(--orange); }
-    .pkg-price-row .small { font-size: .85rem; color: var(--muted); font-weight: 700; }
-    .pkg-features { display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1.5rem; }
-    .pkg-feature { display: flex; align-items: flex-start; gap: .7rem; font-size: .88rem; font-weight: 700; color: var(--body); line-height: 1.35; }
-    .pkg-feature .chk { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 900; margin-top: .1rem; }
-    .pkg-card.featured .pkg-feature .chk { background: var(--orange); }
-    .pkg-cta { display: block; text-align: center; padding: .85rem; border-radius: 100px; font-size: .95rem; font-weight: 800; border: 2.5px solid var(--green); color: var(--green); transition: all .2s; }
-    .pkg-cta:hover { background: var(--green); color: #fff; }
-    .pkg-card.featured .pkg-cta { background: var(--orange); color: #fff; border-color: var(--orange); box-shadow: 0 6px 20px rgba(232,93,43,.3); }
-    .pkg-card.featured .pkg-cta:hover { background: var(--orange-lt); }
+
+    .pkg-name {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: .25rem;
+    }
+
+    .pkg-rooms {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .pkg-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: .4rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid var(--divider);
+    }
+
+    .pkg-price-row .big {
+      font-family: var(--serif);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .pkg-card.featured .pkg-price-row .big {
+      color: var(--orange);
+    }
+
+    .pkg-price-row .small {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .pkg-features {
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pkg-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--body);
+      line-height: 1.35;
+    }
+
+    .pkg-feature .chk {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .65rem;
+      font-weight: 900;
+      margin-top: .1rem;
+    }
+
+    .pkg-card.featured .pkg-feature .chk {
+      background: var(--orange);
+    }
+
+    .pkg-cta {
+      display: block;
+      text-align: center;
+      padding: .85rem;
+      border-radius: 100px;
+      font-size: .95rem;
+      font-weight: 800;
+      border: 2.5px solid var(--green);
+      color: var(--green);
+      transition: all .2s;
+    }
+
+    .pkg-cta:hover {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .pkg-card.featured .pkg-cta {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+      box-shadow: 0 6px 20px rgba(232, 93, 43, .3);
+    }
+
+    .pkg-card.featured .pkg-cta:hover {
+      background: var(--orange-lt);
+    }
 
     /* ══ BOX TYPES GRID ══ */
-    .box-types-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 2.5rem; }
+    .box-types-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+
     .box-type-card {
-      background: var(--white); border: 2px solid var(--divider);
-      border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--white);
+      border: 2px solid var(--divider);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       transition: border-color .2s, transform .25s, box-shadow .25s;
     }
-    .box-type-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 10px 32px rgba(26,122,74,.1); }
-    .bt-img { width: 100%; height: 155px; object-fit: cover; display: block; }
-    .bt-ph { width: 100%; height: 155px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
-    .bt-body { padding: 1.1rem; }
-    .bt-body h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 900; color: var(--ink); margin-bottom: .3rem; }
-    .bt-body p { font-size: .81rem; color: var(--muted); font-weight: 600; line-height: 1.5; }
-    .bt-label { font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--green); background: var(--green-bg); padding: .2rem .6rem; border-radius: 100px; display: inline-block; margin-top: .5rem; }
+
+    .box-type-card:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(26, 122, 74, .1);
+    }
+
+    .bt-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bt-ph {
+      width: 100%;
+      height: 155px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .bt-body {
+      padding: 1.1rem;
+    }
+
+    .bt-body h4 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: .3rem;
+    }
+
+    .bt-body p {
+      font-size: .81rem;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .bt-label {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-bg);
+      padding: .2rem .6rem;
+      border-radius: 100px;
+      display: inline-block;
+      margin-top: .5rem;
+    }
 
     /* ══ WHY TSBOX ══ */
-    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2.5rem; }
-    .why-img-stack { position: relative; }
-    .why-img-main { width: 100%; height: 420px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(17,24,21,.14); display: block; }
-    .why-img-main-ph { width: 100%; height: 420px; background: linear-gradient(135deg,#EFF8F3,#CCEEDE); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
-    .why-img-sm { position: absolute; bottom: -2rem; right: -2rem; width: 190px; height: 150px; object-fit: cover; border-radius: var(--radius); border: 4px solid #fff; box-shadow: 0 12px 40px rgba(17,24,21,.18); display: block; }
-    .why-img-badge { position: absolute; top: 1.5rem; left: -1.5rem; background: var(--green); color: #fff; padding: .9rem 1.2rem; border-radius: var(--radius); box-shadow: 0 8px 28px rgba(26,122,74,.35); text-align: center; }
-    .why-img-badge .wbn { font-family: var(--serif); font-size: 2rem; font-weight: 900; line-height: 1; }
-    .why-img-badge .wbl { font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; opacity: .85; margin-top: .2rem; }
-    .why-points { display: flex; flex-direction: column; gap: 1rem; }
-    .why-point { display: flex; gap: 1rem; align-items: flex-start; padding: 1.2rem; background: var(--white); border: 2px solid var(--divider); border-radius: var(--radius); transition: border-color .2s, transform .25s; }
-    .why-point:hover { border-color: var(--green); transform: translateX(4px); }
-    .wp-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-    .wp-text h4 { font-size: 1rem; font-weight: 800; color: var(--ink); margin-bottom: .25rem; }
-    .wp-text p { font-size: .85rem; color: var(--muted); font-weight: 600; line-height: 1.5; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 2.5rem;
+    }
+
+    .why-img-stack {
+      position: relative;
+    }
+
+    .why-img-main {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 60px rgba(17, 24, 21, .14);
+      display: block;
+    }
+
+    .why-img-main-ph {
+      width: 100%;
+      height: 420px;
+      background: linear-gradient(135deg, #EFF8F3, #CCEEDE);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .why-img-sm {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 190px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 4px solid #fff;
+      box-shadow: 0 12px 40px rgba(17, 24, 21, .18);
+      display: block;
+    }
+
+    .why-img-badge {
+      position: absolute;
+      top: 1.5rem;
+      left: -1.5rem;
+      background: var(--green);
+      color: #fff;
+      padding: .9rem 1.2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(26, 122, 74, .35);
+      text-align: center;
+    }
+
+    .why-img-badge .wbn {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .why-img-badge .wbl {
+      font-size: .62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .85;
+      margin-top: .2rem;
+    }
+
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .why-point {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      background: var(--white);
+      border: 2px solid var(--divider);
+      border-radius: var(--radius);
+      transition: border-color .2s, transform .25s;
+    }
+
+    .why-point:hover {
+      border-color: var(--green);
+      transform: translateX(4px);
+    }
+
+    .wp-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .wp-text h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: .25rem;
+    }
+
+    .wp-text p {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.5;
+    }
 
     /* ══ FULL-WIDTH PHOTO SECTION ══ */
-    .photo-section { position: relative; min-height: 420px; display: flex; align-items: center; overflow: hidden; }
-    .photo-section-bg { position: absolute; inset: 0; background: url('img/27.png') center/cover no-repeat; filter: brightness(.28) saturate(.7); }
-    .photo-section-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(17,24,21,.88) 0%,rgba(26,122,74,.45) 100%); }
-    .photo-section-inner { position: relative; z-index: 2; max-width: var(--max-w); margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
-    .photo-section-inner h2 { font-family: var(--serif); font-size: clamp(2.5rem,6vw,5rem); font-weight: 900; color: #fff; letter-spacing: -.02em; line-height: 1.05; margin-bottom: .8rem; }
-    .photo-section-inner h2 em { color: #c2f5ac; font-style: italic; display: block; }
-    .photo-section-inner p { font-size: 1.1rem; color: rgba(255,255,255,.65); font-weight: 600; max-width: 540px; margin: 0 auto 2rem; line-height: 1.7; }
+    .photo-section {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .photo-section-bg {
+      position: absolute;
+      inset: 0;
+      background: url('img/1.png') center/cover no-repeat;
+      filter: brightness(.28) saturate(.7);
+    }
+
+    .photo-section-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(17, 24, 21, .88) 0%, rgba(26, 122, 74, .45) 100%);
+    }
+
+    .photo-section-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    .photo-section-inner h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+      margin-bottom: .8rem;
+    }
+
+    .photo-section-inner h2 em {
+      color: #c2f5ac;
+      font-style: italic;
+      display: block;
+    }
+
+    .photo-section-inner p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, .65);
+      font-weight: 600;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
 
     /* ══ COMPARE TABLE ══ */
-    .compare-table { width: 100%; border-collapse: collapse; margin-top: 2.5rem; border-radius: var(--radius-lg); overflow: hidden; border: 2px solid var(--divider); }
-    .compare-table th { padding: 1.2rem 1.5rem; text-align: left; font-size: .9rem; font-weight: 800; background: var(--ink2); color: #fff; }
-    .compare-table th:first-child { background: var(--ink); }
-    .compare-table th.gcol { background: var(--green); }
-    .compare-table td { padding: 1rem 1.5rem; font-size: .9rem; font-weight: 700; color: var(--body); border-bottom: 1px solid var(--divider); }
-    .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table tr:nth-child(even) td { background: #F7FCF9; }
-    .compare-table td.gcol { background: rgba(26,122,74,.06) !important; color: var(--green-dk); }
-    .cmp-yes { color: var(--green); font-size: 1.05rem; }
-    .cmp-no  { color: #E8442B; font-size: 1.05rem; }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2.5rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 2px solid var(--divider);
+    }
+
+    .compare-table th {
+      padding: 1.2rem 1.5rem;
+      text-align: left;
+      font-size: .9rem;
+      font-weight: 800;
+      background: var(--ink2);
+      color: #fff;
+    }
+
+    .compare-table th:first-child {
+      background: var(--ink);
+    }
+
+    .compare-table th.gcol {
+      background: var(--green);
+    }
+
+    .compare-table td {
+      padding: 1rem 1.5rem;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--body);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table tr:nth-child(even) td {
+      background: #F7FCF9;
+    }
+
+    .compare-table td.gcol {
+      background: rgba(26, 122, 74, .06) !important;
+      color: var(--green-dk);
+    }
+
+    .cmp-yes {
+      color: var(--green);
+      font-size: 1.05rem;
+    }
+
+    .cmp-no {
+      color: #E8442B;
+      font-size: 1.05rem;
+    }
 
     /* ══ PARTNERS ══ */
-    .partners-bar { background: var(--white); border-top: 2px solid var(--divider); border-bottom: 2px solid var(--divider); padding: 1.8rem 1.5rem; }
-    .partners-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-    .partners-lbl { font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-    .partners-logos { display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: center; }
-    .partner-logo { font-size: .95rem; font-weight: 900; color: var(--muted); transition: color .2s; }
-    .partner-logo:hover { color: var(--green); }
+    .partners-bar {
+      background: var(--white);
+      border-top: 2px solid var(--divider);
+      border-bottom: 2px solid var(--divider);
+      padding: 1.8rem 1.5rem;
+    }
+
+    .partners-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .partners-lbl {
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .partners-logos {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .partner-logo {
+      font-size: .95rem;
+      font-weight: 900;
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .partner-logo:hover {
+      color: var(--green);
+    }
 
     /* ══ TESTIMONIALS ══ */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
-    .testimonial { background: var(--white); border: 2px solid var(--divider); border-radius: var(--radius-lg); overflow: hidden; transition: border-color .2s, transform .3s; }
-    .testimonial:hover { border-color: var(--green); transform: translateY(-3px); }
-    .test-img { width: 100%; height: 150px; object-fit: cover; display: block; }
-    .test-ph { width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
-    .test-body { padding: 1.5rem; }
-    .test-stars { color: #F59E0B; font-size: 1rem; margin-bottom: .8rem; }
-    .test-quote { font-size: .92rem; color: var(--body); line-height: 1.65; font-weight: 600; margin-bottom: 1.2rem; }
-    .test-quote::before { content: '\201C'; color: var(--green); font-size: 2rem; line-height: .5; vertical-align: -.5rem; margin-right: .2rem; font-family: var(--serif); }
-    .test-author { display: flex; align-items: center; gap: .8rem; }
-    .test-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1rem; font-weight: 900; }
-    .test-name { font-size: .88rem; font-weight: 800; color: var(--ink); }
-    .test-loc  { font-size: .78rem; color: var(--muted); font-weight: 600; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial {
+      background: var(--white);
+      border: 2px solid var(--divider);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color .2s, transform .3s;
+    }
+
+    .testimonial:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    .test-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .test-ph {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .test-body {
+      padding: 1.5rem;
+    }
+
+    .test-stars {
+      color: #F59E0B;
+      font-size: 1rem;
+      margin-bottom: .8rem;
+    }
+
+    .test-quote {
+      font-size: .92rem;
+      color: var(--body);
+      line-height: 1.65;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .test-quote::before {
+      content: '\201C';
+      color: var(--green);
+      font-size: 2rem;
+      line-height: .5;
+      vertical-align: -.5rem;
+      margin-right: .2rem;
+      font-family: var(--serif);
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .test-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .test-name {
+      font-size: .88rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .test-loc {
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
 
     /* ══ ABOUT STRIP ══ */
-    .about-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .about-img { width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 16px 56px rgba(17,24,21,.12); display: block; }
-    .about-img-ph { width: 100%; height: 380px; background: linear-gradient(135deg,#EFF8F3,#CCEEDE); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 16px 56px rgba(17, 24, 21, .12);
+      display: block;
+    }
+
+    .about-img-ph {
+      width: 100%;
+      height: 380px;
+      background: linear-gradient(135deg, #EFF8F3, #CCEEDE);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
 
     /* ══ FAQ ══ */
-    .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: .8rem; }
-    .faq-item { background: var(--white); border: 2px solid var(--divider); border-radius: var(--radius); overflow: hidden; transition: border-color .2s; }
-    .faq-item.open { border-color: var(--green); }
-    .faq-q { padding: 1.3rem 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; gap: 1rem; }
-    .faq-q-text { font-size: 1rem; font-weight: 800; color: var(--ink); }
-    .faq-toggle { width: 30px; height: 30px; border-radius: 50%; background: var(--green-bg); border: 2px solid rgba(26,122,74,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.3rem; font-weight: 900; color: var(--green); transition: background .2s, transform .3s; line-height: 1; }
-    .faq-item.open .faq-toggle { background: var(--green); color: #fff; transform: rotate(45deg); }
-    .faq-a { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s; font-size: .92rem; color: var(--muted); font-weight: 600; line-height: 1.65; }
-    .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.3rem; }
+    .faq-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 2px solid var(--divider);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+
+    .faq-item.open {
+      border-color: var(--green);
+    }
+
+    .faq-q {
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 1rem;
+    }
+
+    .faq-q-text {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .faq-toggle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--green-bg);
+      border: 2px solid rgba(26, 122, 74, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--green);
+      transition: background .2s, transform .3s;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-toggle {
+      background: var(--green);
+      color: #fff;
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease, padding .3s;
+      font-size: .92rem;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.65;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 1.5rem 1.3rem;
+    }
 
     /* ══ ORDER FORM ══ */
-    .order-form-wrap { background: var(--white); border: 2.5px solid var(--divider); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 700px; margin: 2.5rem auto 0; box-shadow: 0 8px 40px rgba(26,122,74,.07); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
-    .form-group label { font-size: .85rem; font-weight: 800; color: var(--ink); }
-    .form-group input, .form-group select, .form-group textarea { padding: .8rem 1rem; border: 2px solid var(--divider); border-radius: 10px; font-family: var(--sans); font-size: .95rem; font-weight: 600; color: var(--ink); background: var(--cream); transition: border-color .2s; outline: none; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); background: #fff; }
-    .form-group textarea { resize: vertical; min-height: 90px; }
+    .order-form-wrap {
+      background: var(--white);
+      border: 2.5px solid var(--divider);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 700px;
+      margin: 2.5rem auto 0;
+      box-shadow: 0 8px 40px rgba(26, 122, 74, .07);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: .8rem 1rem;
+      border: 2px solid var(--divider);
+      border-radius: 10px;
+      font-family: var(--sans);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--cream);
+      transition: border-color .2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      background: #fff;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
 
     /* ══ ENV / CTA ══ */
-    .env-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
-    .env-card { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius); padding: 1.6rem; text-align: center; }
-    .env-card .en { font-family: var(--serif); font-size: 2.6rem; font-weight: 900; color: #fff; line-height: 1; }
-    .env-card p { font-size: .8rem; color: rgba(255,255,255,.72); font-weight: 600; margin-top: .5rem; line-height: 1.4; }
+    .env-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .env-card {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      text-align: center;
+    }
+
+    .env-card .en {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .env-card p {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .72);
+      font-weight: 600;
+      margin-top: .5rem;
+      line-height: 1.4;
+    }
 
     /* ══ RESPONSIVE ══ */
-    @media (max-width: 1024px) { .packages-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 1024px) {
+      .packages-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-visual { max-width: 500px; margin: 0 auto; }
-      .hiw-grid { grid-template-columns: 1fr 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr 1fr; }
-      .box-types-grid { grid-template-columns: 1fr 1fr; }
-      .env-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-strip { grid-template-columns: 1fr 1fr; height: 320px; }
-      .about-strip { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-visual {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .hiw-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .box-types-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .env-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-strip {
+        grid-template-columns: 1fr 1fr;
+        height: 320px;
+      }
+
+      .about-strip {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
     }
+
     @media (max-width: 640px) {
-      .hero h1 { font-size: clamp(2.5rem,9vw,3.5rem); }
-      .hiw-grid { grid-template-columns: 1fr; }
-      .packages-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .box-types-grid { grid-template-columns: 1fr; }
-      .gallery-strip { height: 200px; }
-      .compare-table { font-size: .8rem; }
-      .compare-table th, .compare-table td { padding: .8rem .9rem; }
+      .hero h1 {
+        font-size: clamp(2.5rem, 9vw, 3.5rem);
+      }
+
+      .hiw-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .packages-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .box-types-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-strip {
+        height: 200px;
+      }
+
+      .compare-table {
+        font-size: .8rem;
+      }
+
+      .compare-table th,
+      .compare-table td {
+        padding: .8rem .9rem;
+      }
     }
-    @media (max-width: 480px) { .env-grid { grid-template-columns: 1fr 1fr; } }
+
+    @media (max-width: 480px) {
+      .env-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- VIDEO INTRO MODAL -->
@@ -377,8 +1325,8 @@
     <div class="video-content" id="modal-box">
       <div id="play-prompt">
         <div class="play-btn"></div>
-        <h3>Experience the Revolution</h3>
-        <p>Click to play</p>
+        <h3>RENT BOX - SAVE TREES - SAVE BUCKS!</h3>
+        <p>Play Video</p>
       </div>
       <video id="intro-video" muted playsinline preload="auto">
         <source src="animation.mp4" type="video/mp4">
@@ -394,22 +1342,26 @@
     <div class="hero-bg"></div>
     <div class="hero-inner">
       <div>
-        <div class="hero-badge">🌿 #1 Reusable Moving Boxes — LA &amp; Beyond</div>
-        <h1>Moving?<br>Skip the <span class="hl-orange">Cardboard.</span><br>Rent <span class="hl-green">TSBOX™</span></h1>
-        <p class="hero-sub">Sturdy, item-specific reusable moving boxes — delivered to your door. Pack smarter, save money, protect the planet.</p>
+        <div class="hero-badge">🌿 #1 Reusable Moving Box Service</div>
+        <h1>Moving Soon?<br>Skip the <span class="hl-orange">Cardboard.</span><br>Choose <span
+            class="hl-green">TSBOX™</span></h1>
+        <p class="hero-sub">Durable, item-specific reusable moving boxes delivered straight to your door. Pack faster,
+          save money, and move sustainably.</p>
+        <p style="font-size:.95rem;font-weight:800;color:var(--green);margin-bottom:1.5rem;letter-spacing:.04em;">EASY,
+          CONVENIENT, PROTECTS YOUR BELONGINGS</p>
         <div class="hero-actions">
           <a href="#order" class="btn-primary">Reserve My Boxes →</a>
-          <a href="#packages" class="btn-outline">See Packages</a>
+          <a href="#packages" class="btn-outline">View Packages</a>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-stars">★★★★★</div>
-          <div class="hero-trust-txt">500+ happy moves · Free delivery &amp; pickup</div>
+          <div class="hero-trust-txt">Trusted for 500+ moves · Free delivery &amp; pickup included</div>
         </div>
       </div>
       <div class="hero-visual">
         <div class="hero-float-badge">
           <div class="fbnum">50%</div>
-          <div class="fblbl">Cheaper Than Cardboard</div>
+          <div class="fblbl">Save Up to 50% vs. Cardboard</div>
         </div>
         <img src="img/18.png" alt="TSBOX reusable moving containers" class="hero-main-img"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -436,19 +1388,23 @@
   <!-- GALLERY STRIP -->
   <div class="gallery-strip">
     <div class="gallery-strip-item">
-      <img src="img/30.png" alt="TSBOX boxes delivered" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/28.png" alt="TSBOX boxes delivered"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#CCEEDE;">📦</div>
     </div>
     <div class="gallery-strip-item">
-      <img src="img/31.png" alt="Reusable moving containers" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/22.png" alt="Reusable moving containers"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#B9E7CD;">🚚</div>
     </div>
     <div class="gallery-strip-item">
-      <img src="img/32.png" alt="Green sustainable moving" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/29.png" alt="Green sustainable moving"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#96D4B4;">🌱</div>
     </div>
     <div class="gallery-strip-item">
-      <img src="img/33.png" alt="TSBOX in use" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/25.png" alt="TSBOX in use"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#7CC4A4;">✅</div>
     </div>
   </div>
@@ -457,9 +1413,10 @@
   <section class="bg-white" id="how-it-works">
     <div class="cont">
       <div style="text-align:center;">
-        <div class="sec-eyebrow">Simple as 1-2-3-4</div>
+        <div class="sec-eyebrow">Moving Made Simple</div>
         <h2 class="sec-title">How TSBOX™ Works</h2>
-        <p class="sec-body" style="margin:0 auto;">No trips to the store, no broken boxes, no guilt. We do the heavy lifting.</p>
+        <p class="sec-body" style="margin:0 auto;">No trips to the store, no broken boxes, no guilt. We do the heavy
+          lifting.</p>
       </div>
       <div class="hiw-grid">
         <div class="hiw-step reveal">
@@ -467,15 +1424,15 @@
           <div class="hiw-body">
             <div class="hiw-num">1</div>
             <h3>Choose Your Package</h3>
-            <p>Pick the package for your home size. Not sure? Call us and we'll guide you.</p>
+            <p>Select the right package for your home size. Not sure? Our team is happy to guide you.</p>
           </div>
         </div>
         <div class="hiw-step reveal">
           <div class="hiw-step-ph" style="background:linear-gradient(135deg,#FFF5E8,#FFE4C2);">🚚</div>
           <div class="hiw-body">
             <div class="hiw-num">2</div>
-            <h3>We Deliver to Your Door</h3>
-            <p>Clean, stacked TSBOX™ containers arrive at your home — ready to fill. No assembly.</p>
+            <h3>We Deliver</h3>
+            <p>Clean, ready-to-use TSBOX™ containers arrive at your door — no assembly required.</p>
           </div>
         </div>
         <div class="hiw-step reveal">
@@ -483,15 +1440,16 @@
           <div class="hiw-body">
             <div class="hiw-num">3</div>
             <h3>Pack &amp; Move</h3>
-            <p>Use item-specific boxes for dishes, clothes, shoes. Lock them, stack them, move with ease.</p>
+            <p>Use purpose-built boxes for dishes, clothes, shoes, wardrobe, and more. Stack securely and move with
+              ease.</p>
           </div>
         </div>
         <div class="hiw-step reveal">
           <div class="hiw-step-ph" style="background:linear-gradient(135deg,#F3E8FF,#DEC8F8);">✅</div>
           <div class="hiw-body">
             <div class="hiw-num">4</div>
-            <h3>We Pick Them Up</h3>
-            <p>Done? We schedule a free pickup from your new home. Zero waste, zero hassle.</p>
+            <h3>We Pick Up</h3>
+            <p>Finished moving? If you like we can pick up everything from your new home — completely hassle-free.</p>
           </div>
         </div>
       </div>
@@ -507,58 +1465,98 @@
       <h2 class="sec-title">Find Your Perfect Package</h2>
       <p class="sec-body">All prices include free delivery, pickup, locks, and a moving dolly.</p>
       <div class="packages-grid">
+
+        <!-- Studio Move -->
         <div class="pkg-card reveal">
-          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🏠</div>
+          <img src="img/studio.jpg" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-body">
             <div class="pkg-name">Studio Move</div>
-            <div class="pkg-rooms">Studio or 1-room apartment</div>
+            <div class="pkg-rooms">Perfect for studios or single-room apartments</div>
             <div class="pkg-price-row"><span class="big">$49</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>20 Standard Moving Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Wardrobe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>Free Delivery &amp; Pickup</div>
-              <div class="pkg-feature"><div class="chk">✓</div>Locks Included</div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>20 Standard Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Wardrobe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Dish-Safe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>Free Delivery &amp; Pickup
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>Locks Included
+              </div>
             </div>
             <a href="#order" class="pkg-cta">Book Studio Package →</a>
           </div>
         </div>
+
+        <!-- 2-Bedroom Move -->
         <div class="pkg-card featured reveal">
           <div class="pkg-popular">Most Popular</div>
-          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">🏡</div>
+          <img src="img/2br.png" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-body">
             <div class="pkg-name">2-Bedroom Move</div>
-            <div class="pkg-rooms">1–2 bedroom home or apartment</div>
+            <div class="pkg-rooms">Ideal for 1–2 bedroom homes or apartments</div>
             <div class="pkg-price-row"><span class="big">$89</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>40 Standard Moving Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>5 Wardrobe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>4 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Shoe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>Free Delivery, Pickup &amp; Dolly</div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>40 Standard Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>5 Wardrobe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>4 Dish-Safe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Shoe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>Free Delivery, Pickup &amp; Dolly
+              </div>
             </div>
             <a href="#order" class="pkg-cta">Book 2BR Package →</a>
           </div>
         </div>
+
+        <!-- Family Move -->
         <div class="pkg-card reveal">
-          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">🏘️</div>
+          <img src="img/family.jpg" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-body">
             <div class="pkg-name">Family Move</div>
-            <div class="pkg-rooms">3–4 bedroom home</div>
+            <div class="pkg-rooms">Best for 3–4 bedroom homes</div>
             <div class="pkg-price-row"><span class="big">$149</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>65 Standard Moving Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>8 Wardrobe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>6 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>4 Shoe Boxes + 2 Book Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Dollies Included</div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>65 Standard Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>8 Wardrobe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>6 Dish-Safe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>4 Shoe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Book Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Dollies Included
+              </div>
             </div>
             <a href="#order" class="pkg-cta">Book Family Package →</a>
           </div>
         </div>
+
       </div>
       <p style="text-align:center;margin-top:1.5rem;font-size:.9rem;color:var(--muted);font-weight:700;">
-        Need a custom quote? <a href="tel:3109995015" style="color:var(--green);">Call us: 310-999-5015</a>
+        Need a custom quote? <a href="tel:3109995015" style="color:var(--green);">Call 310-999-5015</a>
       </p>
     </div>
   </section>
@@ -569,39 +1567,76 @@
   <section class="bg-white" id="box-types">
     <div class="cont">
       <div class="sec-eyebrow">Item-Specific Boxes</div>
-      <h2 class="sec-title">Built for Every Item — Not Just "Stuff"</h2>
+      <h2 class="sec-title">Designed for Everything You Own</h2>
       <p class="sec-body">TSBOX™ containers are engineered for specific item types — protecting what matters most.</p>
       <div class="box-types-grid">
+
         <div class="box-type-card reveal">
-      <img src="img/30.png" alt="TSBOX boxes delivered" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="bt-body"><h4>Dish Box</h4><p>Padded compartments. Not a single plate touches another — no bubble wrap needed.</p><span class="bt-label">Exclusive to TSBOX™</span></div>
+          <img src="img/23.png" alt="Dish Box"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🍽️</div>
+          <div class="bt-body">
+            <h4>Dish Box</h4>
+            <p>Protective padded compartments — no breakage, no bubble wrap needed.</p><span class="bt-label">Exclusive
+              to TSBOX™</span>
+          </div>
         </div>
+
         <div class="box-type-card reveal">
-         <img src="img/32.png" alt="TSBOX boxes delivered" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="bt-body"><h4>Wardrobe Box</h4><p>Full hanging rod — move clothes directly from closet without removing from hangers.</p><span class="bt-label">Full Hanging Rod</span></div>
+          <img src="img/24.png" alt="Wardrobe Box"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#FFF0E8,#FFD5B2);">👔</div>
+          <div class="bt-body">
+            <h4>Wardrobe Box</h4>
+            <p>Built-in hanging rod — move clothes directly from closet to box.</p><span class="bt-label">Full Hanging
+              Rod</span>
+          </div>
         </div>
+
         <div class="box-type-card reveal">
-          <img src="img/33.png" alt="TSBOX boxes delivered" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="bt-body"><h4>Shoe Box</h4><p>Individual slots keep every pair together, dust-free, and perfectly organised.</p><span class="bt-label">Pair-by-Pair</span></div>
+          <img src="img/25.png" alt="Shoe Box"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">👟</div>
+          <div class="bt-body">
+            <h4>Shoe Box</h4>
+            <p>Organized compartments for every pair — no mess, no searching.</p><span
+              class="bt-label">Pair-by-Pair</span>
+          </div>
         </div>
+
         <div class="box-type-card reveal">
-          <div class="bt-ph" style="background:linear-gradient(135deg,#E8FFF0,#C2F5D4);">📚</div>
-          <div class="bt-body"><h4>Book Box</h4><p>Reinforced base, compact size — holds heavy loads without overpacking or straining your back.</p><span class="bt-label">Back-Friendly</span></div>
+          <img src="img/22.png" alt="Book Box"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="bt-body">
+            <h4>Book Box</h4>
+            <p>Compact, reinforced design for heavy items without strain.</p><span class="bt-label">Back-Friendly</span>
+          </div>
         </div>
+
         <div class="box-type-card reveal">
-          <div class="bt-ph" style="background:linear-gradient(135deg,#FFF0E8,#F5D0B2);">🖼️</div>
-          <div class="bt-body"><h4>Picture &amp; Mirror Box</h4><p>Tall, slim, foam corner protectors — keeps art and mirrors safe the whole move.</p><span class="bt-label">Corner-Protected</span></div>
+          <img src="img/21.png" alt="Glassware Box"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+
+          <div class="bt-body">
+            <h4>Glassware Box</h4>
+            <p>Slim, rigid design with foam protection for fragile pieces.</p><span
+              class="bt-label">Corner-Protected</span>
+          </div>
         </div>
+
         <div class="box-type-card reveal">
-          <div class="bt-ph" style="background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📦</div>
-          <div class="bt-body"><h4>Standard Moving Box</h4><p>Tough ABS/polycarbonate. Lockable lid, stackable, 80+ year lifespan.</p><span class="bt-label">Lockable &amp; Stackable</span></div>
+          <img src="img/9.png" alt="Standard Box"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+
+          <div class="bt-body">
+            <h4>Standard Box</h4>
+            <p>Heavy-duty, lockable, and stackable — built to last decades.</p><span class="bt-label">Lockable &amp;
+              Stackable</span>
+          </div>
         </div>
+
       </div>
-      <div style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;" class="reveal">
-        <img src="img/7.png" alt="TSBOX product detail" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius);display:block;" onerror="this.style.display='none'">
-        <img src="img/19.png" alt="TSBOX boxes in use" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius);display:block;" onerror="this.style.display='none'">
-        <img src="img/10.png" alt="Reusable moving system" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius);display:block;" onerror="this.style.display='none'">
-      </div>
+
     </div>
   </section>
 
@@ -611,20 +1646,54 @@
   <section class="bg-cream" id="why">
     <div class="cont">
       <div class="sec-eyebrow">Why TSBOX™</div>
-      <h2 class="sec-title">Better Than Cardboard.<br>Better Than the Competition.</h2>
+      <h2 class="sec-title">Save More. Stress Less.<br>Move Sustainably.</h2>
       <div class="why-grid">
         <div class="why-img-stack reveal">
-          <div class="why-img-badge"><div class="wbn">50%</div><div class="wbl">Cost Savings</div></div>
-          <img src="img/19.png" alt="TSBOX reusable boxes" class="why-img-main"
+          <div class="why-img-badge">
+            <div class="wbn">50%</div>
+            <div class="wbl">Cost Savings</div>
+          </div>
+          <img src="img/29.png" alt="TSBOX reusable boxes" class="why-img-main"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="why-img-main-ph" style="display:none;">📦</div>
-          <img src="img/30.png" alt="TSBOX detail" class="why-img-sm" onerror="this.style.display='none'">
+          <img src="img/27.png" alt="TSBOX detail" class="why-img-sm" onerror="this.style.display='none'">
         </div>
         <div class="why-points">
-          <div class="why-point reveal"><div class="wp-icon">🚚</div><div class="wp-text"><h4>Free Delivery &amp; Pickup</h4><p>We bring boxes to you and collect when done. No trips, no extra charges, ever.</p></div></div>
-          <div class="why-point reveal"><div class="wp-icon">🔒</div><div class="wp-text"><h4>Lockable for Security</h4><p>Every box has a lock — keep belongings secure during storage and transit.</p></div></div>
-          <div class="why-point reveal"><div class="wp-icon">✨</div><div class="wp-text"><h4>Always Clean &amp; Sanitized</h4><p>Every container cleaned and inspected between rentals. No more musty cardboard.</p></div></div>
-          <div class="why-point reveal"><div class="wp-icon">🌱</div><div class="wp-text"><h4>Zero Waste Move</h4><p>No cardboard. No tape. No mess. We take everything back — leaving you and the planet better off.</p></div></div>
+          <div class="why-point reveal">
+            <div class="wp-icon">💰</div>
+            <div class="wp-text">
+              <h4>Save More</h4>
+              <p>Up to 50% cheaper than buying cardboard boxes.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="wp-icon">🚚</div>
+            <div class="wp-text">
+              <h4>Convenience Included</h4>
+              <p>Free delivery and pickup — we handle the logistics so you don't have to.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="wp-icon">🔒</div>
+            <div class="wp-text">
+              <h4>Secure &amp; Lockable</h4>
+              <p>Every box includes a locking lid for safe transport.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="wp-icon">✨</div>
+            <div class="wp-text">
+              <h4>Clean &amp; Sanitized</h4>
+              <p>Professionally cleaned and inspected after every use.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
+            <div class="wp-icon">🌱</div>
+            <div class="wp-text">
+              <h4>Zero Waste</h4>
+              <p>No cardboard, no tape, no landfill impact.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -635,12 +1704,17 @@
     <div class="photo-section-bg"></div>
     <div class="photo-section-overlay"></div>
     <div class="photo-section-inner">
-      <div style="font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(194,245,172,.7);margin-bottom:1rem;">🌿 The TSBOX™ Revolution</div>
+      <div
+        style="font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(194,245,172,.7);margin-bottom:1rem;">
+        🌿 Why TSBOX™ Wins</div>
       <h2>Think Outside<em>the Cardboard Box!</em></h2>
-      <p>Single-use cardboard was never the right answer. TSBOX™ is the smarter, greener, cheaper alternative the moving industry has been waiting for.</p>
+      <p>TSBOX™ offers purpose-built, reusable, lockable boxes with delivery included — something cardboard and generic
+        bins simply can't match.</p>
       <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
         <a href="solution.html" class="btn-primary">See Box Types</a>
-        <a href="#order" style="display:inline-flex;align-items:center;border:2.5px solid rgba(255,255,255,.35);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;transition:border-color .2s,background .2s;">Reserve Now →</a>
+        <a href="#order"
+          style="display:inline-flex;align-items:center;border:2.5px solid rgba(255,255,255,.35);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;transition:border-color .2s,background .2s;">Reserve
+          Now →</a>
       </div>
     </div>
   </div>
@@ -650,20 +1724,55 @@
     <div class="cont">
       <div style="text-align:center;">
         <div class="sec-eyebrow">The Difference Is Clear</div>
-        <h2 class="sec-title">TSBOX™ vs Cardboard vs Others</h2>
+        <h2 class="sec-title">Why TSBOX™ Wins</h2>
       </div>
       <div style="overflow-x:auto;">
         <table class="compare-table">
           <thead>
-            <tr><th>Feature</th><th class="gcol">TSBOX™ Rental</th><th>Cardboard Boxes</th><th>Generic Bin Rentals</th></tr>
+            <tr>
+              <th>Feature</th>
+              <th class="gcol">TSBOX™ Rental</th>
+              <th>Cardboard Boxes</th>
+              <th>Generic Bin Rentals</th>
+            </tr>
           </thead>
           <tbody>
-            <tr><td><strong>Item-specific box types</strong></td><td class="gcol"><span class="cmp-yes">✔</span> Dishes, shoes, wardrobes</td><td><span class="cmp-no">✘</span> Generic only</td><td><span class="cmp-no">✘</span> Generic bins</td></tr>
-            <tr><td><strong>Free delivery &amp; pickup</strong></td><td class="gcol"><span class="cmp-yes">✔</span> Always included</td><td><span class="cmp-no">✘</span> You fetch &amp; dump</td><td>Varies</td></tr>
-            <tr><td><strong>Lockable lids</strong></td><td class="gcol"><span class="cmp-yes">✔</span> Every box</td><td><span class="cmp-no">✘</span> No</td><td>Rarely</td></tr>
-            <tr><td><strong>Cost vs buying boxes</strong></td><td class="gcol"><span class="cmp-yes">✔</span> 50% cheaper</td><td><span class="cmp-no">✘</span> Full price, one use</td><td>Similar</td></tr>
-            <tr><td><strong>Zero waste</strong></td><td class="gcol"><span class="cmp-yes">✔</span> 100% reusable</td><td><span class="cmp-no">✘</span> Landfill after move</td><td><span class="cmp-yes">✔</span> Reusable</td></tr>
-            <tr><td><strong>Sanitized between uses</strong></td><td class="gcol"><span class="cmp-yes">✔</span> Every time</td><td>N/A</td><td>Often no</td></tr>
+            <tr>
+              <td><strong>Item-specific box types</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> Dishes, shoes, wardrobes</td>
+              <td><span class="cmp-no">✘</span> Generic only</td>
+              <td><span class="cmp-no">✘</span> Generic bins</td>
+            </tr>
+            <tr>
+              <td><strong>Free delivery &amp; pickup</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> Always included</td>
+              <td><span class="cmp-no">✘</span> You fetch &amp; dump</td>
+              <td>Varies</td>
+            </tr>
+            <tr>
+              <td><strong>Lockable lids</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> Every box</td>
+              <td><span class="cmp-no">✘</span> No</td>
+              <td>Rarely</td>
+            </tr>
+            <tr>
+              <td><strong>Cost vs buying boxes</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> 50% cheaper</td>
+              <td><span class="cmp-no">✘</span> Full price, one use</td>
+              <td>Similar</td>
+            </tr>
+            <tr>
+              <td><strong>Zero waste</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> 100% reusable</td>
+              <td><span class="cmp-no">✘</span> Landfill after move</td>
+              <td><span class="cmp-yes">✔</span> Reusable</td>
+            </tr>
+            <tr>
+              <td><strong>Sanitized between uses</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> Every time</td>
+              <td>N/A</td>
+              <td>Often no</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -680,30 +1789,52 @@
         <h2 class="sec-title">Real People, Stress-Free Moves</h2>
       </div>
       <div class="testimonials-grid">
+
         <div class="testimonial reveal">
           <div class="test-ph" style="background:linear-gradient(135deg,#EFF8F3,#C2F5D4);">🏡</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
-            <div class="test-quote">The dish boxes alone were worth it. Not a single broken plate — and I've lost countless dishes with cardboard boxes in past moves.</div>
-            <div class="test-author"><div class="test-avatar">SA</div><div><div class="test-name">Sarah A.</div><div class="test-loc">Los Angeles, CA — 2BR Move</div></div></div>
+            <div class="test-quote">The dish boxes alone made it worth it. Not a single plate broke.</div>
+            <div class="test-author">
+              <div class="test-avatar">SA</div>
+              <div>
+                <div class="test-name">Sarah A.</div>
+                <div class="test-loc">Los Angeles</div>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="testimonial reveal">
           <div class="test-ph" style="background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">📦</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
-            <div class="test-quote">Delivery was on time, boxes were super clean, and pickup was effortless. Way easier than dealing with cardboard and tape everywhere.</div>
-            <div class="test-author"><div class="test-avatar" style="background:var(--orange);">MR</div><div><div class="test-name">Marcus R.</div><div class="test-loc">Beverly Hills, CA — Studio Move</div></div></div>
+            <div class="test-quote">Everything arrived on time, spotless, and pickup was effortless.</div>
+            <div class="test-author">
+              <div class="test-avatar" style="background:var(--orange);">MR</div>
+              <div>
+                <div class="test-name">Marcus R.</div>
+                <div class="test-loc">Beverly Hills</div>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="testimonial reveal">
           <div class="test-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">🚚</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
-            <div class="test-quote">We used the wardrobe boxes for a whole household move. Amazing. I'll never go back to cardboard — this is genuinely smarter.</div>
-            <div class="test-author"><div class="test-avatar" style="background:var(--sky);">JK</div><div><div class="test-name">Jennifer K.</div><div class="test-loc">Santa Monica, CA — Family Move</div></div></div>
+            <div class="test-quote">The wardrobe boxes saved us so much time — incredible experience.</div>
+            <div class="test-author">
+              <div class="test-avatar" style="background:var(--sky);">JK</div>
+              <div>
+                <div class="test-name">Jennifer K.</div>
+                <div class="test-loc">Santa Monica</div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -716,9 +1847,11 @@
       <div class="about-strip">
         <div class="reveal">
           <div class="sec-eyebrow">Who We Are</div>
-          <h2 class="sec-title">Built in LA.<br>Scaling Globally.</h2>
-          <p class="sec-body">TSBOX™ is a Beverly Hills-based company on a mission to eliminate single-use moving waste. Founded by Roman Alexander, Concord Pacific Corp has built a rental system that's smarter for movers and better for the planet.</p>
-          <p class="sec-body" style="margin-top:1rem;">We're backed by strategic partnerships with U-Haul, Home Depot, Walgreens and more — giving us built-in distribution from day one.</p>
+          <h2 class="sec-title">Built in Beverly Hills,<br>Los Angeles.</h2>
+          <p class="sec-body">Our mission is to eliminate single-use moving waste and replace it with a smarter system.
+            Founded by Roman Alexander, TSBOX™ is redefining how people move.</p>
+          <p class="sec-body" style="margin-top:1rem;">We're backed by strategic partnerships with U-Haul, Home Depot,
+            Walgreens and more — giving us built-in distribution from day one.</p>
           <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
             <a href="about.html" class="btn-secondary">Meet the Team →</a>
             <a href="invest.html" class="btn-outline">Investors</a>
@@ -741,43 +1874,124 @@
       <div style="text-align:center;">
         <div class="sec-eyebrow">Ready to Move?</div>
         <h2 class="sec-title">Reserve Your Boxes Today</h2>
-        <p class="sec-body" style="margin:0 auto;">Free delivery. No surprises. We'll confirm your booking within a few hours.</p>
+        <p class="sec-body" style="margin:0 auto;">Free to book. Free delivery. We'll confirm your reservation within a
+          few hours.</p>
       </div>
-      <div class="order-form-wrap reveal">
-        <form onsubmit="return false;">
+
+      <div class="order-form-wrap reveal" id="order-form-wrap">
+        <div id="form-error"
+          style="display:none; background:#fff0f0; color:#c00; border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:16px; border:1px solid #fcc;">
+        </div>
+
+        <form onsubmit="handleSubmit(); return false;">
           <div class="form-row">
-            <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Your first name"></div>
-            <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Your last name"></div>
+            <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname"
+                placeholder="Your first name"></div>
+            <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname"
+                placeholder="Your last name"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@email.com"></div>
-            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="(310) 000-0000"></div>
+            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email"
+                placeholder="you@email.com"></div>
+            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone"
+                placeholder="(310) 000-0000"></div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label for="package">Package</label>
               <select id="package">
                 <option value="">Select a package...</option>
-                <option value="studio">Studio Move — $49/week</option>
-                <option value="2br">2-Bedroom Move — $89/week</option>
-                <option value="family">Family Move — $149/week</option>
-                <option value="custom">Custom / Large Move</option>
+                <option value="Studio Move — $49/week">Studio Move — $49/week</option>
+                <option value="2-Bedroom Move — $89/week">2-Bedroom Move — $89/week</option>
+                <option value="Family Move — $149/week">Family Move — $149/week</option>
+                <option value="Custom / Large Move">Custom / Large Move</option>
               </select>
             </div>
-            <div class="form-group"><label for="move-date">Desired Delivery Date</label><input type="date" id="move-date"></div>
+            <div class="form-group"><label for="move-date">Delivery Date</label><input type="date" id="move-date"></div>
           </div>
-          <div class="form-group"><label for="address">Delivery Address (City, ZIP)</label><input type="text" id="address" placeholder="Beverly Hills, CA 90210"></div>
-          <div class="form-group"><label for="notes">Anything else we should know?</label><textarea id="notes" placeholder="Special requests, extra boxes, questions..."></textarea></div>
-          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:1rem;font-size:1rem;" id="form-submit">
-            Reserve My Boxes — It's Free to Book →
+          <div class="form-group"><label for="address">Address</label><input type="text" id="address"
+              placeholder="Your delivery address"></div>
+          <div class="form-group"><label for="notes">Notes</label><textarea id="notes"
+              placeholder="Special requests, extra boxes, questions..."></textarea></div>
+
+          <button type="submit" class="btn-primary"
+            style="width:100%;justify-content:center;padding:1rem;font-size:1rem;">
+            Reserve My Boxes — Free to Book →
           </button>
         </form>
+
         <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--muted);font-weight:700;">
           Or call us: <a href="tel:3109995015" style="color:var(--green);">310-999-5015</a>
         </p>
       </div>
+
+      <!-- Success message (hidden until form submits) -->
+      <div id="success-msg" style="display:none; text-align:center; padding:3rem 1rem;">
+        <h3 style="margin-bottom:.5rem;">✅ Reservation Sent!</h3>
+        <p>Your email client has opened with all your details. Just hit Send — Roman will confirm within a few hours.
+        </p>
+      </div>
     </div>
   </section>
+
+  <script>
+    function handleSubmit() {
+      var errEl = document.getElementById('form-error');
+      errEl.style.display = 'none';
+
+      var fname = document.getElementById('fname').value.trim();
+      var lname = document.getElementById('lname').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var pkg = document.getElementById('package').value;
+      var date = document.getElementById('move-date').value;
+      var address = document.getElementById('address').value.trim();
+      var notes = document.getElementById('notes').value.trim();
+
+      if (!fname || !lname) { showErr('Please enter your full name.'); return; }
+      if (!email || !email.includes('@')) { showErr('Please enter a valid email address.'); return; }
+      if (!phone) { showErr('Please enter your phone number.'); return; }
+      if (!pkg) { showErr('Please select a package.'); return; }
+      if (!date) { showErr('Please choose a delivery date.'); return; }
+      if (!address) { showErr('Please enter your delivery address.'); return; }
+
+      var formattedDate = new Date(date + 'T12:00:00').toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      var subject = encodeURIComponent('New Box Reservation — ' + fname + ' ' + lname);
+      var body = encodeURIComponent(
+        'Hi Roman,\n\n' +
+        'A new box reservation has been submitted through the website.\n\n' +
+        '─────────────────────────────\n' +
+        'CUSTOMER DETAILS\n' +
+        '─────────────────────────────\n' +
+        'Name:          ' + fname + ' ' + lname + '\n' +
+        'Email:         ' + email + '\n' +
+        'Phone:         ' + phone + '\n\n' +
+        '─────────────────────────────\n' +
+        'ORDER DETAILS\n' +
+        '─────────────────────────────\n' +
+        'Package:       ' + pkg + '\n' +
+        'Delivery Date: ' + formattedDate + '\n' +
+        'Address:       ' + address + '\n' +
+        'Notes:         ' + (notes || 'None') + '\n\n' +
+        'Please confirm this reservation within a few hours.'
+      );
+
+      window.location.href = 'mailto:1000pacific@gmail.com?subject=' + subject + '&body=' + body;
+
+      document.getElementById('order-form-wrap').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }
+
+    function showErr(msg) {
+      var el = document.getElementById('form-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
 
   <div class="divider"></div>
 
@@ -789,12 +2003,59 @@
         <h2 class="sec-title">Frequently Asked Questions</h2>
       </div>
       <div class="faq-list">
-        <div class="faq-item"><div class="faq-q"><div class="faq-q-text">How does delivery and pickup work?</div><div class="faq-toggle">+</div></div><div class="faq-a">We deliver clean, stacked TSBOX™ containers to your current address on your chosen date. When done, call us and we schedule a free pickup from your new address anywhere in our service area.</div></div>
-        <div class="faq-item"><div class="faq-q"><div class="faq-q-text">How long can I keep the boxes?</div><div class="faq-toggle">+</div></div><div class="faq-a">Standard packages are priced per week. Need more time? Extra weeks available at a flat rate — just let us know before your pickup date.</div></div>
-        <div class="faq-item"><div class="faq-q"><div class="faq-q-text">Are the boxes clean and sanitized?</div><div class="faq-toggle">+</div></div><div class="faq-a">Absolutely. Every TSBOX™ container is fully cleaned, sanitized, and inspected between every rental. You'll never receive a musty or dirty box.</div></div>
-        <div class="faq-item"><div class="faq-q"><div class="faq-q-text">What if I need more boxes than my package includes?</div><div class="faq-toggle">+</div></div><div class="faq-a">Easy — call us at 310-999-5015 or note it in the order form. We'll customize any package and deliver additional boxes if needed.</div></div>
-        <div class="faq-item"><div class="faq-q"><div class="faq-q-text">Where do you deliver?</div><div class="faq-toggle">+</div></div><div class="faq-a">We serve the greater Los Angeles area — Beverly Hills, Santa Monica, West Hollywood, Culver City, Burbank, and surrounding cities. Call to check your zip code.</div></div>
-        <div class="faq-item"><div class="faq-q"><div class="faq-q-text">What happens if a box is damaged?</div><div class="faq-toggle">+</div></div><div class="faq-a">Our boxes are built to last 80+ years, so damage is rare. Normal wear is covered — we only charge for severe damage. Just let us know at pickup.</div></div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">How does delivery and pickup work?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">We deliver to your current home and pick up from your new one.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">How long can I keep the boxes?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">Weekly packages with flexible extensions available. Just let us know before your pickup
+            date.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">Are the boxes clean and sanitized?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">Every box is sanitized and inspected before delivery. You'll never receive a musty or dirty
+            box.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">What if I need more boxes than my package includes?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">Call us for tailored box quantities. We're happy to customize any package to suit your
+            needs.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">Where do you deliver?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">Greater Los Angeles and surrounding areas. Call us to check your zip code.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">What happens if a box is damaged?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">Normal wear is covered — boxes are built to last 80+ years. We only charge for severe
+            damage. Just let us know at pickup.</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -804,46 +2065,61 @@
     <div class="cont">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:3rem;">
         <div class="reveal">
-          <div class="sec-eyebrow" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);">Why It Matters</div>
+          <div class="sec-eyebrow" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);">Why It Matters
+          </div>
           <h2 class="sec-title" style="color:#fff;">Every Move Helps the Planet</h2>
-          <p class="sec-body" style="color:rgba(255,255,255,.7);">Cardboard manufacturing is one of the leading causes of global deforestation. When you rent TSBOX™, you're part of the solution.</p>
-          <a href="#order" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;background:#fff;color:var(--green);">Start Your Green Move →</a>
+          <p class="sec-body" style="color:rgba(255,255,255,.7);">Cardboard manufacturing is one of the leading causes
+            of global deforestation. When you rent TSBOX™, you're part of the solution.</p>
+          <a href="#order" class="btn-primary"
+            style="margin-top:1.5rem;display:inline-flex;background:#fff;color:var(--green);">Start Your Green Move
+            →</a>
         </div>
         <div class="env-grid reveal" style="grid-template-columns:1fr 1fr;">
-          <div class="env-card"><div class="en">570K</div><p>Trees preserved over 5 years at full scale</p></div>
-          <div class="env-card"><div class="en">180M</div><p>Gallons of water saved vs cardboard production</p></div>
-          <div class="env-card"><div class="en">49M</div><p>Lbs of CO₂ kept out of the atmosphere</p></div>
-          <div class="env-card"><div class="en">80+</div><p>Year lifespan per box. Made to last, not to waste.</p></div>
+          <div class="env-card">
+            <div class="en">570K</div>
+            <p>Trees Saved (5 years)</p>
+          </div>
+          <div class="env-card">
+            <div class="en">180M</div>
+            <p>Gallons of Water Conserved</p>
+          </div>
+          <div class="env-card">
+            <div class="en">49M</div>
+            <p>Pounds of CO₂ Reduced</p>
+          </div>
+          <div class="env-card">
+            <div class="en">80+</div>
+            <p>Year Lifespan per Box</p>
+          </div>
         </div>
       </div>
       <div style="border-radius:var(--radius-lg);overflow:hidden;height:300px;" class="reveal">
-        <img src="img/28.png" alt="Forests and environment saved by TSBOX" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.parentElement.style.background='rgba(255,255,255,.05)';this.style.display='none'">
+        <img src="img/28.png" alt="Forests and environment saved by TSBOX"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onerror="this.parentElement.style.background='rgba(255,255,255,.05)';this.style.display='none'">
       </div>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="cta-strip" style="padding:4rem 1.5rem;">
-    <h2>Ready for a Smarter Move?</h2>
-    <p>Reserve your TSBOX™ packages today. Free delivery, zero hassle, 50% cheaper than buying cardboard.</p>
+    <h2>Ready for a Better Move?</h2>
+    <p>Reserve your TSBOX™ boxes today and move smarter.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="#order" class="btn-primary" style="background:#fff;color:var(--green);">Reserve My Boxes →</a>
-      <a href="tel:3109995015" style="display:inline-flex;align-items:center;gap:.5rem;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">Call: 310-999-5015</a>
+      <a href="tel:3109995015"
+        style="display:inline-flex;align-items:center;gap:.5rem;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">Call
+        310-999-5015</a>
     </div>
   </section>
 
   <script>
-    /* ══ VIDEO INTRO MODAL ══
-       - Shows on every page load / refresh
-       - Autoplay (muted) fires immediately
-       - If autoplay blocked → shows click-to-play prompt
-       - Closes automatically when video ends, or on click/skip
-    ══════════════════════════════ */
-    (function() {
-      const modal      = document.getElementById('video-modal-container');
-      const video      = document.getElementById('intro-video');
-      const prompt     = document.getElementById('play-prompt');
-      const skipBtn    = document.getElementById('video-skip');
+    /* ══ VIDEO INTRO MODAL ══ */
+    (function () {
+      const modal = document.getElementById('video-modal-container');
+      const video = document.getElementById('intro-video');
+      const prompt = document.getElementById('play-prompt');
+      const skipBtn = document.getElementById('video-skip');
 
       document.body.style.overflow = 'hidden';
 
@@ -854,32 +2130,26 @@
       }
 
       window.addEventListener('load', () => {
-        // Always show on load/refresh — remove sessionStorage gate so it fires every time
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise
             .then(() => { prompt.classList.add('fade-out'); })
             .catch(() => {
-              // Autoplay blocked — show click-to-play
               prompt.style.display = 'flex';
             });
         }
       });
 
-      // Click prompt to start playback
       prompt.addEventListener('click', () => {
         video.play().then(() => { prompt.classList.add('fade-out'); });
       });
 
-      // Auto-close when video ends
       video.addEventListener('ended', () => {
         setTimeout(closeModal, 400);
       });
 
-      // Skip button
       skipBtn.addEventListener('click', closeModal);
 
-      // Click outside video box to skip
       modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
       });
@@ -896,11 +2166,12 @@
     });
 
     /* ══ FORM ══ */
-    document.getElementById('form-submit').addEventListener('click', function() {
+    document.getElementById('form-submit').addEventListener('click', function () {
       this.textContent = '✓ Request Sent — We\'ll Contact You Soon!';
       this.style.background = 'var(--green)';
       this.disabled = true;
     });
   </script>
 </body>
+
 </html>

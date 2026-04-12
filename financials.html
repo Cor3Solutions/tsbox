@@ -30,12 +30,12 @@
     .pkg-card.featured .pkg-cta{background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:0 6px 20px rgba(232,93,43,.3);}
     .pkg-card.featured .pkg-cta:hover{background:var(--orange-lt);}
 
-    .incl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
-    .incl-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;padding:1.5rem;background:var(--white);border:2px solid var(--divider);border-radius:var(--radius-lg);transition:border-color .2s;}
+    .incl-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.5rem;}
+    .incl-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;padding:1.5rem 1rem;background:var(--white);border:2px solid var(--divider);border-radius:var(--radius-lg);transition:border-color .2s;}
     .incl-item:hover{border-color:var(--green);}
     .incl-icon{width:52px;height:52px;border-radius:50%;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
-    .incl-item h4{font-size:.9rem;font-weight:900;color:var(--ink);}
-    .incl-item p{font-size:.8rem;color:var(--muted);font-weight:600;}
+    .incl-item h4{font-size:.88rem;font-weight:900;color:var(--ink);}
+    .incl-item p{font-size:.78rem;color:var(--muted);font-weight:600;line-height:1.4;}
 
     .addon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
     .addon-card{background:var(--white);border:2px solid var(--divider);border-radius:var(--radius);padding:1.4rem;text-align:center;transition:border-color .2s;}
@@ -47,6 +47,7 @@
 
     .photo-wide{width:100%;height:280px;object-fit:cover;border-radius:var(--radius-lg);display:block;margin-top:2.5rem;box-shadow:0 16px 48px rgba(17,24,21,.1);}
 
+    @media(max-width:1024px){.incl-grid{grid-template-columns:repeat(3,1fr);}}
     @media(max-width:900px){.pricing-grid{grid-template-columns:1fr 1fr;}.incl-grid{grid-template-columns:1fr 1fr;}.addon-grid{grid-template-columns:1fr 1fr;}}
     @media(max-width:600px){.pricing-grid{grid-template-columns:1fr;}.incl-grid{grid-template-columns:1fr 1fr;}}
   </style>
@@ -54,12 +55,13 @@
 <body>
   <script src="shared.js"></script>
 
+  <!-- 1. HERO -->
   <div class="page-hero" style="position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:url('img/19.png') center/cover no-repeat;opacity:.15;z-index:0;"></div>
+    <div style="position:absolute;inset:0;background:url('img/27.png') center/cover no-repeat;opacity:.15;z-index:0;"></div>
     <div class="page-hero-inner" style="position:relative;z-index:2;">
       <div class="sec-eyebrow">Transparent Pricing</div>
-      <h1>Simple, Honest <span style="color:var(--orange);">Pricing.</span><br>No Surprises.</h1>
-      <p class="page-hero-sub">Flat weekly rates. Free delivery and pickup always included. No hidden fees — just smarter moving.</p>
+      <h1>Transparent Pricing.<br><span style="color:var(--orange);">No Surprises.</span></h1>
+      <p class="page-hero-sub">Simple weekly rates with everything included.</p>
       <div class="page-hero-btns">
         <a href="index.html#order" class="btn-primary">Reserve Now</a>
         <a href="tel:3109995015" class="btn-outline">Call for Custom Quote</a>
@@ -69,36 +71,59 @@
 
   <div class="divider"></div>
 
-  <!-- ALWAYS INCLUDED -->
+  <!-- 2. WHAT'S INCLUDED -->
   <section class="bg-white">
     <div class="cont" style="text-align:center;">
       <div class="sec-eyebrow">Always Included</div>
-      <h2 class="sec-title">Every Package Comes With</h2>
+      <h2 class="sec-title">Everything You Need — No Add-Ons Required</h2>
       <div class="incl-grid">
-        <div class="incl-item reveal"><div class="incl-icon">🚚</div><h4>Free Delivery</h4><p>We bring boxes to your door on your schedule</p></div>
-        <div class="incl-item reveal"><div class="incl-icon">🔄</div><h4>Free Pickup</h4><p>Done moving? We collect from your new address</p></div>
-        <div class="incl-item reveal"><div class="incl-icon">🔒</div><h4>Locks Included</h4><p>Every box comes with a lock — no extra charge</p></div>
-        <div class="incl-item reveal"><div class="incl-icon">✨</div><h4>Sanitized Boxes</h4><p>Cleaned and inspected before every rental</p></div>
+        <div class="incl-item reveal">
+          <div class="incl-icon">🚚</div>
+          <h4>Free Delivery</h4>
+          <p>We bring boxes to your door on your schedule</p>
+        </div>
+        <div class="incl-item reveal">
+          <div class="incl-icon">🔄</div>
+          <h4>Free Pickup</h4>
+          <p>Done moving? We collect from your new address</p>
+        </div>
+        <div class="incl-item reveal">
+          <div class="incl-icon">🔒</div>
+          <h4>Locks Included</h4>
+          <p>Every box comes with a lock — no extra charge</p>
+        </div>
+        <div class="incl-item reveal">
+          <div class="incl-icon">📍</div>
+          <h4>GPS Included</h4>
+          <p>Track your delivery in real time — always know where your boxes are</p>
+        </div>
+        <div class="incl-item reveal">
+          <div class="incl-icon">✨</div>
+          <h4>Sanitized Containers</h4>
+          <p>Professionally cleaned and inspected before every rental</p>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- PACKAGES -->
+  <!-- 3. PACKAGES -->
   <section class="bg-cream" id="packages">
     <div class="cont">
       <div class="sec-eyebrow">Choose Your Package</div>
       <h2 class="sec-title">Pick Your Home Size</h2>
       <div class="pricing-grid">
+
+        <!-- Studio -->
         <div class="pkg-card reveal">
-          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🏠</div>
+          <img src="img/studio.jpg" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-body">
             <div class="pkg-name">Studio Move</div>
-            <div class="pkg-rooms">Studio or 1-room apartment</div>
+            <div class="pkg-rooms">Perfect for studios or single-room apartments</div>
             <div class="pkg-price-row"><span class="big">$49</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>20 Standard Moving Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>20 Standard Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>2 Wardrobe Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>2 Dish-Safe Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>Free Delivery &amp; Pickup</div>
@@ -107,15 +132,17 @@
             <a href="index.html#order" class="pkg-cta">Book Studio →</a>
           </div>
         </div>
+
+        <!-- 2-Bedroom -->
         <div class="pkg-card featured reveal">
           <div class="pkg-popular">Most Popular</div>
-          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">🏡</div>
+          <img src="img/2br.png" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-body">
             <div class="pkg-name">2-Bedroom Move</div>
-            <div class="pkg-rooms">1–2 bedroom home or apartment</div>
+            <div class="pkg-rooms">Ideal for 1–2 bedroom homes or apartments</div>
             <div class="pkg-price-row"><span class="big">$89</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>40 Standard Moving Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>40 Standard Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>5 Wardrobe Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>4 Dish-Safe Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>2 Shoe Boxes</div>
@@ -124,22 +151,26 @@
             <a href="index.html#order" class="pkg-cta">Book 2BR Package →</a>
           </div>
         </div>
+
+        <!-- Family -->
         <div class="pkg-card reveal">
-          <div class="pkg-card-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">🏘️</div>
+          <img src="img/family.jpg" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-body">
             <div class="pkg-name">Family Move</div>
-            <div class="pkg-rooms">3–4 bedroom home</div>
+            <div class="pkg-rooms">Best for 3–4 bedroom homes</div>
             <div class="pkg-price-row"><span class="big">$149</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>65 Standard Moving Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>65 Standard Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>8 Wardrobe Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>6 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>4 Shoe Boxes + 2 Book Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>4 Shoe Boxes</div>
+              <div class="pkg-feature"><div class="chk">✓</div>2 Book Boxes</div>
               <div class="pkg-feature"><div class="chk">✓</div>2 Dollies Included</div>
             </div>
             <a href="index.html#order" class="pkg-cta">Book Family →</a>
           </div>
         </div>
+
       </div>
       <p style="text-align:center;margin-top:1.5rem;font-size:.9rem;color:var(--muted);font-weight:700;">
         Need a custom package? <a href="tel:3109995015" style="color:var(--green);">Call us at 310-999-5015</a> — we'll build exactly what you need.
@@ -150,28 +181,50 @@
 
   <div class="divider"></div>
 
-  <!-- ADD-ONS -->
+  <!-- 4. ADD-ONS -->
   <section class="bg-white">
     <div class="cont">
       <div class="sec-eyebrow">Add-Ons</div>
       <h2 class="sec-title">Need a Little Extra?</h2>
       <p class="sec-body">Add individual items to any package — charged per week alongside your rental.</p>
       <div class="addon-grid">
-        <div class="addon-card reveal"><div class="addon-icon">📦</div><h4>Extra Standard Box</h4><div class="addon-price">$2/wk</div><p>per additional box</p></div>
-        <div class="addon-card reveal"><div class="addon-icon">👗</div><h4>Extra Wardrobe Box</h4><div class="addon-price">$5/wk</div><p>per additional wardrobe box</p></div>
-        <div class="addon-card reveal"><div class="addon-icon">🛺</div><h4>Moving Dolly</h4><div class="addon-price">$8/wk</div><p>per dolly — heavy-duty rated</p></div>
-        <div class="addon-card reveal"><div class="addon-icon">⏱️</div><h4>Extended Rental</h4><div class="addon-price">Ask us</div><p>Need more than one week? Flat rate extensions available</p></div>
+        <div class="addon-card reveal">
+          <div class="addon-icon">📦</div>
+          <h4>Extra Standard Box</h4>
+          <div class="addon-price">$2/week</div>
+          <p>Per additional standard box</p>
+        </div>
+        <div class="addon-card reveal">
+          <div class="addon-icon">👗</div>
+          <h4>Extra Wardrobe Box</h4>
+          <div class="addon-price">$5/week</div>
+          <p>Per additional wardrobe box</p>
+        </div>
+        <div class="addon-card reveal">
+          <div class="addon-icon">🛺</div>
+          <h4>Moving Dolly</h4>
+          <div class="addon-price">$8/week</div>
+          <p>Heavy-duty rated, per dolly</p>
+        </div>
+        <div class="addon-card reveal">
+          <div class="addon-icon">⏱️</div>
+          <h4>Extended Rentals</h4>
+          <div class="addon-price">Ask Us</div>
+          <p>Need more than one week? Flat rate extensions available</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- 5. CTA -->
   <section class="cta-strip">
-    <h2>Start Your Smarter Move</h2>
-    <p>Reserve your package online or call us — we'll handle the rest.</p>
+    <h2>Reserve Online or Call —<br>We'll Handle the Rest.</h2>
+    <p>Free delivery. No surprises. Confirm your booking within hours.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="index.html#order" class="btn-primary" style="background:#fff;color:var(--green);">Reserve Now →</a>
       <a href="tel:3109995015" style="display:inline-flex;align-items:center;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">Call: 310-999-5015</a>
     </div>
   </section>
+
 </body>
 </html>
