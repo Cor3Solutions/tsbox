@@ -142,7 +142,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: calc(var(--nav-h) + 4rem) 1.5rem 4rem;
+      padding: 4rem 1.5rem 4rem;
       background: linear-gradient(145deg, #E4F5EC 0%, #CCEEDE 40%, #B9E7CD 100%);
       position: relative;
       overflow: hidden;
@@ -792,12 +792,6 @@
       filter: brightness(.28) saturate(.7);
     }
 
-    .photo-section-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(17, 24, 21, .88) 0%, rgba(26, 122, 74, .45) 100%);
-    }
-
     .photo-section-inner {
       position: relative;
       z-index: 2;
@@ -1271,9 +1265,60 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: calc(64px + 3rem);
+        padding-bottom: 3rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: .75rem;
+      }
+
+      .hero-actions a {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+      }
+
+      .hero-float-badge {
+        display: none;
+      }
+
+      .hero-float-img {
+        display: none;
+      }
+
+      .hero-trust {
+        flex-wrap: wrap;
+        gap: .5rem;
+      }
+
+      .photo-section-inner h2 {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+      }
+
+      .compare-table {
+        font-size: .82rem;
+      }
+
+      .compare-table th,
+      .compare-table td {
+        padding: .7rem .9rem;
+      }
+    }
+
     @media (max-width: 640px) {
       .hero h1 {
-        font-size: clamp(2.5rem, 9vw, 3.5rem);
+        font-size: clamp(1.9rem, 9vw, 3rem);
       }
 
       .hiw-grid {
@@ -1300,32 +1345,87 @@
         height: 200px;
       }
 
-      .compare-table {
-        font-size: .8rem;
+      .env-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .compare-table th,
-      .compare-table td {
-        padding: .8rem .9rem;
+      .why-img-sm {
+        display: none;
+      }
+
+      .why-img-badge {
+        left: 0;
+        top: 1rem;
       }
     }
 
     @media (max-width: 480px) {
+      :root {
+        --section-pad: 2.8rem 1rem;
+      }
+
+      .sec-title {
+        font-size: clamp(1.75rem, 8vw, 2.2rem);
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-outline {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        min-height: 52px;
+      }
+
+      /* ADD THESE NEW RULES: */
+      #tsbox-nav {
+        padding: 0 .8rem;
+        gap: .4rem;
+      }
+
+      .nav-logo-name {
+        font-size: 1.35rem;
+      }
+
+      .nav-cta {
+        padding: .5rem .8rem;
+        font-size: .75rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-badge {
+        font-size: .68rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.7rem, 10vw, 2.5rem);
+      }
+
+      .hero-stats-row {
+        flex-direction: column;
+        gap: .5rem;
+      }
+
       .env-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main-img,
+      .hero-main-placeholder {
+        height: 280px;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- VIDEO INTRO MODAL -->
   <div id="video-modal-container">
     <div class="video-content" id="modal-box">
       <div id="play-prompt">
         <div class="play-btn"></div>
-        <h3>RENT BOX - SAVE TREES - SAVE BUCKS!</h3>
+        <h3>RENT BOX — SAVE TREES — SAVE BUCKS!</h3>
         <p>Play Video</p>
       </div>
       <video id="intro-video" muted playsinline preload="auto">
@@ -1337,12 +1437,17 @@
 
   <script src="shared.js"></script>
 
-  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-inner">
       <div>
         <div class="hero-badge">🌿 #1 Reusable Moving Box Service</div>
+        <div
+          style="font-family:'Fraunces',serif;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:900;line-height:1.15;margin-bottom:1.2rem;letter-spacing:-.01em;">
+          <span style="color:#1a7a4a;">RENT BOX</span> &ndash;
+          <span style="color:#E85D2B;">SAVE TREES</span> &ndash;
+          <span style="color:#1a7a4a;">SAVE BUCKS</span>
+        </div>
         <h1>Moving Soon?<br>Skip the <span class="hl-orange">Cardboard.</span><br>Choose <span
             class="hl-green">TSBOX™</span></h1>
         <p class="hero-sub">Durable, item-specific reusable moving boxes delivered straight to your door. Pack faster,
@@ -1370,22 +1475,6 @@
     </div>
   </section>
 
-  <!-- PARTNERS BAR -->
-  <div class="partners-bar">
-    <div class="partners-inner">
-      <div class="partners-lbl">Partnered with</div>
-      <div class="partners-logos">
-        <span class="partner-logo">U-Haul</span>
-        <span class="partner-logo">Home Depot</span>
-        <span class="partner-logo">Walgreens</span>
-        <span class="partner-logo">FedEx</span>
-        <span class="partner-logo">Staples</span>
-        <span class="partner-logo">Amazon</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- GALLERY STRIP -->
   <div class="gallery-strip">
     <div class="gallery-strip-item">
       <img src="img/28.png" alt="TSBOX boxes delivered"
@@ -1409,7 +1498,6 @@
     </div>
   </div>
 
-  <!-- HOW IT WORKS -->
   <section class="bg-white" id="how-it-works">
     <div class="cont">
       <div style="text-align:center;">
@@ -1420,7 +1508,8 @@
       </div>
       <div class="hiw-grid">
         <div class="hiw-step reveal">
-          <div class="hiw-step-ph" style="background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📋</div>
+          <img src="img/18.png" alt="Pack and Move with TSBOX" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-body">
             <div class="hiw-num">1</div>
             <h3>Choose Your Package</h3>
@@ -1428,7 +1517,8 @@
           </div>
         </div>
         <div class="hiw-step reveal">
-          <div class="hiw-step-ph" style="background:linear-gradient(135deg,#FFF5E8,#FFE4C2);">🚚</div>
+          <img src="img/29.png" alt="Pack and Move with TSBOX" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-body">
             <div class="hiw-num">2</div>
             <h3>We Deliver</h3>
@@ -1436,16 +1526,19 @@
           </div>
         </div>
         <div class="hiw-step reveal">
-          <div class="hiw-step-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">📦</div>
+          <img src="img/9.png" alt="Pack and Move with TSBOX" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="hiw-step-ph" style="display:none;background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">📦</div>
           <div class="hiw-body">
             <div class="hiw-num">3</div>
             <h3>Pack &amp; Move</h3>
-            <p>Use purpose-built boxes for dishes, clothes, shoes, wardrobe, and more. Stack securely and move with
-              ease.</p>
+            <p>Use purpose-built TSBOX™ containers for dishes, clothes, shoes, wardrobe, and more. Stack securely and
+              move with ease.</p>
           </div>
         </div>
         <div class="hiw-step reveal">
-          <div class="hiw-step-ph" style="background:linear-gradient(135deg,#F3E8FF,#DEC8F8);">✅</div>
+          <img src="img/28.png" alt="Pack and Move with TSBOX" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-body">
             <div class="hiw-num">4</div>
             <h3>We Pick Up</h3>
@@ -1458,7 +1551,6 @@
 
   <div class="divider"></div>
 
-  <!-- PACKAGES -->
   <section class="bg-cream" id="packages">
     <div class="cont">
       <div class="sec-eyebrow">Rental Packages</div>
@@ -1466,9 +1558,9 @@
       <p class="sec-body">All prices include free delivery, pickup, locks, and a moving dolly.</p>
       <div class="packages-grid">
 
-        <!-- Studio Move -->
         <div class="pkg-card reveal">
-          <img src="img/studio.jpg" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/studio.jpg" alt="TSBOX mission"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-body">
             <div class="pkg-name">Studio Move</div>
             <div class="pkg-rooms">Perfect for studios or single-room apartments</div>
@@ -1494,10 +1586,10 @@
           </div>
         </div>
 
-        <!-- 2-Bedroom Move -->
         <div class="pkg-card featured reveal">
           <div class="pkg-popular">Most Popular</div>
-          <img src="img/2br.png" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/2br.png" alt="TSBOX mission"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-body">
             <div class="pkg-name">2-Bedroom Move</div>
             <div class="pkg-rooms">Ideal for 1–2 bedroom homes or apartments</div>
@@ -1523,9 +1615,9 @@
           </div>
         </div>
 
-        <!-- Family Move -->
         <div class="pkg-card reveal">
-          <img src="img/family.jpg" alt="TSBOX mission" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/family.jpg" alt="TSBOX mission"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-body">
             <div class="pkg-name">Family Move</div>
             <div class="pkg-rooms">Best for 3–4 bedroom homes</div>
@@ -1563,7 +1655,6 @@
 
   <div class="divider"></div>
 
-  <!-- BOX TYPES -->
   <section class="bg-white" id="box-types">
     <div class="cont">
       <div class="sec-eyebrow">Item-Specific Boxes</div>
@@ -1627,7 +1718,7 @@
         <div class="box-type-card reveal">
           <img src="img/9.png" alt="Standard Box"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-
+          <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📦</div>
           <div class="bt-body">
             <h4>Standard Box</h4>
             <p>Heavy-duty, lockable, and stackable — built to last decades.</p><span class="bt-label">Lockable &amp;
@@ -1642,7 +1733,6 @@
 
   <div class="divider"></div>
 
-  <!-- WHY TSBOX -->
   <section class="bg-cream" id="why">
     <div class="cont">
       <div class="sec-eyebrow">Why TSBOX™</div>
@@ -1688,6 +1778,13 @@
             </div>
           </div>
           <div class="why-point reveal">
+            <div class="wp-icon">📍</div>
+            <div class="wp-text">
+              <h4>GPS Tracking Included</h4>
+              <p>Every box comes with GPS — track your delivery in real time and always know where your boxes are.</p>
+            </div>
+          </div>
+          <div class="why-point reveal">
             <div class="wp-icon">🌱</div>
             <div class="wp-text">
               <h4>Zero Waste</h4>
@@ -1699,9 +1796,14 @@
     </div>
   </section>
 
-  <!-- FULL-WIDTH PHOTO -->
   <div class="photo-section">
-    <div class="photo-section-bg"></div>
+    <div class="photo-section-bg"
+      style="background:url('img/1.png') center/cover no-repeat;filter:brightness(.28) saturate(.7);"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;">
+      <img src="img/woman-box.png" alt="Woman with TSBOX on her head"
+        style="height:100%;max-height:420px;object-fit:contain;opacity:.55;pointer-events:none;"
+        onerror="this.style.display='none'">
+    </div>
     <div class="photo-section-overlay"></div>
     <div class="photo-section-inner">
       <div
@@ -1719,7 +1821,6 @@
     </div>
   </div>
 
-  <!-- COMPARISON TABLE -->
   <section class="bg-white">
     <div class="cont">
       <div style="text-align:center;">
@@ -1737,6 +1838,12 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><strong>GPS Tracking</strong></td>
+              <td class="gcol"><span class="cmp-yes">✔</span> Included on every box</td>
+              <td><span class="cmp-no">✘</span> No</td>
+              <td><span class="cmp-no">✘</span> No</td>
+            </tr>
             <tr>
               <td><strong>Item-specific box types</strong></td>
               <td class="gcol"><span class="cmp-yes">✔</span> Dishes, shoes, wardrobes</td>
@@ -1781,7 +1888,6 @@
 
   <div class="divider"></div>
 
-  <!-- TESTIMONIALS -->
   <section class="bg-cream">
     <div class="cont">
       <div style="text-align:center;">
@@ -1791,7 +1897,8 @@
       <div class="testimonials-grid">
 
         <div class="testimonial reveal">
-          <div class="test-ph" style="background:linear-gradient(135deg,#EFF8F3,#C2F5D4);">🏡</div>
+          <img src="img/9.png" alt="TSBOX reusable moving boxes" class="test-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
             <div class="test-quote">The dish boxes alone made it worth it. Not a single plate broke.</div>
@@ -1806,7 +1913,9 @@
         </div>
 
         <div class="testimonial reveal">
-          <div class="test-ph" style="background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">📦</div>
+          <img src="img/18.png" alt="TSBOX reusable moving boxes" class="test-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="test-ph" style="display:none;background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">📦</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
             <div class="test-quote">Everything arrived on time, spotless, and pickup was effortless.</div>
@@ -1821,7 +1930,8 @@
         </div>
 
         <div class="testimonial reveal">
-          <div class="test-ph" style="background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">🚚</div>
+          <img src="img/22.png" alt="TSBOX reusable moving boxes" class="test-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
             <div class="test-quote">The wardrobe boxes saved us so much time — incredible experience.</div>
@@ -1838,37 +1948,9 @@
       </div>
     </div>
   </section>
-
+ 
   <div class="divider"></div>
 
-  <!-- ABOUT STRIP -->
-  <section class="bg-white">
-    <div class="cont">
-      <div class="about-strip">
-        <div class="reveal">
-          <div class="sec-eyebrow">Who We Are</div>
-          <h2 class="sec-title">Built in Beverly Hills,<br>Los Angeles.</h2>
-          <p class="sec-body">Our mission is to eliminate single-use moving waste and replace it with a smarter system.
-            Founded by Roman Alexander, TSBOX™ is redefining how people move.</p>
-          <p class="sec-body" style="margin-top:1rem;">We're backed by strategic partnerships with U-Haul, Home Depot,
-            Walgreens and more — giving us built-in distribution from day one.</p>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
-            <a href="about.html" class="btn-secondary">Meet the Team →</a>
-            <a href="invest.html" class="btn-outline">Investors</a>
-          </div>
-        </div>
-        <div class="reveal">
-          <img src="img/22.png" alt="TSBOX team and brand" class="about-img"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="about-img-ph" style="display:none;">🌿</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ORDER FORM -->
   <section class="bg-cream" id="order">
     <div class="cont">
       <div style="text-align:center;">
@@ -1925,7 +2007,6 @@
         </p>
       </div>
 
-      <!-- Success message (hidden until form submits) -->
       <div id="success-msg" style="display:none; text-align:center; padding:3rem 1rem;">
         <h3 style="margin-bottom:.5rem;">✅ Reservation Sent!</h3>
         <p>Your email client has opened with all your details. Just hit Send — Roman will confirm within a few hours.
@@ -1995,7 +2076,6 @@
 
   <div class="divider"></div>
 
-  <!-- FAQ -->
   <section class="bg-white" id="faq">
     <div class="cont" style="max-width:780px;">
       <div style="text-align:center;">
@@ -2003,6 +2083,15 @@
         <h2 class="sec-title">Frequently Asked Questions</h2>
       </div>
       <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-text">Do the boxes have GPS tracking?</div>
+            <div class="faq-toggle">+</div>
+          </div>
+          <div class="faq-a">Yes! Every TSBOX™ delivery comes with GPS tracking so you can follow your boxes in real
+            time — from our depot to your door and back.</div>
+        </div>
 
         <div class="faq-item">
           <div class="faq-q">
@@ -2060,7 +2149,6 @@
     </div>
   </section>
 
-  <!-- ENVIRONMENTAL IMPACT -->
   <section style="background:var(--green-dk);padding:4rem 1.5rem;">
     <div class="cont">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:3rem;">
@@ -2101,7 +2189,6 @@
     </div>
   </section>
 
-  <!-- FINAL CTA -->
   <section class="cta-strip" style="padding:4rem 1.5rem;">
     <h2>Ready for a Better Move?</h2>
     <p>Reserve your TSBOX™ boxes today and move smarter.</p>
@@ -2163,13 +2250,6 @@
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
         if (!isOpen) item.classList.add('open');
       });
-    });
-
-    /* ══ FORM ══ */
-    document.getElementById('form-submit').addEventListener('click', function () {
-      this.textContent = '✓ Request Sent — We\'ll Contact You Soon!';
-      this.style.background = 'var(--green)';
-      this.disabled = true;
     });
   </script>
 </body>

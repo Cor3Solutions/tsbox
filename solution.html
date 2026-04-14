@@ -231,28 +231,20 @@
     }
 
     @media(max-width:900px) {
-      .boxes-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .two-col {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .env-list {
-        grid-template-columns: 1fr;
-      }
-
-      .problem-solution {
-        grid-template-columns: 1fr;
-      }
+      .boxes-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .env-list { grid-template-columns: 1fr; }
+      .problem-solution { grid-template-columns: 1fr; }
+    }
+    @media(max-width:600px) {
+      .photo-wide { height: 220px; }
+      .env-num { font-size: 1.5rem; }
     }
   </style>
 </head>
 
 <body>
-  <script src="shared.js"></script>
+  
 
   <!-- PAGE HERO -->
   <div class="page-hero" style="position:relative;overflow:hidden;">
@@ -445,6 +437,7 @@
     </div>
   </section>
 
+  <script src="shared.js"></script>
 </body>
 
 </html>

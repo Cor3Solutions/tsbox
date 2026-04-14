@@ -1,21 +1,77 @@
-// shared.js — TSBOX™ navigation + footer
+// shared.js — TSBOX™ navigation + footer (all pages)
 
 const NAV_HTML = `
 <nav id="tsbox-nav">
-  <a href="index.html" class="logo">TS<span>BOX</span>™</a>
-  <ul class="nav-links">
+  <a href="index.html" class="nav-logo-wrap">
+    <span class="nav-logo-name">TS<span>BOX</span>™</span>
+    <span class="nav-logo-sub">Tree Saving Box</span>
+  </a>
+
+  <ul class="nav-links" id="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="solution.html">Box Types</a></li>
-    <li><a href="about.html">How It Works</a></li>
-    <li><a href="financials.html">Pricing</a></li>
-    <li><a href="invest.html">Investors</a></li>
+
+    <li class="has-dropdown">
+      <button class="nav-drop-btn">Boxes <span class="chevron">▼</span></button>
+      <div class="dropdown-menu">
+        <a href="solution.html">All Box Types</a>
+        <a href="solution.html#box-types">Dish Box</a>
+        <a href="solution.html#box-types">Wardrobe Box</a>
+        <a href="solution.html#box-types">Shoe Box</a>
+        <a href="solution.html#box-types">Book Box</a>
+        <a href="solution.html#box-types">Glassware Box</a>
+        <a href="solution.html#box-types">Standard Box</a>
+      </div>
+    </li>
+
+    <li class="has-dropdown">
+      <button class="nav-drop-btn">Packages <span class="chevron">▼</span></button>
+      <div class="dropdown-menu">
+        <a href="index.html#packages">Studio Move — $49/wk</a>
+        <a href="index.html#packages">2-Bedroom — $89/wk</a>
+        <a href="index.html#packages">Family Move — $149/wk</a>
+        <a href="financials.html">Full Pricing</a>
+      </div>
+    </li>
+
+    <li class="has-dropdown">
+      <button class="nav-drop-btn">Company <span class="chevron">▼</span></button>
+      <div class="dropdown-menu">
+        <a href="about.html">About Us</a>
+        <a href="about.html#mission">Our Mission</a>
+        <a href="about.html#founder">Founder</a>
+        <a href="about.html#values">Our Values</a>
+      </div>
+    </li>
+
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:.8rem;">
-    <a href="tel:3109995015" style="font-size:.85rem;font-weight:700;color:var(--green);display:none;" class="nav-phone">310-999-5015</a>
+
+  <div class="nav-right">
     <a href="index.html#order" class="nav-cta">Reserve Boxes →</a>
-    <button class="nav-hamburger" id="nav-toggle" aria-label="Menu">
+    <button class="nav-hamburger" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
+  </div>
+
+  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <a href="index.html">🏠 Home</a>
+    <div class="mob-group-label">Boxes</div>
+    <a href="solution.html">All Box Types</a>
+    <a href="solution.html#box-types">Dish / Wardrobe / Shoe / Book Box</a>
+    <div class="mob-group-label">Packages</div>
+    <a href="index.html#packages">Studio — $49/wk</a>
+    <a href="index.html#packages">2-Bedroom — $89/wk</a>
+    <a href="index.html#packages">Family — $149/wk</a>
+    <a href="financials.html">Full Pricing</a>
+    <div class="mob-group-label">Company</div>
+    <a href="about.html">About Us</a>
+    <a href="about.html#founder">Founder</a>
+    <a href="about.html#values">Our Values</a>
+    <div class="mob-group-label">More</div>
+    <a href="index.html#how-it-works">How It Works</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="index.html#order" class="mob-cta">Reserve Boxes →</a>
   </div>
 </nav>`;
 
@@ -50,7 +106,6 @@ const FOOTER_HTML = `
         <li><a href="about.html">About Us</a></li>
         <li><a href="about.html#values">Our Values</a></li>
         <li><a href="about.html#team">Leadership</a></li>
-        <li><a href="about.html#marketing">Partnerships</a></li>
       </ul>
     </div>
     <div class="f-col">
@@ -58,7 +113,7 @@ const FOOTER_HTML = `
       <ul>
         <li><a href="tel:3109995015">Call Us</a></li>
         <li><a href="mailto:1000pacific@gmail.com">Email Us</a></li>
-        <li><a href="invest.html">Investors</a></li>
+        <li><a href="index.html#order">Reserve Boxes</a></li>
         <li><a href="mailto:1000pacific@gmail.com">Get a Quote</a></li>
       </ul>
     </div>
@@ -76,33 +131,64 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.insertAdjacentHTML('afterbegin', NAV_HTML);
   document.body.insertAdjacentHTML('beforeend', FOOTER_HTML);
 
+  // Active link
   const path = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    if (a.getAttribute('href') === path || a.getAttribute('href').startsWith(path.split('#')[0])) {
-      a.classList.add('active');
-    }
+  document.querySelectorAll('#nav-links a').forEach(a => {
+    const href = a.getAttribute('href').split('#')[0];
+    if (href === path) a.classList.add('active');
   });
 
+  // Hamburger
   const toggle = document.getElementById('nav-toggle');
-  const nav    = document.getElementById('tsbox-nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => document.body.classList.toggle('mobile-nav-open'));
-    document.addEventListener('click', e => {
-      if (!nav.contains(e.target)) document.body.classList.remove('mobile-nav-open');
+  const drawer = document.getElementById('mobile-drawer');
+  if (toggle && drawer) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = drawer.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+      drawer.setAttribute('aria-hidden', !open);
+      document.body.classList.toggle('drawer-open', open);
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#tsbox-nav')) {
+        drawer.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+        drawer.setAttribute('aria-hidden', true);
+        document.body.classList.remove('drawer-open');
+      }
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        toggle.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      });
     });
   }
 
-  // Scroll-reveal
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        revealObserver.unobserve(entry.target);
-      }
+  // Desktop dropdowns (click-based, works on touch)
+  document.querySelectorAll('.has-dropdown').forEach(li => {
+    li.querySelector('.nav-drop-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = li.classList.contains('drop-open');
+      document.querySelectorAll('.has-dropdown').forEach(x => x.classList.remove('drop-open'));
+      if (!isOpen) li.classList.add('drop-open');
     });
-  }, { threshold: 0.1 });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.has-dropdown').forEach(x => x.classList.remove('drop-open'));
+  });
+
+  // Scroll-reveal
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('revealed'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = `${i * 0.06}s`;
-    revealObserver.observe(el);
+    el.style.transitionDelay = Math.min(i * 0.05, 0.4) + 's';
+    ro.observe(el);
   });
 });
