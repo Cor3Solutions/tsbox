@@ -29,21 +29,9 @@ const NAV_HTML = `
         <a href="index.html#packages">Studio Move — $49/wk</a>
         <a href="index.html#packages">2-Bedroom — $89/wk</a>
         <a href="index.html#packages">Family Move — $149/wk</a>
-        <a href="financials.html">Full Pricing</a>
-      </div>
+       </div>
     </li>
-
-    <li class="has-dropdown">
-      <button class="nav-drop-btn">Company <span class="chevron">▼</span></button>
-      <div class="dropdown-menu">
-        <a href="about.html">About Us</a>
-        <a href="about.html#mission">Our Mission</a>
-        <a href="about.html#founder">Founder</a>
-        <a href="about.html#values">Our Values</a>
-      </div>
-    </li>
-
-    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="about.html">Company</a></li> 
     <li><a href="index.html#faq">FAQ</a></li>
   </ul>
 
@@ -63,14 +51,8 @@ const NAV_HTML = `
     <a href="index.html#packages">Studio — $49/wk</a>
     <a href="index.html#packages">2-Bedroom — $89/wk</a>
     <a href="index.html#packages">Family — $149/wk</a>
-    <a href="financials.html">Full Pricing</a>
-    <div class="mob-group-label">Company</div>
-    <a href="about.html">About Us</a>
-    <a href="about.html#founder">Founder</a>
-    <a href="about.html#values">Our Values</a>
-    <div class="mob-group-label">More</div>
-    <a href="index.html#how-it-works">How It Works</a>
-    <a href="index.html#faq">FAQ</a>
+        <a href="about.html#faq">Company</a> 
+     <a href="index.html#faq">FAQ</a>
     <a href="index.html#order" class="mob-cta">Reserve Boxes →</a>
   </div>
 </nav>`;
