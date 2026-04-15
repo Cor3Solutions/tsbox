@@ -193,8 +193,13 @@
       animation: fadeUp .6s .2s both;
     }
 
-    .hero h1 .hl-orange { color: var(--orange); }
-    .hero h1 .hl-green { color: var(--green); }
+    .hero h1 .hl-orange {
+      color: var(--orange);
+    }
+
+    .hero h1 .hl-green {
+      color: var(--green);
+    }
 
     .hero-sub {
       font-size: 1.15rem;
@@ -221,8 +226,16 @@
       animation: fadeUp .6s .5s both;
     }
 
-    .hero-trust-stars { color: #F59E0B; font-size: 1.1rem; }
-    .hero-trust-txt { font-size: .85rem; color: var(--muted); font-weight: 700; }
+    .hero-trust-stars {
+      color: #F59E0B;
+      font-size: 1.1rem;
+    }
+
+    .hero-trust-txt {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
 
     .hero-visual {
       position: relative;
@@ -312,7 +325,9 @@
       display: block;
     }
 
-    .gallery-strip-item:hover img { transform: scale(1.06); }
+    .gallery-strip-item:hover img {
+      transform: scale(1.06);
+    }
 
     .gallery-strip-placeholder {
       width: 100%;
@@ -360,7 +375,10 @@
       font-size: 2.5rem;
     }
 
-    .hiw-body { padding: 1.4rem; text-align: center; }
+    .hiw-body {
+      padding: 1.4rem;
+      text-align: center;
+    }
 
     .hiw-num {
       width: 46px;
@@ -406,12 +424,15 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding-bottom: 4px; /* avoids clipping box-shadow */
+      padding-bottom: 4px;
+      /* avoids clipping box-shadow */
     }
 
-    .swipe-carousel::-webkit-scrollbar { display: none; }
+    .swipe-carousel::-webkit-scrollbar {
+      display: none;
+    }
 
-    .swipe-carousel > * {
+    .swipe-carousel>* {
       scroll-snap-align: start;
       flex-shrink: 0;
     }
@@ -499,7 +520,9 @@
       font-size: 3rem;
     }
 
-    .pkg-card-body { padding: 1.8rem; }
+    .pkg-card-body {
+      padding: 1.8rem;
+    }
 
     .pkg-popular {
       position: absolute;
@@ -523,7 +546,12 @@
       margin-bottom: .25rem;
     }
 
-    .pkg-rooms { font-size: .85rem; color: var(--muted); font-weight: 700; margin-bottom: 1rem; }
+    .pkg-rooms {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
 
     .pkg-price-row {
       display: flex;
@@ -541,9 +569,15 @@
       color: var(--green);
     }
 
-    .pkg-card.featured .pkg-price-row .big { color: var(--orange); }
+    .pkg-card.featured .pkg-price-row .big {
+      color: var(--orange);
+    }
 
-    .pkg-price-row .small { font-size: .85rem; color: var(--muted); font-weight: 700; }
+    .pkg-price-row .small {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
 
     .pkg-features {
       display: flex;
@@ -577,7 +611,9 @@
       margin-top: .1rem;
     }
 
-    .pkg-card.featured .pkg-feature .chk { background: var(--orange); }
+    .pkg-card.featured .pkg-feature .chk {
+      background: var(--orange);
+    }
 
     .pkg-cta {
       display: block;
@@ -592,7 +628,10 @@
       text-decoration: none;
     }
 
-    .pkg-cta:hover { background: var(--green); color: #fff; }
+    .pkg-cta:hover {
+      background: var(--green);
+      color: #fff;
+    }
 
     .pkg-card.featured .pkg-cta {
       background: var(--orange);
@@ -601,7 +640,9 @@
       box-shadow: 0 6px 20px rgba(232, 93, 43, .3);
     }
 
-    .pkg-card.featured .pkg-cta:hover { background: var(--orange-lt); }
+    .pkg-card.featured .pkg-cta:hover {
+      background: var(--orange-lt);
+    }
 
     /* ══ BOX TYPES GRID ══ */
     .box-types-grid {
@@ -625,7 +666,12 @@
       box-shadow: 0 10px 32px rgba(26, 122, 74, .1);
     }
 
-    .bt-img { width: 100%; height: 155px; object-fit: cover; display: block; }
+    .bt-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+    }
 
     .bt-ph {
       width: 100%;
@@ -636,7 +682,9 @@
       font-size: 2.5rem;
     }
 
-    .bt-body { padding: 1.1rem; }
+    .bt-body {
+      padding: 1.1rem;
+    }
 
     .bt-body h4 {
       font-family: var(--serif);
@@ -646,7 +694,12 @@
       margin-bottom: .3rem;
     }
 
-    .bt-body p { font-size: .81rem; color: var(--muted); font-weight: 600; line-height: 1.5; }
+    .bt-body p {
+      font-size: .81rem;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.5;
+    }
 
     .bt-label {
       font-size: .62rem;
@@ -670,7 +723,9 @@
       margin-top: 2.5rem;
     }
 
-    .why-img-stack { position: relative; }
+    .why-img-stack {
+      position: relative;
+    }
 
     .why-img-main {
       width: 100%;
@@ -708,7 +763,8 @@
     .why-img-badge {
       position: absolute;
       top: 1.5rem;
-      left: 1rem; /* fixed: was -1.5rem which caused overflow on mobile */
+      left: 1rem;
+      /* fixed: was -1.5rem which caused overflow on mobile */
       background: var(--green);
       color: #fff;
       padding: .9rem 1.2rem;
@@ -718,7 +774,12 @@
       z-index: 2;
     }
 
-    .why-img-badge .wbn { font-family: var(--serif); font-size: 2rem; font-weight: 900; line-height: 1; }
+    .why-img-badge .wbn {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
 
     .why-img-badge .wbl {
       font-size: .62rem;
@@ -729,7 +790,11 @@
       margin-top: .2rem;
     }
 
-    .why-points { display: flex; flex-direction: column; gap: 1rem; }
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
     .why-point {
       display: flex;
@@ -742,7 +807,10 @@
       transition: border-color .2s, transform .25s;
     }
 
-    .why-point:hover { border-color: var(--green); transform: translateX(4px); }
+    .why-point:hover {
+      border-color: var(--green);
+      transform: translateX(4px);
+    }
 
     .wp-icon {
       width: 44px;
@@ -756,9 +824,19 @@
       flex-shrink: 0;
     }
 
-    .wp-text h4 { font-size: 1rem; font-weight: 800; color: var(--ink); margin-bottom: .25rem; }
+    .wp-text h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: .25rem;
+    }
 
-    .wp-text p { font-size: .85rem; color: var(--muted); font-weight: 600; line-height: 1.5; }
+    .wp-text p {
+      font-size: .85rem;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.5;
+    }
 
     /* ══ PHOTO / CTA SECTION ══ */
     .photo-section {
@@ -779,7 +857,9 @@
       gap: 80px;
     }
 
-    .photo-text { flex: 1.2; }
+    .photo-text {
+      flex: 1.2;
+    }
 
     .eyebrow-huge {
       display: inline-block;
@@ -802,7 +882,11 @@
       margin-bottom: 3rem;
     }
 
-    .photo-image { flex: 1; display: flex; justify-content: center; }
+    .photo-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
 
     .photo-image img {
       width: 100%;
@@ -813,9 +897,15 @@
       transition: transform 0.5s ease;
     }
 
-    .photo-image:hover img { transform: scale(1.03); }
+    .photo-image:hover img {
+      transform: scale(1.03);
+    }
 
-    .btn-group { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
 
     /* ══ COMPARE TABLE ══ */
     .compare-table {
@@ -836,8 +926,13 @@
       color: #fff;
     }
 
-    .compare-table th:first-child { background: var(--ink); }
-    .compare-table th.gcol { background: var(--green); }
+    .compare-table th:first-child {
+      background: var(--ink);
+    }
+
+    .compare-table th.gcol {
+      background: var(--green);
+    }
 
     .compare-table td {
       padding: 1rem 1.5rem;
@@ -847,16 +942,28 @@
       border-bottom: 1px solid var(--divider);
     }
 
-    .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table tr:nth-child(even) td { background: #F7FCF9; }
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .compare-table tr:nth-child(even) td {
+      background: #F7FCF9;
+    }
 
     .compare-table td.gcol {
       background: rgba(26, 122, 74, .06) !important;
       color: var(--green-dk);
     }
 
-    .cmp-yes { color: var(--green); font-size: 1.05rem; }
-    .cmp-no { color: #E8442B; font-size: 1.05rem; }
+    .cmp-yes {
+      color: var(--green);
+      font-size: 1.05rem;
+    }
+
+    .cmp-no {
+      color: #E8442B;
+      font-size: 1.05rem;
+    }
 
     /* ══ PARTNERS ══ */
     .partners-bar {
@@ -884,10 +991,23 @@
       white-space: nowrap;
     }
 
-    .partners-logos { display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: center; }
+    .partners-logos {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-    .partner-logo { font-size: .95rem; font-weight: 900; color: var(--muted); transition: color .2s; }
-    .partner-logo:hover { color: var(--green); }
+    .partner-logo {
+      font-size: .95rem;
+      font-weight: 900;
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .partner-logo:hover {
+      color: var(--green);
+    }
 
     /* ══ TESTIMONIALS ══ */
     .testimonials-grid {
@@ -905,9 +1025,17 @@
       transition: border-color .2s, transform .3s;
     }
 
-    .testimonial:hover { border-color: var(--green); transform: translateY(-3px); }
+    .testimonial:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
 
-    .test-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .test-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
 
     .test-ph {
       width: 100%;
@@ -918,8 +1046,15 @@
       font-size: 2.5rem;
     }
 
-    .test-body { padding: 1.5rem; }
-    .test-stars { color: #F59E0B; font-size: 1rem; margin-bottom: .8rem; }
+    .test-body {
+      padding: 1.5rem;
+    }
+
+    .test-stars {
+      color: #F59E0B;
+      font-size: 1rem;
+      margin-bottom: .8rem;
+    }
 
     .test-quote {
       font-size: .92rem;
@@ -939,7 +1074,11 @@
       font-family: var(--serif);
     }
 
-    .test-author { display: flex; align-items: center; gap: .8rem; }
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
 
     .test-avatar {
       width: 40px;
@@ -955,8 +1094,17 @@
       font-weight: 900;
     }
 
-    .test-name { font-size: .88rem; font-weight: 800; color: var(--ink); }
-    .test-loc { font-size: .78rem; color: var(--muted); font-weight: 600; }
+    .test-name {
+      font-size: .88rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .test-loc {
+      font-size: .78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
 
     /* ══ ABOUT STRIP ══ */
     .about-strip {
@@ -987,7 +1135,12 @@
     }
 
     /* ══ FAQ ══ */
-    .faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: .8rem; }
+    .faq-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
 
     .faq-item {
       background: var(--white);
@@ -997,7 +1150,9 @@
       transition: border-color .2s;
     }
 
-    .faq-item.open { border-color: var(--green); }
+    .faq-item.open {
+      border-color: var(--green);
+    }
 
     .faq-q {
       padding: 1.3rem 1.5rem;
@@ -1008,7 +1163,11 @@
       gap: 1rem;
     }
 
-    .faq-q-text { font-size: 1rem; font-weight: 800; color: var(--ink); }
+    .faq-q-text {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
 
     .faq-toggle {
       width: 30px;
@@ -1044,7 +1203,10 @@
       line-height: 1.65;
     }
 
-    .faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.3rem; }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 1.5rem 1.3rem;
+    }
 
     /* ══ ORDER FORM ══ */
     .order-form-wrap {
@@ -1064,8 +1226,18 @@
       margin-bottom: 1rem;
     }
 
-    .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
-    .form-group label { font-size: .85rem; font-weight: 800; color: var(--ink); }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
 
     .form-group input,
     .form-group select,
@@ -1089,7 +1261,10 @@
       background: #fff;
     }
 
-    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
 
     /* ══ ENV / CTA ══ */
     .env-grid {
@@ -1114,7 +1289,13 @@
       line-height: 1;
     }
 
-    .env-card p { font-size: .8rem; color: rgba(255, 255, 255, .72); font-weight: 600; margin-top: .5rem; line-height: 1.4; }
+    .env-card p {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .72);
+      font-weight: 600;
+      margin-top: .5rem;
+      line-height: 1.4;
+    }
 
     /* ══ STATS TABLE ══ */
     .stats-container {
@@ -1126,9 +1307,21 @@
       font-family: 'Inter', sans-serif;
     }
 
-    .stats-title-area { text-align: center; margin-bottom: 50px; }
-    .stats-title-area h2 { color: #ffffff; font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
-    .stats-title-area p { color: #cbd5e0; }
+    .stats-title-area {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .stats-title-area h2 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .stats-title-area p {
+      color: #cbd5e0;
+    }
 
     .stats-table-wrapper {
       max-width: 1100px;
@@ -1140,19 +1333,32 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
-    .stats-table-wrapper::-webkit-scrollbar { height: 6px; }
-    .stats-table-wrapper::-webkit-scrollbar-thumb { background: #4b6c4b; border-radius: 10px; }
+    .stats-table-wrapper::-webkit-scrollbar {
+      height: 6px;
+    }
 
-    .stats-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    .stats-table-wrapper::-webkit-scrollbar-thumb {
+      background: #4b6c4b;
+      border-radius: 10px;
+    }
 
-    .stats-table th, .stats-table td {
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    .stats-table th,
+    .stats-table td {
       padding: 25px 20px;
       text-align: center;
       border-bottom: 1px solid #eee;
       white-space: nowrap;
     }
 
-    .stats-table thead tr { background: #f8fafc; }
+    .stats-table thead tr {
+      background: #f8fafc;
+    }
 
     .stats-table thead th {
       color: #0b3022;
@@ -1171,13 +1377,26 @@
       color: #ffffff;
       text-align: left;
       font-weight: 700;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
-    .stats-table th:first-child { background: #071f16; }
+    .stats-table th:first-child {
+      background: #071f16;
+    }
 
-    .stat-value { display: block; font-size: 1.4rem; font-weight: 800; color: #0b3022; }
-    .stat-unit { font-size: 0.7rem; color: #666; text-transform: uppercase; font-weight: 700; }
+    .stat-value {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0b3022;
+    }
+
+    .stat-unit {
+      font-size: 0.7rem;
+      color: #666;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
 
     .swipe-hint {
       display: none;
@@ -1190,8 +1409,15 @@
     }
 
     /* ══ TSBOX GREEN SECTION ══ */
-    .tsbox-section { background: var(--green-dk, #1a4331); padding: 4rem 1.5rem; }
-    .tsbox-container { max-width: 1100px; margin: 0 auto; }
+    .tsbox-section {
+      background: var(--green-dk, #1a4331);
+      padding: 4rem 1.5rem;
+    }
+
+    .tsbox-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
     .tsbox-main-grid {
       display: grid;
@@ -1201,51 +1427,158 @@
       margin-bottom: 3rem;
     }
 
-    .img-reveal-box { border-radius: 1.5rem; overflow: hidden; height: 350px; }
+    .img-reveal-box {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      height: 350px;
+    }
 
     /* ══ RESPONSIVE ══ */
 
     /* ── 1024px ── */
     @media (max-width: 1024px) {
-      .packages-grid { grid-template-columns: 1fr 1fr; }
+      .packages-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     /* ── 900px ── */
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-visual { max-width: 500px; margin: 0 auto; }
-      .hiw-grid { grid-template-columns: 1fr 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr 1fr; }
-      .box-types-grid { grid-template-columns: 1fr 1fr; }
-      .env-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-strip { grid-template-columns: 1fr 1fr; height: 320px; }
-      .about-strip { grid-template-columns: 1fr; gap: 2rem; }
-      .tsbox-main-grid { grid-template-columns: 1fr; text-align: center; }
-      .img-reveal-box { height: 250px; }
-      .photo-container { flex-direction: column; text-align: center; gap: 40px; }
-      .btn-group { justify-content: center; }
-      .eyebrow-huge { border-left: none; border-bottom: 3px solid #c2f5ac; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-visual {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .hiw-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .box-types-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .env-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-strip {
+        grid-template-columns: 1fr 1fr;
+        height: 320px;
+      }
+
+      .about-strip {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .tsbox-main-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .img-reveal-box {
+        height: 250px;
+      }
+
+      .photo-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .btn-group {
+        justify-content: center;
+      }
+
+      .eyebrow-huge {
+        border-left: none;
+        border-bottom: 3px solid #c2f5ac;
+      }
     }
 
     /* ── 768px ── */
     @media (max-width: 768px) {
-      .hero { padding-top: calc(64px + 3rem); padding-bottom: 3rem; }
-      .hero h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
-      .hero-actions { flex-direction: column; gap: .75rem; }
-      .hero-actions a { width: 100%; justify-content: center; }
-      .hero-sub { font-size: 1rem; }
-      .hero-float-badge { display: none; }
-      .hero-float-img { display: none; }
-      .hero-trust { flex-wrap: wrap; gap: .5rem; }
-      .photo-section { padding: 60px 20px; }
-      .main-headline { font-size: clamp(2rem, 7vw, 3.5rem); }
-      .compare-table { font-size: .82rem; }
-      .compare-table th, .compare-table td { padding: .7rem .9rem; }
-      .swipe-hint { display: block; }
-      .stats-container { padding: 40px 15px; }
-      .stats-title-area h2 { font-size: 1.8rem; }
-      .swipe-hint-label { display: block; }
+      .hero {
+        padding-top: calc(64px + 3rem);
+        padding-bottom: 3rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: .75rem;
+      }
+
+      .hero-actions a {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+      }
+
+      .hero-float-badge {
+        display: none;
+      }
+
+      .hero-float-img {
+        display: none;
+      }
+
+      .hero-trust {
+        flex-wrap: wrap;
+        gap: .5rem;
+      }
+
+      .photo-section {
+        padding: 60px 20px;
+      }
+
+      .main-headline {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+      }
+
+      .compare-table {
+        font-size: .82rem;
+      }
+
+      .compare-table th,
+      .compare-table td {
+        padding: .7rem .9rem;
+      }
+
+      .swipe-hint {
+        display: block;
+      }
+
+      .stats-container {
+        padding: 40px 15px;
+      }
+
+      .stats-title-area h2 {
+        font-size: 1.8rem;
+      }
+
+      .swipe-hint-label {
+        display: block;
+      }
 
       /* packages: swipeable on mobile */
       .packages-grid {
@@ -1259,7 +1592,11 @@
         margin-top: 2rem;
         padding-bottom: 4px;
       }
-      .packages-grid::-webkit-scrollbar { display: none; }
+
+      .packages-grid::-webkit-scrollbar {
+        display: none;
+      }
+
       .packages-grid .pkg-card {
         flex-shrink: 0;
         width: 82vw;
@@ -1279,7 +1616,11 @@
         margin-top: 2rem;
         padding-bottom: 4px;
       }
-      .testimonials-grid::-webkit-scrollbar { display: none; }
+
+      .testimonials-grid::-webkit-scrollbar {
+        display: none;
+      }
+
       .testimonials-grid .testimonial {
         flex-shrink: 0;
         width: 78vw;
@@ -1290,7 +1631,9 @@
 
     /* ── 640px ── */
     @media (max-width: 640px) {
-      .hero h1 { font-size: clamp(1.9rem, 9vw, 3rem); }
+      .hero h1 {
+        font-size: clamp(1.9rem, 9vw, 3rem);
+      }
 
       /* hiw: swipeable */
       .hiw-grid {
@@ -1303,7 +1646,11 @@
         gap: 1rem;
         padding-bottom: 4px;
       }
-      .hiw-grid::-webkit-scrollbar { display: none; }
+
+      .hiw-grid::-webkit-scrollbar {
+        display: none;
+      }
+
       .hiw-grid .hiw-step {
         flex-shrink: 0;
         width: 72vw;
@@ -1322,7 +1669,11 @@
         gap: 1rem;
         padding-bottom: 4px;
       }
-      .box-types-grid::-webkit-scrollbar { display: none; }
+
+      .box-types-grid::-webkit-scrollbar {
+        display: none;
+      }
+
       .box-types-grid .box-type-card {
         flex-shrink: 0;
         width: 72vw;
@@ -1330,22 +1681,46 @@
         scroll-snap-align: start;
       }
 
-      .form-row { grid-template-columns: 1fr; }
-      .gallery-strip { height: 200px; }
-      .env-grid { grid-template-columns: 1fr 1fr; }
-      .why-img-sm { display: none; }
-      .why-img-badge { left: 1rem; top: 1rem; }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-strip {
+        height: 200px;
+      }
+
+      .env-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .why-img-sm {
+        display: none;
+      }
+
+      .why-img-badge {
+        left: 1rem;
+        top: 1rem;
+      }
 
       /* order form padding on small screens */
-      .order-form-wrap { padding: 1.5rem 1rem; }
+      .order-form-wrap {
+        padding: 1.5rem 1rem;
+      }
     }
 
     /* ── 480px ── */
     @media (max-width: 480px) {
-      :root { --section-pad: 2.8rem 1rem; }
-      .sec-title { font-size: clamp(1.75rem, 8vw, 2.2rem); }
+      :root {
+        --section-pad: 2.8rem 1rem;
+      }
 
-      .btn-primary, .btn-secondary, .btn-outline {
+      .sec-title {
+        font-size: clamp(1.75rem, 8vw, 2.2rem);
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-outline {
         width: 100%;
         justify-content: center;
         padding: 1rem 1.5rem;
@@ -1353,39 +1728,107 @@
         min-height: 52px;
       }
 
-      #tsbox-nav { padding: 0 .8rem; gap: .4rem; }
-      .nav-logo-name { font-size: 1.35rem; }
-      .nav-cta { padding: .5rem .8rem; font-size: .75rem; }
+      #tsbox-nav {
+        padding: 0 .8rem;
+        gap: .4rem;
+      }
 
-      .hero-badge { font-size: .68rem; }
-      .hero h1 { font-size: clamp(1.7rem, 10vw, 2.5rem); }
-      .hero-stats-row { flex-direction: column; gap: .5rem; }
-      .env-grid { grid-template-columns: 1fr; }
-      .hero-main-img, .hero-main-placeholder { height: 280px; }
+      .nav-logo-name {
+        font-size: 1.35rem;
+      }
+
+      .nav-cta {
+        padding: .5rem .8rem;
+        font-size: .75rem;
+      }
+
+      .hero-badge {
+        font-size: .68rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.7rem, 10vw, 2.5rem);
+      }
+
+      .hero-stats-row {
+        flex-direction: column;
+        gap: .5rem;
+      }
+
+      .env-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main-img,
+      .hero-main-placeholder {
+        height: 280px;
+      }
 
       /* packages single card width on very small */
-      .packages-grid .pkg-card { width: 88vw; }
-      .testimonials-grid .testimonial { width: 88vw; }
-      .hiw-grid .hiw-step { width: 78vw; }
-      .box-types-grid .box-type-card { width: 78vw; }
+      .packages-grid .pkg-card {
+        width: 88vw;
+      }
 
-      .why-grid { gap: 2rem; }
-      .why-img-main, .why-img-main-ph { height: 280px; }
+      .testimonials-grid .testimonial {
+        width: 88vw;
+      }
 
-      .photo-section { padding: 48px 16px; }
-      .main-headline { margin-bottom: 1.5rem; }
+      .hiw-grid .hiw-step {
+        width: 78vw;
+      }
 
-      .tsbox-section { padding: 2.5rem 1rem; }
-      .tsbox-main-grid { gap: 2rem; margin-bottom: 2rem; }
-      .img-reveal-box { height: 200px; }
+      .box-types-grid .box-type-card {
+        width: 78vw;
+      }
+
+      .why-grid {
+        gap: 2rem;
+      }
+
+      .why-img-main,
+      .why-img-main-ph {
+        height: 280px;
+      }
+
+      .photo-section {
+        padding: 48px 16px;
+      }
+
+      .main-headline {
+        margin-bottom: 1.5rem;
+      }
+
+      .tsbox-section {
+        padding: 2.5rem 1rem;
+      }
+
+      .tsbox-main-grid {
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .img-reveal-box {
+        height: 200px;
+      }
     }
 
     /* ── 380px — tiny phones ── */
     @media (max-width: 380px) {
-      .packages-grid .pkg-card { width: 92vw; }
-      .testimonials-grid .testimonial { width: 92vw; }
-      .hiw-grid .hiw-step { width: 86vw; }
-      .box-types-grid .box-type-card { width: 86vw; }
+      .packages-grid .pkg-card {
+        width: 92vw;
+      }
+
+      .testimonials-grid .testimonial {
+        width: 92vw;
+      }
+
+      .hiw-grid .hiw-step {
+        width: 86vw;
+      }
+
+      .box-types-grid .box-type-card {
+        width: 86vw;
+      }
     }
   </style>
 </head>
@@ -1410,45 +1853,61 @@
       <div>
         <div class="hero-badge">🌿 #1 Reusable Moving Box Service</div>
 
-        <div style="font-family:'Fraunces', serif; font-size:clamp(2.8rem, 7vw, 5.2rem); font-weight:900; line-height:1; margin-bottom:1.5rem; letter-spacing:-.02em;">
+        <div
+          style="font-family:'Fraunces', serif; font-size:clamp(2.8rem, 7vw, 5.2rem); font-weight:900; line-height:1; margin-bottom:1.5rem; letter-spacing:-.02em;">
           <span style="color:#1a7a4a;">RENT BOX</span><br>
           <span style="color:#E85D2B;">SAVE TREES</span><br>
           <span style="color:#1a7a4a;">SAVE BUCKS</span>
         </div>
 
-        <h1 style="font-family: var(--sans); font-size:clamp(2.2rem, 3vw, 2.8rem); font-weight:900; color:var(--ink); line-height:1.2; margin-bottom:1.5rem; letter-spacing: 0;">
+        <h1
+          style="font-family: var(--sans); font-size:clamp(2.2rem, 3vw, 2.8rem); font-weight:900; color:var(--ink); line-height:1.2; margin-bottom:1.5rem; letter-spacing: 0;">
           Moving Soon? Skip the <span class="hl-orange" style="color:var(--orange);">Cardboard.</span>
           Choose <span class="hl-green" style="color:var(--green);">TSBOX™</span>
         </h1>
 
-        <p class="hero-sub" style="font-family: var(--sans); font-size: 1.1rem; color: var(--body); line-height: 1.6; font-weight: 600; max-width: 480px; margin-bottom: 2.2rem;">
-          Durable, item-specific reusable moving boxes delivered straight to your door. Pack faster, save money, and move sustainably.
-        </p>
+        <p class="hero-sub"
+          style="font-family: var(--sans); font-size: 1.1rem; color: var(--body); line-height: 1.6; font-weight: 600; max-width: 480px; margin-bottom: 2.2rem;">
+          Extremely durable Polycarbonate,
+          item-specific reusable moving boxes delivered straight to your door.
+          Pack faster and move sustainably. <br>Save money! Save time! Save our trees! </p>
 
-        <p style="font-family: var(--sans); font-size:.85rem; font-weight:900; color:var(--green); margin-bottom:2rem; letter-spacing:.08em; text-transform: uppercase;">
+        <p
+          style="font-family: var(--sans); font-size:.85rem; font-weight:900; color:var(--green); margin-bottom:2rem; letter-spacing:.08em; text-transform: uppercase;">
           EASY, CONVENIENT, PROTECTS YOUR BELONGINGS
         </p>
 
         <div class="hero-actions" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
-          <a href="#order" class="btn-primary" style="background:var(--green); color:#fff; padding:1.1rem 2.2rem; border-radius:100px; font-weight:800; text-decoration:none;">Reserve My Boxes →</a>
-          <a href="#packages" class="btn-outline" style="border:2.5px solid var(--green); color:var(--green); padding:1.1rem 2.2rem; border-radius:100px; font-weight:800; text-decoration:none;">View Packages</a>
+          <a href="#order" class="btn-primary"
+            style="background:var(--green); color:#fff; padding:1.1rem 2.2rem; border-radius:100px; font-weight:800; text-decoration:none;">Reserve
+            My Boxes →</a>
+          <a href="#packages" class="btn-outline"
+            style="border:2.5px solid var(--green); color:var(--green); padding:1.1rem 2.2rem; border-radius:100px; font-weight:800; text-decoration:none;">View
+            Packages</a>
         </div>
 
         <div class="hero-trust" style="display: flex; align-items: center; gap: 1rem;">
           <div class="hero-trust-stars" style="color: #F59E0B; font-size: 1.1rem;">★★★★★</div>
-          <div class="hero-trust-txt" style="font-size: .85rem; color: var(--muted); font-weight: 700;">Trusted for 500+ moves · Free delivery & pickup included</div>
+          <div class="hero-trust-txt" style="font-size: .85rem; color: var(--muted); font-weight: 700;">Trusted for 500+
+            moves · Free delivery & pickup included</div>
         </div>
       </div>
 
       <div class="hero-visual" style="position: relative;">
-        <div class="hero-float-badge" style="position: absolute; top: 1.2rem; right: -1rem; background: var(--orange); color: #fff; padding: .9rem 1.2rem; border-radius: var(--radius); box-shadow: 0 8px 32px rgba(232, 93, 43, .35); text-align: center; min-width: 120px; z-index: 3;">
-          <div class="fbnum" style="font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; line-height: 1;">50%</div>
-          <div class="fblbl" style="font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; opacity: .9; margin-top: .2rem;">Save Up to 50% vs. Cardboard</div>
+        <div class="hero-float-badge"
+          style="position: absolute; top: 1.2rem; right: -1rem; background: var(--orange); color: #fff; padding: .9rem 1.2rem; border-radius: var(--radius); box-shadow: 0 8px 32px rgba(232, 93, 43, .35); text-align: center; min-width: 120px; z-index: 3;">
+          <div class="fbnum" style="font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; line-height: 1;">
+            50%</div>
+          <div class="fblbl"
+            style="font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; opacity: .9; margin-top: .2rem;">
+            Save Up to 50% vs. Cardboard</div>
         </div>
         <img src="img/27.png" alt="TSBOX reusable moving containers" class="hero-main-img"
           style="width: 100%; height: 520px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: 0 24px 72px rgba(17, 24, 21, 0.18); display: block;"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="hero-main-placeholder" style="display:none; width: 100%; height: 520px; background: linear-gradient(135deg, #B9E7CD, #7CC4A4); border-radius: var(--radius-lg); align-items: center; justify-content: center; font-size: 5rem;">📦</div>
+        <div class="hero-main-placeholder"
+          style="display:none; width: 100%; height: 520px; background: linear-gradient(135deg, #B9E7CD, #7CC4A4); border-radius: var(--radius-lg); align-items: center; justify-content: center; font-size: 5rem;">
+          📦</div>
       </div>
     </div>
   </section>
@@ -1456,19 +1915,23 @@
   <!-- ══ GALLERY STRIP ══ -->
   <div class="gallery-strip">
     <div class="gallery-strip-item">
-      <img src="img/28.png" alt="TSBOX boxes delivered" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/28.png" alt="TSBOX boxes delivered"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#CCEEDE;">📦</div>
     </div>
     <div class="gallery-strip-item">
-      <img src="img/22.png" alt="Reusable moving containers" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/22.png" alt="Reusable moving containers"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#B9E7CD;">🚚</div>
     </div>
     <div class="gallery-strip-item">
-      <img src="img/29.png" alt="Green sustainable moving" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/29.png" alt="Green sustainable moving"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#96D4B4;">🌱</div>
     </div>
     <div class="gallery-strip-item">
-      <img src="img/25.png" alt="TSBOX in use" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="img/25.png" alt="TSBOX in use"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-strip-placeholder" style="display:none;background:#7CC4A4;">✅</div>
     </div>
   </div>
@@ -1479,11 +1942,13 @@
       <div style="text-align:center;">
         <div class="sec-eyebrow">Moving Made Simple</div>
         <h2 class="sec-title">How TSBOX™ Works</h2>
-        <p class="sec-body" style="margin:0 auto;">No trips to the store, no broken boxes, no guilt. We do the heavy lifting.</p>
+        <p class="sec-body" style="margin:0 auto;">No trips to the store, no broken boxes, no guilt. We do the heavy
+          lifting.</p>
       </div>
       <div class="hiw-grid">
         <div class="hiw-step reveal">
-          <img src="img/18.png" alt="Choose Your Package" class="hiw-step-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/18.png" alt="Choose Your Package" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-step-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📋</div>
           <div class="hiw-body">
             <div class="hiw-num">1</div>
@@ -1492,7 +1957,8 @@
           </div>
         </div>
         <div class="hiw-step reveal">
-          <img src="img/29.png" alt="We Deliver" class="hiw-step-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/29.png" alt="We Deliver" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-step-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🚚</div>
           <div class="hiw-body">
             <div class="hiw-num">2</div>
@@ -1501,16 +1967,19 @@
           </div>
         </div>
         <div class="hiw-step reveal">
-          <img src="img/9.png" alt="Pack and Move" class="hiw-step-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/9.png" alt="Pack and Move" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-step-ph" style="display:none;background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">📦</div>
           <div class="hiw-body">
             <div class="hiw-num">3</div>
             <h3>Pack &amp; Move</h3>
-            <p>Use purpose-built TSBOX™ containers for dishes, clothes, shoes, wardrobe, and more. Stack securely and move with ease.</p>
+            <p>Use purpose-built TSBOX™ containers for dishes, clothes, shoes, wardrobe, and more. Stack securely and
+              move with ease.</p>
           </div>
         </div>
         <div class="hiw-step reveal">
-          <img src="img/28.png" alt="We Pick Up" class="hiw-step-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/28.png" alt="We Pick Up" class="hiw-step-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="hiw-step-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">✅</div>
           <div class="hiw-body">
             <div class="hiw-num">4</div>
@@ -1534,18 +2003,29 @@
       <div class="packages-grid">
 
         <div class="pkg-card reveal">
-          <img src="img/studio.jpg" alt="Studio Move" class="pkg-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/studio.jpg" alt="Studio Move" class="pkg-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🏠</div>
           <div class="pkg-card-body">
             <div class="pkg-name">Studio Move</div>
             <div class="pkg-rooms">Perfect for studios or single-room apartments</div>
             <div class="pkg-price-row"><span class="big">$49</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>20 Standard Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Wardrobe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>Free Delivery &amp; Pickup</div>
-              <div class="pkg-feature"><div class="chk">✓</div>Locks Included</div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>20 Standard Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Wardrobe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Dish-Safe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>Free Delivery &amp; Pickup
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>Locks Included
+              </div>
             </div>
             <a href="#order" class="pkg-cta">Book Studio Package →</a>
           </div>
@@ -1553,37 +2033,61 @@
 
         <div class="pkg-card featured reveal">
           <div class="pkg-popular">Most Popular</div>
-          <img src="img/2br.png" alt="2-Bedroom Move" class="pkg-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/2br.png" alt="2-Bedroom Move" class="pkg-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-ph" style="display:none;background:linear-gradient(135deg,#FFF0E8,#FFD5B2);">🏡</div>
           <div class="pkg-card-body">
             <div class="pkg-name">2-Bedroom Move</div>
             <div class="pkg-rooms">Ideal for 1–2 bedroom homes or apartments</div>
             <div class="pkg-price-row"><span class="big">$89</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>40 Standard Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>5 Wardrobe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>4 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Shoe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>Free Delivery, Pickup &amp; Dolly</div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>40 Standard Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>5 Wardrobe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>4 Dish-Safe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Shoe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>Free Delivery, Pickup &amp; Dolly
+              </div>
             </div>
             <a href="#order" class="pkg-cta">Book 2BR Package →</a>
           </div>
         </div>
 
         <div class="pkg-card reveal">
-          <img src="img/family.jpg" alt="Family Move" class="pkg-card-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/family.jpg" alt="Family Move" class="pkg-card-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="pkg-card-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🏘️</div>
           <div class="pkg-card-body">
             <div class="pkg-name">Family Move</div>
             <div class="pkg-rooms">Best for 3–4 bedroom homes</div>
             <div class="pkg-price-row"><span class="big">$149</span><span class="small">/ week</span></div>
             <div class="pkg-features">
-              <div class="pkg-feature"><div class="chk">✓</div>65 Standard Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>8 Wardrobe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>6 Dish-Safe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>4 Shoe Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Book Boxes</div>
-              <div class="pkg-feature"><div class="chk">✓</div>2 Dollies Included</div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>65 Standard Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>8 Wardrobe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>6 Dish-Safe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>4 Shoe Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Book Boxes
+              </div>
+              <div class="pkg-feature">
+                <div class="chk">✓</div>2 Dollies Included
+              </div>
             </div>
             <a href="#order" class="pkg-cta">Book Family Package →</a>
           </div>
@@ -1605,7 +2109,8 @@
       <h2 class="sec-title">Designed for Everything You Own</h2>
       <p class="sec-body">TSBOX™ containers are engineered for specific item types — protecting what matters most.</p>
 
-      <div style="margin-top: 2rem; margin-bottom: 3rem; background: #f4fcf4; display: block; padding: 1.2rem 1.8rem; border-radius: 12px; border: 1px solid var(--green); text-align: left; max-width: fit-content;">
+      <div
+        style="margin-top: 2rem; margin-bottom: 3rem; background: #f4fcf4; display: block; padding: 1.2rem 1.8rem; border-radius: 12px; border: 1px solid var(--green); text-align: left; max-width: fit-content;">
         <p style="margin: 0; font-size: 1rem; font-weight: 800; color: var(--green-dk);">
           ✨ You do not need additional packing materials, such as:
         </p>
@@ -1618,7 +2123,8 @@
       <div class="box-types-grid">
 
         <div class="box-type-card reveal">
-          <img src="img/23.png" alt="Dish Box" class="bt-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/23.png" alt="Dish Box" class="bt-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">🍽️</div>
           <div class="bt-body">
             <h4>Dish Box</h4>
@@ -1628,7 +2134,8 @@
         </div>
 
         <div class="box-type-card reveal">
-          <img src="img/24.png" alt="Wardrobe Box" class="bt-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/24.png" alt="Wardrobe Box" class="bt-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#FFF0E8,#FFD5B2);">👔</div>
           <div class="bt-body">
             <h4>Wardrobe Box</h4>
@@ -1638,7 +2145,8 @@
         </div>
 
         <div class="box-type-card reveal">
-          <img src="img/25.png" alt="Shoe Box" class="bt-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/25.png" alt="Shoe Box" class="bt-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">👟</div>
           <div class="bt-body">
             <h4>Shoe Box</h4>
@@ -1648,7 +2156,8 @@
         </div>
 
         <div class="box-type-card reveal">
-          <img src="img/22.png" alt="Book Box" class="bt-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/22.png" alt="Book Box" class="bt-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📚</div>
           <div class="bt-body">
             <h4>Book Box</h4>
@@ -1658,7 +2167,8 @@
         </div>
 
         <div class="box-type-card reveal">
-          <img src="img/21.png" alt="Glassware Box" class="bt-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/21.png" alt="Glassware Box" class="bt-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#FFF0E8,#FFD5B2);">🥂</div>
           <div class="bt-body">
             <h4>Glassware Box</h4>
@@ -1668,7 +2178,8 @@
         </div>
 
         <div class="box-type-card reveal">
-          <img src="img/9.png" alt="Standard Box" class="bt-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/9.png" alt="Standard Box" class="bt-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="bt-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📦</div>
           <div class="bt-body">
             <h4>Standard Box</h4>
@@ -1690,7 +2201,7 @@
       <p>See how choosing TSBOX™ helps the planet.</p>
     </div>
 
- 
+
     <div class="stats-table-wrapper">
       <table class="stats-table">
         <thead>
@@ -1757,7 +2268,8 @@
             <div class="wbn">50%</div>
             <div class="wbl">Cost Savings</div>
           </div>
-          <img src="img/29.png" alt="TSBOX reusable boxes" class="why-img-main" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/29.png" alt="TSBOX reusable boxes" class="why-img-main"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="why-img-main-ph" style="display:none;">📦</div>
           <img src="img/27.png" alt="TSBOX detail" class="why-img-sm" onerror="this.style.display='none'">
         </div>
@@ -1819,8 +2331,12 @@
           <span style="color: #c2f5ac; font-style: italic;">the Cardboard Box!</span>
         </h2>
         <div class="btn-group">
-          <a href="solution.html" style="background:#fff; color:#0b3022; padding:18px 40px; border-radius:100px; font-weight:800; text-decoration:none; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">See Box Types</a>
-          <a href="#order" style="border:2px solid rgba(255,255,255,0.3); color:#fff; padding:18px 40px; border-radius:100px; font-weight:800; text-decoration:none; transition: 0.3s;">Reserve Now →</a>
+          <a href="solution.html"
+            style="background:#fff; color:#0b3022; padding:18px 40px; border-radius:100px; font-weight:800; text-decoration:none; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">See
+            Box Types</a>
+          <a href="#order"
+            style="border:2px solid rgba(255,255,255,0.3); color:#fff; padding:18px 40px; border-radius:100px; font-weight:800; text-decoration:none; transition: 0.3s;">Reserve
+            Now →</a>
         </div>
       </div>
       <div class="photo-image">
@@ -1907,7 +2423,8 @@
       <div class="testimonials-grid">
 
         <div class="testimonial reveal">
-          <img src="img/9.png" alt="TSBOX reusable moving boxes" class="test-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/9.png" alt="TSBOX reusable moving boxes" class="test-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="test-ph" style="display:none;background:linear-gradient(135deg,#EFF8F3,#CCEEDE);">📦</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
@@ -1923,7 +2440,8 @@
         </div>
 
         <div class="testimonial reveal">
-          <img src="img/18.png" alt="TSBOX reusable moving boxes" class="test-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/18.png" alt="TSBOX reusable moving boxes" class="test-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="test-ph" style="display:none;background:linear-gradient(135deg,#FFF0EA,#FFD5C2);">📦</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
@@ -1939,7 +2457,8 @@
         </div>
 
         <div class="testimonial reveal">
-          <img src="img/22.png" alt="TSBOX reusable moving boxes" class="test-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="img/22.png" alt="TSBOX reusable moving boxes" class="test-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="test-ph" style="display:none;background:linear-gradient(135deg,#E8F4FF,#C8E4F8);">📦</div>
           <div class="test-body">
             <div class="test-stars">★★★★★</div>
@@ -1966,20 +2485,27 @@
       <div style="text-align:center;">
         <div class="sec-eyebrow">Ready to Move?</div>
         <h2 class="sec-title">Reserve Your Boxes Today</h2>
-        <p class="sec-body" style="margin:0 auto;">Free to book. Free delivery. We'll confirm your reservation within a few hours.</p>
+        <p class="sec-body" style="margin:0 auto;">Free to book. Free delivery. We'll confirm your reservation within a
+          few hours.</p>
       </div>
 
       <div class="order-form-wrap reveal" id="order-form-wrap">
-        <div id="form-error" style="display:none; background:#fff0f0; color:#c00; border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:16px; border:1px solid #fcc;"></div>
+        <div id="form-error"
+          style="display:none; background:#fff0f0; color:#c00; border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:16px; border:1px solid #fcc;">
+        </div>
 
         <form onsubmit="handleSubmit(); return false;">
           <div class="form-row">
-            <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Your first name"></div>
-            <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Your last name"></div>
+            <div class="form-group"><label for="fname">First Name</label><input type="text" id="fname"
+                placeholder="Your first name"></div>
+            <div class="form-group"><label for="lname">Last Name</label><input type="text" id="lname"
+                placeholder="Your last name"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" placeholder="you@email.com"></div>
-            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="(310) 000-0000"></div>
+            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email"
+                placeholder="you@email.com"></div>
+            <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone"
+                placeholder="(310) 000-0000"></div>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -1994,10 +2520,13 @@
             </div>
             <div class="form-group"><label for="move-date">Delivery Date</label><input type="date" id="move-date"></div>
           </div>
-          <div class="form-group"><label for="address">Address</label><input type="text" id="address" placeholder="Your delivery address"></div>
-          <div class="form-group"><label for="notes">Notes</label><textarea id="notes" placeholder="Special requests, extra boxes, questions..."></textarea></div>
+          <div class="form-group"><label for="address">Address</label><input type="text" id="address"
+              placeholder="Your delivery address"></div>
+          <div class="form-group"><label for="notes">Notes</label><textarea id="notes"
+              placeholder="Special requests, extra boxes, questions..."></textarea></div>
 
-          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:1rem;font-size:1rem;">
+          <button type="submit" class="btn-primary"
+            style="width:100%;justify-content:center;padding:1rem;font-size:1rem;">
             Reserve My Boxes — Free to Book →
           </button>
         </form>
@@ -2009,7 +2538,8 @@
 
       <div id="success-msg" style="display:none; text-align:center; padding:3rem 1rem;">
         <h3 style="margin-bottom:.5rem;">✅ Reservation Sent!</h3>
-        <p>Your email client has opened with all your details. Just hit Send — Roman will confirm within a few hours.</p>
+        <p>Your email client has opened with all your details. Just hit Send — Roman will confirm within a few hours.
+        </p>
       </div>
     </div>
   </section>
@@ -2088,7 +2618,8 @@
             <div class="faq-q-text">Do the boxes have GPS tracking?</div>
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-a">Yes! Every TSBOX™ delivery comes with GPS tracking so you can follow your boxes in real time — from our depot to your door and back.</div>
+          <div class="faq-a">Yes! Every TSBOX™ delivery comes with GPS tracking so you can follow your boxes in real
+            time — from our depot to your door and back.</div>
         </div>
 
         <div class="faq-item">
@@ -2104,7 +2635,8 @@
             <div class="faq-q-text">How long can I keep the boxes?</div>
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-a">Weekly packages with flexible extensions available. Just let us know before your pickup date.</div>
+          <div class="faq-a">Weekly packages with flexible extensions available. Just let us know before your pickup
+            date.</div>
         </div>
 
         <div class="faq-item">
@@ -2112,7 +2644,8 @@
             <div class="faq-q-text">Are the boxes clean and sanitized?</div>
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-a">Every box is sanitized and inspected before delivery. You'll never receive a musty or dirty box.</div>
+          <div class="faq-a">Every box is sanitized and inspected before delivery. You'll never receive a musty or dirty
+            box.</div>
         </div>
 
         <div class="faq-item">
@@ -2120,7 +2653,8 @@
             <div class="faq-q-text">What if I need more boxes than my package includes?</div>
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-a">Call us for tailored box quantities. We're happy to customize any package to suit your needs.</div>
+          <div class="faq-a">Call us for tailored box quantities. We're happy to customize any package to suit your
+            needs.</div>
         </div>
 
         <div class="faq-item">
@@ -2136,7 +2670,8 @@
             <div class="faq-q-text">What happens if a box is damaged?</div>
             <div class="faq-toggle">+</div>
           </div>
-          <div class="faq-a">Normal wear is covered — boxes are built to last 80+ years. We only charge for severe damage. Just let us know at pickup.</div>
+          <div class="faq-a">Normal wear is covered — boxes are built to last 80+ years. We only charge for severe
+            damage. Just let us know at pickup.</div>
         </div>
 
       </div>
@@ -2149,14 +2684,18 @@
       <div class="tsbox-main-grid">
 
         <div class="reveal">
-          <div class="sec-eyebrow" style="background:rgba(255,255,255,.12); color:rgba(255,255,255,.85); width: fit-content; padding: 4px 12px; border-radius: 4px; text-transform: uppercase; font-size: 0.8rem; font-weight: bold;">
+          <div class="sec-eyebrow"
+            style="background:rgba(255,255,255,.12); color:rgba(255,255,255,.85); width: fit-content; padding: 4px 12px; border-radius: 4px; text-transform: uppercase; font-size: 0.8rem; font-weight: bold;">
             Why It Matters
           </div>
-          <h2 class="sec-title" style="color:#fff; font-size: clamp(2rem, 5vw, 3rem); margin: 1rem 0;">Every Move Helps the Planet</h2>
+          <h2 class="sec-title" style="color:#fff; font-size: clamp(2rem, 5vw, 3rem); margin: 1rem 0;">Every Move Helps
+            the Planet</h2>
           <p class="sec-body" style="color:rgba(255,255,255,.7); font-size: 1.1rem; line-height: 1.6;">
-            Cardboard manufacturing is one of the leading causes of global deforestation. When you rent TSBOX™, you're part of the solution.
+            Cardboard manufacturing is one of the leading causes of global deforestation. When you rent TSBOX™, you're
+            part of the solution.
           </p>
-          <a href="#order" class="btn-primary" style="margin-top:2rem; display:inline-flex; align-items:center; background:#fff; color:#1a4331; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform 0.2s;">
+          <a href="#order" class="btn-primary"
+            style="margin-top:2rem; display:inline-flex; align-items:center; background:#fff; color:#1a4331; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform 0.2s;">
             Start Your Green Move &nbsp; →
           </a>
         </div>
@@ -2195,7 +2734,9 @@
     <p>Reserve your TSBOX™ boxes today and move smarter.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="#order" class="btn-primary" style="background:#fff;color:var(--green);">Reserve My Boxes →</a>
-      <a href="tel:3109995015" style="display:inline-flex;align-items:center;gap:.5rem;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">Call 310-999-5015</a>
+      <a href="tel:3109995015"
+        style="display:inline-flex;align-items:center;gap:.5rem;border:2.5px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2rem;border-radius:100px;font-size:1rem;font-weight:800;">Call
+        310-999-5015</a>
     </div>
   </section>
 
