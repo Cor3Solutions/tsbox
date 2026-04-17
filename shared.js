@@ -64,11 +64,8 @@ const FOOTER_HTML = `
       <div class="f-logo">TS<span>BOX</span>™</div>
       <div class="f-tagline">Rent Box · Save Trees · Save Bucks</div>
       <div class="f-addr">
-        Concord Pacific Corp<br>
-        Roman Alexander, CEO &amp; Founder<br>
-        8665 Wilshire Blvd, Suite 302<br>
-        Beverly Hills, CA 90211<br><br>
-        Tel: <a href="tel:3109995015">310-999-5015</a><br>
+        Concord Pacific, Corp.,<br>  
+       Beverly Hills, California.<br><br> 
         <a href="mailto:1000pacific@gmail.com">1000pacific@gmail.com</a>
       </div>
     </div>
